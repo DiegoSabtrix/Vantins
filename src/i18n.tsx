@@ -103,7 +103,6 @@ const en: SiteContent = {
     },
     { label: 'Other Services', href: '#products' },
     { label: 'Help & Support', href: '#faq' },
-    { label: 'Free Quote', href: '#pricing', cta: true },
   ],
   hero: {
     pill: 'How much can I save on coverage?',
@@ -245,7 +244,6 @@ const es: SiteContent = {
     },
     { label: 'Otros Servicios', href: '#products' },
     { label: 'Ayuda y Soporte', href: '#faq' },
-    { label: 'Cotiza Gratis', href: '#pricing', cta: true },
   ],
   hero: {
     pill: '¿Cuánto puedo ahorrar en mi cobertura?',
