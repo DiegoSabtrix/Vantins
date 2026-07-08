@@ -1,17 +1,20 @@
 import { motion } from 'framer-motion';
 import { Container, SectionHeading } from '@/components/ui';
-import { FEATURES } from '@/utils/constants';
+import { FEATURE_ICONS } from '@/utils/constants';
 import { staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
-import type { Feature } from '@/types';
+import { useT } from '@/i18n';
+import type { IconComponent } from '@/types';
 
 export function Features() {
+  const t = useT();
+
   return (
     <section id="features" className="bg-surface py-20 lg:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Why choose Vantins"
-          title="Insurance Made Simple."
-          description="Choosing insurance shouldn’t be overwhelming. Our licensed advisors compare multiple insurance carriers, explain your options, and help you choose coverage that protects what matters most."
+          eyebrow={t.features.eyebrow}
+          title={t.features.title}
+          description={t.features.description}
         />
 
         <motion.ul
@@ -21,8 +24,13 @@ export function Features() {
           viewport={viewportOnce}
           className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {FEATURES.map((feature) => (
-            <FeatureCard key={feature.id} feature={feature} />
+          {t.features.items.map((feature, i) => (
+            <FeatureCard
+              key={feature.title}
+              title={feature.title}
+              description={feature.description}
+              icon={FEATURE_ICONS[i % FEATURE_ICONS.length]}
+            />
           ))}
         </motion.ul>
       </Container>
@@ -30,8 +38,15 @@ export function Features() {
   );
 }
 
-function FeatureCard({ feature }: { feature: Feature }) {
-  const { icon: Icon, title, description } = feature;
+function FeatureCard({
+  title,
+  description,
+  icon: Icon,
+}: {
+  title: string;
+  description: string;
+  icon: IconComponent;
+}) {
   return (
     <motion.li
       variants={staggerItem}

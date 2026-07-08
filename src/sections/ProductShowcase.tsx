@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Container, LinkButton } from '@/components/ui';
 import { IconArrowRight, IconCheck } from '@/components/icons';
-import { PRODUCT_HIGHLIGHTS } from '@/utils/constants';
 import { EASE_OUT_EXPO, fadeUp, viewportOnce } from '@/utils/motion';
+import { useT } from '@/i18n';
 
 export function ProductShowcase() {
-  const [active, setActive] = useState(PRODUCT_HIGHLIGHTS[0].id);
-  const item =
-    PRODUCT_HIGHLIGHTS.find((h) => h.id === active) ?? PRODUCT_HIGHLIGHTS[0];
+  const t = useT();
+  const items = t.products.items;
+  const [active, setActive] = useState(0);
+  const item = items[active] ?? items[0];
 
   return (
     <section id="products" className="bg-surface-dark py-20 text-white lg:py-28">
@@ -20,16 +21,12 @@ export function ProductShowcase() {
           viewport={viewportOnce}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-display-md text-balance">
-            One Agency. Every Coverage You Need.
-          </h2>
+          <h2 className="text-display-md text-balance">{t.products.title}</h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/65 text-pretty">
-            Whether you’re protecting your vehicle, home, business, trucking
-            company, or family, Vantins makes insurance simple by bringing
-            everything together under one trusted agency.
+            {t.products.subtitle}
           </p>
           <LinkButton href="#pricing" size="lg" className="group mt-7">
-            Get Your Free Quote
+            {t.products.cta}
             <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </LinkButton>
         </motion.div>
@@ -44,13 +41,13 @@ export function ProductShowcase() {
         >
           {/* Tab rail */}
           <ul className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
-            {PRODUCT_HIGHLIGHTS.map((h) => {
-              const isActive = h.id === active;
+            {items.map((h, i) => {
+              const isActive = i === active;
               return (
-                <li key={h.id} className="shrink-0 lg:shrink">
+                <li key={h.tab} className="shrink-0 lg:shrink">
                   <button
                     type="button"
-                    onClick={() => setActive(h.id)}
+                    onClick={() => setActive(i)}
                     aria-pressed={isActive}
                     className={
                       'w-full whitespace-nowrap rounded-xl px-4 py-3 text-left text-sm font-semibold transition-colors ' +
@@ -59,7 +56,7 @@ export function ProductShowcase() {
                         : 'text-white/55 hover:bg-white/5 hover:text-white')
                     }
                   >
-                    {h.eyebrow}
+                    {h.tab}
                   </button>
                 </li>
               );
@@ -70,7 +67,7 @@ export function ProductShowcase() {
           <div className="rounded-2xl bg-black/40 p-6 lg:p-8">
             <AnimatePresence mode="wait">
               <motion.div
-                key={item.id}
+                key={item.title}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
@@ -85,7 +82,7 @@ export function ProductShowcase() {
                     {item.description}
                   </p>
                   <LinkButton href="#pricing" size="lg" className="group mt-7">
-                    Request Free Quote
+                    {t.products.panelCta}
                     <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                   </LinkButton>
                 </div>
@@ -93,7 +90,7 @@ export function ProductShowcase() {
                 {/* Included coverages */}
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
                   <p className="text-sm font-semibold text-brand-300">
-                    Included Coverages
+                    {t.products.coveragesLabel}
                   </p>
                   <ul className="mt-4 space-y-3">
                     {item.bullets.map((bullet) => (

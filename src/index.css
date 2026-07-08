@@ -52,28 +52,28 @@
       radial-gradient(900px 500px at 0% 0%, rgba(52, 181, 40, 0.1), transparent 55%);
   }
 
-  /* Black hero with a soft blue→green glow (mirrors quickbooks.intuit.com) */
+  /* Black hero with a soft amber→orange glow */
   .bg-hero-dark {
     background-color: #000;
     background-image: radial-gradient(
         900px 480px at 50% -8%,
-        rgba(94, 162, 255, 0.18),
+        rgba(245, 158, 11, 0.20),
         transparent 60%
       ),
-      radial-gradient(760px 420px at 50% 118%, rgba(75, 208, 123, 0.16), transparent 60%);
+      radial-gradient(760px 420px at 50% 118%, rgba(194, 65, 12, 0.16), transparent 60%);
   }
 
-  /* Blue→cyan→green text gradient for the hero word and stat numbers */
+  /* Amber→dark-orange text gradient for the hero word and stat numbers */
   .text-gradient-qb {
-    background-image: linear-gradient(100deg, #5ea2ff 0%, #38c6e6 48%, #4bd07b 100%);
+    background-image: linear-gradient(100deg, #fbbf24 0%, #f59e0b 45%, #c2410c 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  /* The blue→green divider bar under the final CTA */
+  /* The amber→orange divider bar under the final CTA */
   .bg-gradient-bar {
-    background-image: linear-gradient(90deg, #5ea2ff 0%, #38c6e6 50%, #4bd07b 100%);
+    background-image: linear-gradient(90deg, #fbbf24 0%, #f59e0b 50%, #c2410c 100%);
   }
 }
 

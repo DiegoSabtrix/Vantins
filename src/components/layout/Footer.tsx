@@ -1,9 +1,10 @@
 import { Container, Logo } from '@/components/ui';
-import { FOOTER_COLUMNS, FOOTER_LEGAL_LINKS } from '@/utils/constants';
+import { useT } from '@/i18n';
 
 const SOCIALS = ['X', 'in', 'f', 'IG'];
 
 export function Footer() {
+  const t = useT();
   const year = new Date().getFullYear();
 
   return (
@@ -13,8 +14,7 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo invert />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              Compare trusted insurance carriers, get expert guidance, and find the
-              right coverage for your family or business — all in one place.
+              {t.footer.tagline}
             </p>
             <div className="mt-6 flex items-center gap-2">
               {SOCIALS.map((s) => (
@@ -31,7 +31,7 @@ export function Footer() {
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
-            {FOOTER_COLUMNS.map((col) => (
+            {t.footer.columns.map((col) => (
               <div key={col.heading}>
                 <h3 className="text-sm font-semibold text-white">{col.heading}</h3>
                 <ul className="mt-4 space-y-3">
@@ -51,23 +51,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
+        <div className="mt-12 border-t border-white/10 pt-6">
           <p className="text-xs text-white/45">
-            © {year} Vantins. Insurance made simple — compare trusted carriers and
-            choose coverage with confidence.
+            {t.footer.copyright.replace('{year}', String(year))}
           </p>
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {FOOTER_LEGAL_LINKS.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="text-xs text-white/45 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </Container>
     </footer>

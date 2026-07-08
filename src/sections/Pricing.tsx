@@ -2,19 +2,27 @@ import { useId } from 'react';
 import { motion } from 'framer-motion';
 import { Container, SectionHeading, LinkButton } from '@/components/ui';
 import { IconCheck } from '@/components/icons';
-import { PRICING_TIERS } from '@/utils/constants';
 import { staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
-import type { PricingTier } from '@/types';
+import { useT } from '@/i18n';
 import { cn } from '@/utils/cn';
 
+interface CoverageProduct {
+  name: string;
+  tagline: string;
+  features: string[];
+  featured?: boolean;
+}
+
 export function Pricing() {
+  const t = useT();
+
   return (
     <section id="pricing" className="bg-surface-subtle py-20 lg:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Explore our coverage"
-          title="Find the Coverage That Fits Your Needs"
-          description="Whether you’re protecting your family, your home, your vehicle, or your business, our licensed advisors help you compare options and choose with confidence."
+          eyebrow={t.pricing.eyebrow}
+          title={t.pricing.title}
+          description={t.pricing.description}
         />
 
         <motion.ul
@@ -24,8 +32,13 @@ export function Pricing() {
           viewport={viewportOnce}
           className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3"
         >
-          {PRICING_TIERS.map((tier) => (
-            <PricingCard key={tier.id} tier={tier} />
+          {t.pricing.items.map((tier) => (
+            <PricingCard
+              key={tier.name}
+              tier={tier}
+              cta={t.pricing.cta}
+              recommended={t.pricing.recommended}
+            />
           ))}
         </motion.ul>
       </Container>
@@ -33,7 +46,15 @@ export function Pricing() {
   );
 }
 
-function PricingCard({ tier }: { tier: PricingTier }) {
+function PricingCard({
+  tier,
+  cta,
+  recommended,
+}: {
+  tier: CoverageProduct;
+  cta: string;
+  recommended: string;
+}) {
   const headingId = useId();
 
   return (
@@ -49,7 +70,7 @@ function PricingCard({ tier }: { tier: PricingTier }) {
     >
       {tier.featured && (
         <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-500 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow-sm">
-          Recommended
+          {recommended}
         </span>
       )}
 
@@ -73,7 +94,7 @@ function PricingCard({ tier }: { tier: PricingTier }) {
         fullWidth
         className="mt-7"
       >
-        Get Quote
+        {cta}
       </LinkButton>
     </motion.li>
   );

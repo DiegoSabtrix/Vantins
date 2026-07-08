@@ -2,30 +2,31 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Container, SectionHeading } from '@/components/ui';
 import { IconMinus, IconPlus } from '@/components/icons';
-import { FAQ_ITEMS } from '@/utils/constants';
 import { EASE_OUT_EXPO } from '@/utils/motion';
-import type { FaqItem } from '@/types';
+import { useT } from '@/i18n';
+
+interface QA {
+  question: string;
+  answer: string;
+}
 
 export function Faq() {
-  const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
+  const t = useT();
+  const [openId, setOpenId] = useState<number>(0);
 
   return (
     <section id="faq" className="bg-surface py-20 lg:py-28">
       <Container className="max-w-3xl">
-        <SectionHeading
-          eyebrow="Questions & answers"
-          title="Frequently Asked Questions"
-        />
+        <SectionHeading eyebrow={t.faq.eyebrow} title={t.faq.title} />
 
         <div className="mt-12 divide-y divide-ink/10 border-y border-ink/10">
-          {FAQ_ITEMS.map((item) => (
+          {t.faq.items.map((item, i) => (
             <AccordionRow
-              key={item.id}
+              key={item.question}
               item={item}
-              open={openId === item.id}
-              onToggle={() =>
-                setOpenId((cur) => (cur === item.id ? null : item.id))
-              }
+              index={i}
+              open={openId === i}
+              onToggle={() => setOpenId((cur) => (cur === i ? -1 : i))}
             />
           ))}
         </div>
@@ -36,15 +37,17 @@ export function Faq() {
 
 function AccordionRow({
   item,
+  index,
   open,
   onToggle,
 }: {
-  item: FaqItem;
+  item: QA;
+  index: number;
   open: boolean;
   onToggle: () => void;
 }) {
-  const panelId = `faq-panel-${item.id}`;
-  const buttonId = `faq-button-${item.id}`;
+  const panelId = `faq-panel-${index}`;
+  const buttonId = `faq-button-${index}`;
 
   return (
     <div>

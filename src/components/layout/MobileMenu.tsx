@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Logo, LinkButton, Button } from '@/components/ui';
 import { IconClose } from '@/components/icons';
-import { NAV_ITEMS } from '@/utils/constants';
 import { useLockBodyScroll } from '@/hooks';
+import { useT } from '@/i18n';
+import { LanguageToggle } from './LanguageToggle';
 
 interface MobileMenuProps {
   open: boolean;
@@ -11,14 +12,17 @@ interface MobileMenuProps {
 
 /** Full-height slide-in navigation for small screens. */
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const t = useT();
   useLockBodyScroll(open);
+
+  const links = t.nav.filter((item) => !item.cta);
 
   return (
     <AnimatePresence>
       {open && (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-ink/40 lg:hidden"
+            className="fixed inset-0 z-50 bg-ink/40 xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -26,7 +30,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-hidden
           />
           <motion.div
-            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-black text-white shadow-float lg:hidden"
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-black text-white shadow-float xl:hidden"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -50,7 +54,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
 
             <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
               <ul className="space-y-1">
-                {NAV_ITEMS.map((item) => (
+                {links.map((item) => (
                   <li key={item.label}>
                     <a
                       href={item.href}
@@ -61,7 +65,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                     </a>
                     {item.menu && (
                       <ul className="mb-1 ml-3 border-l border-white/10 pl-4">
-                        {item.menu.flatMap((col) => col.links).map((link) => (
+                        {item.menu.map((link) => (
                           <li key={link.label}>
                             <a
                               href={link.href}
@@ -80,8 +84,11 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             </nav>
 
             <div className="space-y-3 border-t border-white/10 p-5">
+              <div className="flex justify-center">
+                <LanguageToggle />
+              </div>
               <LinkButton href="#pricing" variant="primary" fullWidth onClick={onClose}>
-                See plans & pricing
+                {t.promo.cta}
               </LinkButton>
               <LinkButton
                 href="#"
@@ -90,7 +97,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                 onClick={onClose}
                 className="!border-white/30 !bg-transparent !text-white hover:!bg-white/10"
               >
-                Sign in
+                {t.common.signIn}
               </LinkButton>
             </div>
           </motion.div>

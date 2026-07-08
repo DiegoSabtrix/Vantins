@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Container, Logo, Button } from '@/components/ui';
+import { Container, Logo, Button, LinkButton } from '@/components/ui';
 import { IconChevronDown, IconMenu } from '@/components/icons';
-import { NAV_ITEMS, SALES_PHONE } from '@/utils/constants';
+import { SALES_PHONE } from '@/utils/constants';
 import { useScrolled } from '@/hooks';
-import type { NavItem } from '@/types';
+import { useT } from '@/i18n';
+import type { NavEntry } from '@/i18n';
 import { cn } from '@/utils/cn';
 import { MobileMenu } from './MobileMenu';
 
 export function Navbar() {
+  const t = useT();
   const scrolled = useScrolled(8);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -32,8 +34,8 @@ export function Navbar() {
           </a>
 
           {/* Desktop nav */}
-          <ul className="hidden items-center gap-0.5 lg:flex">
-            {NAV_ITEMS.map((item) => (
+          <ul className="hidden items-center gap-0.5 xl:flex">
+            {t.nav.map((item) => (
               <NavBarItem
                 key={item.label}
                 item={item}
@@ -44,19 +46,19 @@ export function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden items-center gap-5 lg:flex">
+          <div className="hidden items-center gap-5 xl:flex">
             <a
               href={`tel:${SALES_PHONE}`}
               className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
             >
-              Sales: {SALES_PHONE}
+              {t.common.sales}: {SALES_PHONE}
               <IconChevronDown className="h-4 w-4" />
             </a>
             <a
               href="#"
               className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
             >
-              Sign in
+              {t.common.signIn}
               <IconChevronDown className="h-4 w-4" />
             </a>
           </div>
@@ -65,7 +67,7 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="sm"
-            className="!px-2 text-white hover:!bg-white/10 lg:hidden"
+            className="!px-2 text-white hover:!bg-white/10 xl:hidden"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(true)}
@@ -81,13 +83,28 @@ export function Navbar() {
 }
 
 interface NavBarItemProps {
-  item: NavItem;
+  item: NavEntry;
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
 function NavBarItem({ item, isOpen, onOpen, onClose }: NavBarItemProps) {
+  if (item.cta) {
+    return (
+      <li className="ml-1.5">
+        <LinkButton
+          href={item.href}
+          variant="primary"
+          size="sm"
+          className="whitespace-nowrap"
+        >
+          {item.label}
+        </LinkButton>
+      </li>
+    );
+  }
+
   if (!item.menu) {
     return (
       <li>
@@ -102,11 +119,7 @@ function NavBarItem({ item, isOpen, onOpen, onClose }: NavBarItemProps) {
   }
 
   return (
-    <li
-      className="relative"
-      onMouseEnter={onOpen}
-      onMouseLeave={onClose}
-    >
+    <li className="relative" onMouseEnter={onOpen} onMouseLeave={onClose}>
       <button
         type="button"
         className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-medium text-white transition-colors hover:bg-white/10"
@@ -128,26 +141,19 @@ function NavBarItem({ item, isOpen, onOpen, onClose }: NavBarItemProps) {
             transition={{ duration: 0.18 }}
             className="absolute left-0 top-full pt-3"
           >
-            <div className="grid w-max min-w-[22rem] grid-cols-2 gap-x-8 gap-y-2 rounded-2xl border border-white/10 bg-[#0a0a0a] p-5 shadow-float">
-              {item.menu.map((col) => (
-                <div key={col.heading}>
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-white/45">
-                    {col.heading}
-                  </p>
-                  <ul className="space-y-1">
-                    {col.links.map((link) => (
-                      <li key={link.label}>
-                        <a
-                          href={link.href}
-                          className="block rounded-lg px-2 py-1.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="w-max min-w-[16rem] rounded-2xl border border-white/10 bg-[#0a0a0a] p-3 shadow-float">
+              <ul className="space-y-1">
+                {item.menu.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="block rounded-lg px-3 py-2 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         )}

@@ -1,25 +1,26 @@
 import { Container, LinkButton } from '@/components/ui';
 import { TRUST_LOGOS } from '@/utils/constants';
+import { useT } from '@/i18n';
 
-/** "Over 800 integrations" — infinite marquee of placeholder partner wordmarks. */
+/** Trusted carriers — infinite marquee of placeholder partner wordmarks. */
 export function TrustBar() {
+  const t = useT();
   const items = [...TRUST_LOGOS, ...TRUST_LOGOS];
 
   return (
     <section
       className="border-y border-ink/10 bg-white py-14"
-      aria-label="Integrations"
+      aria-label="Carriers"
     >
       <Container className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-display-md text-balance text-ink">
-          Trusted Insurance Carriers
+          {t.carriers.title}
         </h2>
         <p className="max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
-          We work with leading insurance companies so you can compare coverage,
-          pricing, and protection — all through one trusted agency.
+          {t.carriers.description}
         </p>
         <LinkButton href="#pricing" variant="outline" size="sm">
-          See all carriers
+          {t.carriers.cta}
         </LinkButton>
       </Container>
       <div className="mask-x-edges mt-10 overflow-hidden">
