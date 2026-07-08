@@ -50,15 +50,11 @@ export function HighlightBand() {
               alt="Insurance professional"
               className="absolute inset-0 h-full w-full object-cover object-right"
             />
-            {/* Dark scrims: horizontal for the copy on the left, extra at the
-                bottom so the button stays legible over the photo. */}
+            {/* Scrim that darkens only the left third (behind the copy) and
+                clears toward the right so the person stays visible. */}
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/70 to-slate-950/25"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent"
+              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(2,6,23,0.9)_0%,rgba(2,6,23,0.55)_38%,rgba(2,6,23,0.1)_68%,rgba(2,6,23,0)_100%)]"
             />
             {/* Content */}
             <div className="relative flex h-full flex-col justify-between p-8 lg:p-10">
