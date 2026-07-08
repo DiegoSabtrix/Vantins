@@ -39,19 +39,30 @@ export function HighlightBand() {
             </figcaption>
           </motion.figure>
 
-          {/* Stat card */}
+          {/* Stat card with image */}
           <motion.div
             variants={staggerItem}
-            className="flex flex-col justify-between rounded-3xl bg-panel-teal p-8 lg:p-10"
+            className="relative rounded-3xl overflow-hidden bg-slate-900 border border-white/10"
           >
-            <p className="text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
-              <span className="text-gradient-qb">{t.highlight.statHighlight}</span>{' '}
-              {t.highlight.statRest}
-            </p>
-            <div className="mt-8">
-              <LinkButton href="#pricing" size="lg">
-                {t.highlight.cta}
-              </LinkButton>
+            {/* Background image */}
+            <img
+              src={`${import.meta.env.BASE_URL}trucker.jpg`}
+              alt="Insurance professional"
+              className="absolute inset-0 w-full h-full object-cover opacity-40"
+            />
+            {/* Dark overlay for readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-900/60" />
+            {/* Content */}
+            <div className="relative flex flex-col justify-between p-8 lg:p-10 h-full min-h-[320px]">
+              <p className="text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
+                <span className="text-gradient-qb">{t.highlight.statHighlight}</span>{' '}
+                {t.highlight.statRest}
+              </p>
+              <div className="mt-8">
+                <LinkButton href="#pricing" size="lg">
+                  {t.highlight.cta}
+                </LinkButton>
+              </div>
             </div>
           </motion.div>
         </motion.div>
