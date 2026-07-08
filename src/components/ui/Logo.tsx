@@ -6,12 +6,12 @@ interface LogoProps {
   invert?: boolean;
 }
 
-/** Path to the logo emblem file. Swap `public/logo.svg` to change it site-wide. */
-const LOGO_SRC = `${import.meta.env.BASE_URL}logo.svg`;
+/** Path to the logo emblem file. Swap `public/logo.png` to change it site-wide. */
+const LOGO_SRC = `${import.meta.env.BASE_URL}logo.png`;
 
 /**
- * Vantins logo — the shield emblem loaded from `public/logo.svg` plus the
- * "VANTINS" wordmark. Replace the SVG file to use a different logo.
+ * Vantins logo — the shield emblem loaded from `public/logo.png` plus the
+ * "VANTINS" wordmark. Replace the PNG file to use a different logo.
  */
 export function Logo({ className, invert = false }: LogoProps) {
   return (
