@@ -1,72 +1,131 @@
-import { motion } from 'framer-motion';
-import { Container, Badge, LinkButton } from '@/components/ui';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Container, LinkButton } from '@/components/ui';
 import { ProductVisual } from '@/components/visuals/ProductVisual';
 import { IconArrowRight, IconCheck } from '@/components/icons';
 import { PRODUCT_HIGHLIGHTS } from '@/utils/constants';
-import { EASE_OUT_EXPO, viewportOnce } from '@/utils/motion';
-import type { ProductHighlight } from '@/types';
-import { cn } from '@/utils/cn';
+import { EASE_OUT_EXPO, fadeUp, viewportOnce } from '@/utils/motion';
+
+/** Extra sidebar labels (decorative) so the tab rail reads like the real page. */
+const EXTRA_TABS = [
+  'Accounting',
+  'Payroll',
+  'Time',
+  'Projects',
+  'Lending',
+  'Inventory',
+  'Sales tax',
+];
 
 export function ProductShowcase() {
+  const [active, setActive] = useState(PRODUCT_HIGHLIGHTS[0].id);
+  const item =
+    PRODUCT_HIGHLIGHTS.find((h) => h.id === active) ?? PRODUCT_HIGHLIGHTS[0];
+
   return (
-    <section id="products" className="bg-surface-sand py-20 lg:py-28">
-      <Container className="flex flex-col gap-20 lg:gap-28">
-        {PRODUCT_HIGHLIGHTS.map((item) => (
-          <ProductRow key={item.id} item={item} />
-        ))}
+    <section id="products" className="bg-surface-dark py-20 text-white lg:py-28">
+      <Container>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <h2 className="text-display-md text-balance">
+            Run your whole business on one platform
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-lg text-white/65 text-pretty">
+            Boost efficiency on your most critical jobs with intelligent tools and
+            essential business tools working together.
+          </p>
+          <LinkButton href="#pricing" size="lg" className="group mt-7">
+            See plans &amp; pricing
+            <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+          </LinkButton>
+        </motion.div>
+
+        {/* Dark panel: vertical tab rail + content */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mt-14 grid gap-6 rounded-3xl border border-white/10 bg-panel p-4 sm:p-6 lg:grid-cols-[15rem_1fr] lg:gap-8 lg:p-8"
+        >
+          {/* Tab rail */}
+          <ul className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+            {PRODUCT_HIGHLIGHTS.map((h) => {
+              const isActive = h.id === active;
+              return (
+                <li key={h.id} className="shrink-0 lg:shrink">
+                  <button
+                    type="button"
+                    onClick={() => setActive(h.id)}
+                    aria-pressed={isActive}
+                    className={
+                      'w-full whitespace-nowrap rounded-xl px-4 py-3 text-left text-sm font-semibold transition-colors ' +
+                      (isActive
+                        ? 'bg-white/10 text-white'
+                        : 'text-white/55 hover:bg-white/5 hover:text-white')
+                    }
+                  >
+                    {h.eyebrow}
+                  </button>
+                </li>
+              );
+            })}
+            {EXTRA_TABS.map((label) => (
+              <li key={label} className="hidden shrink-0 lg:block lg:shrink">
+                <span className="block cursor-default rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/30">
+                  {label}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Content */}
+          <div className="rounded-2xl bg-black/40 p-6 lg:p-8">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
+                className="grid items-center gap-8 lg:grid-cols-2"
+              >
+                <div>
+                  <p className="text-sm font-semibold text-brand-300">
+                    {item.eyebrow}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-bold text-balance">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-white/65 text-pretty">
+                    {item.description}
+                  </p>
+                  <ul className="mt-5 space-y-2.5">
+                    {item.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-center gap-3">
+                        <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-500/20 text-brand-300">
+                          <IconCheck className="h-3.5 w-3.5" />
+                        </span>
+                        <span className="text-sm font-medium text-white/85">
+                          {bullet}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="relative">
+                  <ProductVisual visual={item.visual} />
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </motion.div>
       </Container>
     </section>
-  );
-}
-
-function ProductRow({ item }: { item: ProductHighlight }) {
-  const mediaOnRight = item.align === 'right';
-
-  return (
-    <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-      {/* Copy */}
-      <motion.div
-        initial={{ opacity: 0, x: mediaOnRight ? -32 : 32 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={viewportOnce}
-        transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
-        className={cn('max-w-xl', mediaOnRight ? 'lg:order-1' : 'lg:order-2')}
-      >
-        <Badge>{item.eyebrow}</Badge>
-        <h2 className="mt-4 text-display-md text-balance text-ink">{item.title}</h2>
-        <p className="mt-4 text-lg leading-relaxed text-ink-soft text-pretty">
-          {item.description}
-        </p>
-        <ul className="mt-6 space-y-3">
-          {item.bullets.map((bullet) => (
-            <li key={bullet} className="flex items-center gap-3 text-ink">
-              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-500/15 text-brand-600">
-                <IconCheck className="h-3.5 w-3.5" />
-              </span>
-              <span className="font-medium">{bullet}</span>
-            </li>
-          ))}
-        </ul>
-        <LinkButton href="#pricing" variant="ghost" className="mt-7 !px-0 group text-brand-600">
-          Learn more
-          <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-        </LinkButton>
-      </motion.div>
-
-      {/* Visual */}
-      <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={viewportOnce}
-        transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: 0.1 }}
-        className={cn('relative', mediaOnRight ? 'lg:order-2' : 'lg:order-1')}
-      >
-        <div
-          aria-hidden
-          className="absolute inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-100/70 to-accent-sky/60 blur-2xl"
-        />
-        <ProductVisual visual={item.visual} />
-      </motion.div>
-    </div>
   );
 }

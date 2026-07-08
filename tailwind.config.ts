@@ -33,11 +33,23 @@ const config: Config = {
           subtle: '#f4f5f8',
           sand: '#faf9f7',
           dark: '#12140f',
+          black: '#000000',
         },
         accent: {
           mint: '#e3f4de',
           lime: '#d4f7b8',
           sky: '#e6f0ff',
+        },
+        // Deep navy used by the promo bar and dark CTA (mirrors quickbooks.intuit.com)
+        navy: {
+          DEFAULT: '#0a2452',
+          deep: '#0b1f3a',
+          dark: '#081a3a',
+        },
+        // Dark card surfaces used on light sections (the "More accuracy" cards)
+        panel: {
+          DEFAULT: '#0f1a1f',
+          teal: '#0d3b3b',
         },
       },
       fontFamily: {

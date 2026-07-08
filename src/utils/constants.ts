@@ -17,10 +17,24 @@ import {
   IconUsers,
 } from '@/components/icons';
 
+/** Sales phone + promo copy shown in the top bar / navbar (like quickbooks.intuit.com). */
+export const SALES_PHONE = '1-844-463-1636';
+export const PROMO_TEXT = 'Get 50% OFF QuickBooks for 3 months*';
+
+/** Gradient words that cycle in the hero, mirroring the real homepage. */
+export const HERO_WORDS = [
+  'Automation',
+  'Payments',
+  'Invoicing',
+  'Payroll',
+  'Reports',
+  'Expenses',
+];
+
 /** Primary navigation with mega-menu content. */
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Products',
+    label: 'Products & Services',
     href: '#products',
     menu: [
       {
@@ -44,12 +58,38 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Features',
-    href: '#features',
+    label: 'Plans & Pricing',
+    href: '#pricing',
   },
   {
-    label: 'Pricing',
-    href: '#pricing',
+    label: 'Top features',
+    href: '#features',
+    menu: [
+      {
+        heading: 'Popular features',
+        links: [
+          { label: 'Invoicing', href: '#features' },
+          { label: 'Expense tracking', href: '#features' },
+          { label: 'Reports & insights', href: '#features' },
+          { label: 'Payroll', href: '#features' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Business types',
+    href: '#products',
+    menu: [
+      {
+        heading: 'For your business',
+        links: [
+          { label: 'Small business', href: '#products' },
+          { label: 'Freelancers', href: '#products' },
+          { label: 'Accountants', href: '#products' },
+          { label: 'Nonprofits', href: '#products' },
+        ],
+      },
+    ],
   },
   {
     label: 'Resources',

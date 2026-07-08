@@ -1,6 +1,7 @@
-import { Navbar, Footer } from '@/components/layout';
+import { PromoBar, Navbar, Footer } from '@/components/layout';
 import {
   Hero,
+  HighlightBand,
   TrustBar,
   Features,
   ProductShowcase,
@@ -21,15 +22,17 @@ export default function App() {
         Skip to content
       </a>
 
+      <PromoBar />
       <Navbar />
 
       <main id="main">
         <Hero />
-        <TrustBar />
+        <HighlightBand />
         <Features />
         <ProductShowcase />
         <Stats />
         <Testimonials />
+        <TrustBar />
         <Pricing />
         <Faq />
         <CtaBanner />

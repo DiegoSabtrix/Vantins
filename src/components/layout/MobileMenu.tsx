@@ -26,7 +26,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-hidden
           />
           <motion.div
-            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-white shadow-float lg:hidden"
+            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-black text-white shadow-float lg:hidden"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -35,12 +35,12 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-modal="true"
             aria-label="Menu"
           >
-            <div className="flex items-center justify-between border-b border-ink/10 px-5 py-4">
-              <Logo />
+            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+              <Logo invert />
               <Button
                 variant="ghost"
                 size="sm"
-                className="!px-2"
+                className="!px-2 text-white hover:!bg-white/10"
                 aria-label="Close menu"
                 onClick={onClose}
               >
@@ -55,18 +55,18 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
                     <a
                       href={item.href}
                       onClick={onClose}
-                      className="block rounded-xl px-4 py-3 text-base font-semibold text-ink transition-colors hover:bg-surface-subtle"
+                      className="block rounded-xl px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
                     >
                       {item.label}
                     </a>
                     {item.menu && (
-                      <ul className="mb-1 ml-3 border-l border-ink/10 pl-4">
+                      <ul className="mb-1 ml-3 border-l border-white/10 pl-4">
                         {item.menu.flatMap((col) => col.links).map((link) => (
                           <li key={link.label}>
                             <a
                               href={link.href}
                               onClick={onClose}
-                              className="block rounded-lg px-3 py-2 text-sm text-ink-soft transition-colors hover:text-ink"
+                              className="block rounded-lg px-3 py-2 text-sm text-white/60 transition-colors hover:text-white"
                             >
                               {link.label}
                             </a>
@@ -79,11 +79,17 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               </ul>
             </nav>
 
-            <div className="space-y-3 border-t border-ink/10 p-5">
+            <div className="space-y-3 border-t border-white/10 p-5">
               <LinkButton href="#pricing" variant="primary" fullWidth onClick={onClose}>
-                Start free trial
+                See plans & pricing
               </LinkButton>
-              <LinkButton href="#" variant="outline" fullWidth onClick={onClose}>
+              <LinkButton
+                href="#"
+                variant="outline"
+                fullWidth
+                onClick={onClose}
+                className="!border-white/30 !bg-transparent !text-white hover:!bg-white/10"
+              >
                 Sign in
               </LinkButton>
             </div>

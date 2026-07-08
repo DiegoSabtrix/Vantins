@@ -5,7 +5,7 @@ import { staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
 
 export function Stats() {
   return (
-    <section className="bg-ink py-16 text-white lg:py-20">
+    <section className="bg-black py-16 text-white lg:py-20">
       <Container>
         <motion.dl
           variants={staggerContainer}
@@ -17,7 +17,7 @@ export function Stats() {
           {STATS.map((stat) => (
             <motion.div key={stat.id} variants={staggerItem}>
               <dt className="sr-only">{stat.label}</dt>
-              <dd className="text-4xl font-extrabold tracking-tight text-brand-300 lg:text-5xl">
+              <dd className="text-gradient-qb text-4xl font-extrabold tracking-tight lg:text-5xl">
                 {stat.value}
               </dd>
               <p className="mt-2 text-sm text-white/70">{stat.label}</p>

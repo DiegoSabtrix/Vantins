@@ -9,9 +9,9 @@ export function Features() {
     <section id="features" className="bg-surface py-20 lg:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Everything you need"
-          title="One place to manage all the moving parts"
-          description="From your first invoice to payroll and taxes, QuickBooks brings your finances together so nothing slips through the cracks."
+          eyebrow="Intuit platform"
+          title="More accuracy, better financial outcomes"
+          description="Intelligent tools handle the busywork — categorizing transactions, chasing payments, and surfacing insights — so your books stay accurate and your decisions get sharper."
         />
 
         <motion.ul
@@ -35,13 +35,13 @@ function FeatureCard({ feature }: { feature: Feature }) {
   return (
     <motion.li
       variants={staggerItem}
-      className="group rounded-2xl border border-ink/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-card-hover"
+      className="group rounded-2xl bg-panel p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
     >
-      <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent-mint text-brand-600 transition-colors group-hover:bg-brand-500 group-hover:text-white">
+      <span className="grid h-12 w-12 place-items-center rounded-xl bg-white/10 text-brand-300 transition-colors group-hover:bg-brand-500 group-hover:text-white">
         <Icon className="h-6 w-6" />
       </span>
-      <h3 className="mt-5 text-lg font-bold text-ink">{title}</h3>
-      <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
+      <h3 className="mt-5 text-lg font-bold text-brand-300">{title}</h3>
+      <p className="mt-2 text-[0.95rem] leading-relaxed text-white/65">
         {description}
       </p>
     </motion.li>
