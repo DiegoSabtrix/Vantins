@@ -15,17 +15,17 @@ export function CtaBanner() {
           className="mx-auto max-w-2xl"
         >
           <h2 className="text-display-md text-balance">
-            Trusted by millions of businesses worldwide
-            <span className="align-super text-base text-white/50">7</span>
+            Protection Starts Here
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/70 text-pretty">
-            Join the businesses saving time and growing with confidence on the
-            QuickBooks platform.
+            Whether you’re looking for personal insurance or business coverage,
+            Vantins helps you compare trusted carriers, understand your options,
+            and choose with confidence.
           </p>
 
           <div className="mt-8 flex justify-center">
             <LinkButton href="#pricing" size="lg" className="group">
-              See plans &amp; pricing
+              Get Your Free Quote
               <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
             </LinkButton>
           </div>

@@ -9,9 +9,9 @@ export function Testimonials() {
     <section className="bg-surface py-20 lg:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Loved by business owners"
-          title="Don't just take our word for it"
-          description="See why millions of business owners trust QuickBooks to keep their finances on track."
+          eyebrow="Trusted by our clients"
+          title="Protection Starts With Confidence"
+          description="See why families and businesses choose Vantins for their insurance needs."
         />
 
         <motion.ul

@@ -17,76 +17,65 @@ import {
   IconUsers,
 } from '@/components/icons';
 
-/** Sales phone + promo copy shown in the top bar / navbar (like quickbooks.intuit.com). */
+/** Sales phone + promo copy shown in the top bar / navbar. */
 export const SALES_PHONE = '1-844-463-1636';
-export const PROMO_TEXT = 'Get 50% OFF QuickBooks for 3 months*';
+export const PROMO_TEXT = 'Get Your Free Insurance Quote Today';
 
-/** Gradient words that cycle in the hero, mirroring the real homepage. */
+/** Gradient words that cycle in the hero — the lines of coverage we offer. */
 export const HERO_WORDS = [
-  'Automation',
-  'Payments',
-  'Invoicing',
-  'Payroll',
-  'Reports',
-  'Expenses',
+  'Auto',
+  'Home',
+  'Commercial',
+  'Trucking',
+  'Life',
+  'Health',
 ];
 
 /** Primary navigation with mega-menu content. */
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Products & Services',
+    label: 'Insurance',
     href: '#products',
     menu: [
       {
-        heading: 'Run your business',
+        heading: 'Personal',
         links: [
-          { label: 'Accounting', href: '#products' },
-          { label: 'Invoicing', href: '#products' },
-          { label: 'Expenses', href: '#products' },
-          { label: 'Reports & insights', href: '#products' },
+          { label: 'Auto Insurance', href: '#products' },
+          { label: 'Home Insurance', href: '#products' },
+          { label: 'Life Insurance', href: '#products' },
+          { label: 'Health Insurance', href: '#products' },
         ],
       },
       {
-        heading: 'Get paid & pay others',
+        heading: 'Business',
         links: [
-          { label: 'Payments', href: '#products' },
-          { label: 'Payroll', href: '#products' },
-          { label: 'Bill pay', href: '#products' },
-          { label: 'Time tracking', href: '#products' },
+          { label: 'Commercial Insurance', href: '#products' },
+          { label: 'Commercial Truck', href: '#products' },
+          { label: 'Workers’ Comp', href: '#products' },
+          { label: 'Commercial Auto', href: '#products' },
         ],
       },
     ],
   },
   {
-    label: 'Plans & Pricing',
+    label: 'Get a Quote',
     href: '#pricing',
   },
   {
-    label: 'Top features',
+    label: 'Why Vantins',
     href: '#features',
-    menu: [
-      {
-        heading: 'Popular features',
-        links: [
-          { label: 'Invoicing', href: '#features' },
-          { label: 'Expense tracking', href: '#features' },
-          { label: 'Reports & insights', href: '#features' },
-          { label: 'Payroll', href: '#features' },
-        ],
-      },
-    ],
   },
   {
-    label: 'Business types',
+    label: 'For Business',
     href: '#products',
     menu: [
       {
-        heading: 'For your business',
+        heading: 'Business coverage',
         links: [
-          { label: 'Small business', href: '#products' },
-          { label: 'Freelancers', href: '#products' },
-          { label: 'Accountants', href: '#products' },
-          { label: 'Nonprofits', href: '#products' },
+          { label: 'Commercial Insurance', href: '#products' },
+          { label: 'Commercial Truck', href: '#products' },
+          { label: 'General Liability', href: '#products' },
+          { label: 'Workers’ Compensation', href: '#products' },
         ],
       },
     ],
@@ -101,7 +90,7 @@ export const NAV_ITEMS: NavItem[] = [
           { label: 'Blog', href: '#faq' },
           { label: 'Guides & tools', href: '#faq' },
           { label: 'Support', href: '#faq' },
-          { label: 'Community', href: '#faq' },
+          { label: 'Contact us', href: '#faq' },
         ],
       },
     ],
@@ -110,143 +99,173 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const FEATURES: Feature[] = [
   {
-    id: 'invoicing',
-    title: 'Invoicing',
+    id: 'auto',
+    title: 'Auto Insurance',
     description:
-      'Create custom invoices in seconds and get paid up to twice as fast with built-in online payments.',
-    icon: IconInvoice,
-  },
-  {
-    id: 'expenses',
-    title: 'Expense tracking',
-    description:
-      'Snap a photo of a receipt and let QuickBooks sort, match, and categorize every transaction automatically.',
-    icon: IconReceipt,
-  },
-  {
-    id: 'reports',
-    title: 'Reports & insights',
-    description:
-      'See profit and loss, cash flow, and balance sheets update in real time so you always know where you stand.',
+      'Protect your vehicle with coverage that fits your needs and budget.',
     icon: IconChart,
   },
   {
-    id: 'banking',
-    title: 'Connected banking',
+    id: 'home',
+    title: 'Home Insurance',
     description:
-      'Securely link your bank and credit cards to import and reconcile transactions without manual entry.',
+      'Safeguard your home, condo, or rental property against life’s unexpected moments.',
+    icon: IconShield,
+  },
+  {
+    id: 'commercial',
+    title: 'Commercial Insurance',
+    description:
+      'Customized protection designed for businesses of every size.',
     icon: IconBank,
   },
   {
-    id: 'payroll',
-    title: 'Payroll',
+    id: 'truck',
+    title: 'Commercial Truck Insurance',
     description:
-      'Run payroll in minutes, pay your team by direct deposit, and file taxes automatically with confidence.',
+      'Specialized insurance solutions for owner-operators and trucking companies.',
+    icon: IconInvoice,
+  },
+  {
+    id: 'life',
+    title: 'Life Insurance',
+    description:
+      'Help secure your family’s future with flexible life insurance options.',
     icon: IconUsers,
   },
   {
-    id: 'security',
-    title: 'Bank-grade security',
+    id: 'health',
+    title: 'Health Insurance',
     description:
-      'Your data is protected with 128-bit encryption, multi-factor authentication, and continuous monitoring.',
-    icon: IconShield,
+      'Individual and family health plans from trusted providers.',
+    icon: IconReceipt,
   },
 ];
 
 export const PRODUCT_HIGHLIGHTS: ProductHighlight[] = [
   {
-    id: 'invoicing',
-    eyebrow: 'Get paid faster',
-    title: 'Send professional invoices and get paid on time',
+    id: 'auto',
+    eyebrow: 'Auto',
+    title: 'Auto Insurance',
     description:
-      'Customize invoices with your logo, schedule automatic reminders, and accept credit cards, ACH, and Apple Pay — all in one place.',
+      'Drive with confidence with affordable coverage from top-rated insurance carriers.',
     bullets: [
-      'Automatic payment reminders',
-      'Accept every major payment method',
-      'Track status from sent to paid',
+      'Liability Coverage',
+      'Full Coverage',
+      'Multiple Carriers',
+      'Personalized Quotes',
     ],
-    visual: 'invoice',
-    align: 'right',
   },
   {
-    id: 'reports',
-    eyebrow: 'Know your numbers',
-    title: 'Real-time insights that help you make smarter decisions',
+    id: 'home',
+    eyebrow: 'Home',
+    title: 'Home Insurance',
     description:
-      'Dozens of built-in reports refresh as money moves, so you can spot trends, forecast cash flow, and stay ready for tax time.',
+      'Coverage designed for homeowners, renters, and condos to protect what matters most.',
     bullets: [
-      'Live profit & loss and cash flow',
-      'Customizable dashboards',
-      'Export and share in a click',
+      'Homeowners Coverage',
+      'Renters & Condo',
+      'Dwelling & Property',
+      'Personalized Quotes',
     ],
-    visual: 'reports',
-    align: 'left',
   },
   {
-    id: 'expenses',
-    eyebrow: 'Stay organized',
-    title: 'Track every expense without the paperwork',
+    id: 'commercial',
+    eyebrow: 'Commercial',
+    title: 'Commercial Insurance',
     description:
-      'Connect your accounts, capture receipts on the go, and let smart categorization keep your books accurate and audit-ready.',
+      'Customized protection for every stage of your company.',
     bullets: [
-      'Auto-import bank transactions',
-      'Snap and store receipts',
-      'Maximize every deduction',
+      'General Liability',
+      'Business Owners Policy',
+      'Workers’ Compensation',
+      'Commercial Auto',
     ],
-    visual: 'expenses',
-    align: 'right',
+  },
+  {
+    id: 'trucking',
+    eyebrow: 'Trucking',
+    title: 'Commercial Truck Insurance',
+    description:
+      'Helping trucking businesses stay protected from day one.',
+    bullets: [
+      'Physical Damage',
+      'Motor Truck Cargo',
+      'General Liability',
+      'Workers’ Compensation',
+      'Trailer Interchange',
+      'Bobtail Insurance',
+      'Non-Trucking Liability',
+    ],
+  },
+  {
+    id: 'life',
+    eyebrow: 'Life',
+    title: 'Life Insurance',
+    description:
+      'Protect your family’s future with long-term financial security.',
+    bullets: [
+      'Individual Plans',
+      'Family Coverage',
+      'Long-Term Protection',
+      'Flexible Options',
+    ],
+  },
+  {
+    id: 'health',
+    eyebrow: 'Health',
+    title: 'Health Insurance',
+    description:
+      'Flexible health insurance plans that fit your lifestyle and budget.',
+    bullets: [
+      'Individual Plans',
+      'Family Coverage',
+      'Trusted Providers',
+      'Flexible Options',
+    ],
   },
 ];
 
 export const STATS: Stat[] = [
-  { id: 'customers', value: '7M+', label: 'Customers worldwide' },
-  { id: 'saved', value: '$5,600', label: 'Average yearly savings' },
-  { id: 'faster', value: '2×', label: 'Faster payments with invoicing' },
-  { id: 'uptime', value: '99.9%', label: 'Platform uptime' },
+  { id: 'clients', value: '5,000+', label: 'Clients Protected' },
+  { id: 'offices', value: 'FL • TX • NJ', label: 'Licensed Offices' },
+  { id: 'carriers', value: 'Multiple', label: 'Top-Rated Insurance Carriers' },
+  { id: 'guidance', value: 'Personalized', label: 'Insurance Guidance' },
 ];
 
 export const PRICING_TIERS: PricingTier[] = [
   {
-    id: 'simple-start',
-    name: 'Simple Start',
-    tagline: 'For new businesses getting organized.',
-    price: 35,
-    promoPrice: 9,
+    id: 'auto',
+    name: 'Auto Insurance',
+    tagline: 'Coverage that fits your needs and budget.',
     features: [
-      'Track income & expenses',
-      'Send unlimited invoices',
-      'Capture & organize receipts',
-      'Run general reports',
-      '1 user + your accountant',
+      'Liability Coverage',
+      'Full Coverage',
+      'Multiple Carriers',
+      'Personalized Quotes',
     ],
   },
   {
-    id: 'essentials',
-    name: 'Essentials',
-    tagline: 'For growing teams managing bills.',
-    price: 65,
-    promoPrice: 18,
+    id: 'commercial',
+    name: 'Commercial Insurance',
+    tagline: 'Protection for businesses of every size.',
     featured: true,
     features: [
-      'Everything in Simple Start',
-      'Manage & pay bills',
-      'Track time',
-      'Multi-currency support',
-      'Up to 3 users',
+      'General Liability',
+      'Business Owners Policy',
+      'Workers Compensation',
+      'Commercial Auto',
     ],
   },
   {
-    id: 'plus',
-    name: 'Plus',
-    tagline: 'For businesses tracking projects.',
-    price: 99,
-    promoPrice: 27,
+    id: 'life-health',
+    name: 'Life & Health Insurance',
+    tagline: 'Security for you and your family.',
     features: [
-      'Everything in Essentials',
-      'Track inventory',
-      'Track project profitability',
-      'Comprehensive reporting',
-      'Up to 5 users',
+      'Individual Plans',
+      'Family Coverage',
+      'Long-Term Protection',
+      'Flexible Options',
     ],
   },
 ];
@@ -255,92 +274,92 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
     quote:
-      'QuickBooks gives me back hours every week. Invoicing and reconciliation that used to take a full day now happen almost on their own.',
-    name: 'Maya Robinson',
-    role: 'Founder, Fernleaf Studio',
-    initials: 'MR',
+      'They compared multiple companies and found better coverage for less than I expected.',
+    name: 'Maria G.',
+    role: 'Auto & Home client',
+    initials: 'MG',
   },
   {
     id: 't2',
     quote:
-      'The real-time reports are a game changer. I can see exactly how the business is doing before I make any big decision.',
-    name: 'Daniel Okafor',
-    role: 'Owner, Northside Coffee',
-    initials: 'DO',
+      'The team made the entire process easy and explained every detail clearly.',
+    name: 'James T.',
+    role: 'Small business owner',
+    initials: 'JT',
   },
   {
     id: 't3',
     quote:
-      'Payroll used to keep me up at night. Now it runs in a few clicks and the taxes are filed for me. I finally trust my books.',
-    name: 'Priya Nair',
-    role: 'Director, Bright Path Consulting',
-    initials: 'PN',
+      'Fast, professional, and always available whenever I have questions.',
+    name: 'David R.',
+    role: 'Commercial client',
+    initials: 'DR',
   },
 ];
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
     id: 'q1',
-    question: 'Can I try QuickBooks before I buy?',
+    question: 'How do I get a quote?',
     answer:
-      'Yes. Start a free 30-day trial with full access to every feature in your plan — no credit card required. You can also choose promotional pricing instead of the trial.',
+      'Request a free quote online or speak with one of our licensed insurance advisors.',
   },
   {
     id: 'q2',
-    question: 'Is my financial data secure?',
+    question: 'Can you compare multiple insurance companies?',
     answer:
-      'Absolutely. Your data is protected with 128-bit SSL encryption, multi-factor authentication, and around-the-clock monitoring, the same standards trusted by leading financial institutions.',
+      'Yes. We work with multiple top-rated insurance carriers to help you find the right coverage.',
   },
   {
     id: 'q3',
-    question: 'Can I switch plans later?',
+    question: 'Can I bundle my policies?',
     answer:
-      'You can upgrade or downgrade at any time from your account settings. Changes take effect immediately and your billing is prorated automatically.',
+      'Absolutely. Many clients save money by combining home, auto, and other insurance policies.',
   },
   {
     id: 'q4',
-    question: 'Does QuickBooks work on mobile?',
+    question: 'Do you work with businesses?',
     answer:
-      'Yes. The QuickBooks mobile app for iOS and Android lets you invoice, capture receipts, and check reports from anywhere, and everything syncs instantly with the web app.',
+      'Yes. We provide commercial insurance solutions for businesses across multiple industries, including trucking companies.',
   },
   {
     id: 'q5',
-    question: 'Do you offer support?',
+    question: 'Can I get assistance in Spanish?',
     answer:
-      'Every plan includes access to our help center, community, and product experts. Higher tiers add priority support and a dedicated onboarding specialist.',
+      'Yes. Our bilingual team is ready to assist you in English and Spanish.',
   },
 ];
 
-/** Brand names shown in the "trusted by" marquee (generic placeholders). */
+/** Partner insurance carriers shown in the marquee (generic placeholders). */
 export const TRUST_LOGOS: string[] = [
-  'Northwind',
-  'Fernleaf',
-  'Brightpath',
-  'Harborline',
-  'Meadowbrook',
-  'Cedar & Co',
-  'Lumen',
-  'Trailhead',
+  'Summit Mutual',
+  'Liberty Point',
+  'Guardian Line',
+  'Cornerstone',
+  'Beacon',
+  'Evergreen',
+  'Meridian',
+  'Anchor',
 ];
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
-    heading: 'Products',
+    heading: 'Insurance',
     links: [
-      { label: 'Accounting', href: '#products' },
-      { label: 'Invoicing', href: '#products' },
-      { label: 'Payments', href: '#products' },
-      { label: 'Payroll', href: '#products' },
-      { label: 'Expenses', href: '#products' },
+      { label: 'Auto Insurance', href: '#products' },
+      { label: 'Home Insurance', href: '#products' },
+      { label: 'Commercial Insurance', href: '#products' },
+      { label: 'Trucking Insurance', href: '#products' },
+      { label: 'Life & Health', href: '#products' },
     ],
   },
   {
-    heading: 'Solutions',
+    heading: 'For Business',
     links: [
-      { label: 'For small business', href: '#features' },
-      { label: 'For freelancers', href: '#features' },
-      { label: 'For accountants', href: '#features' },
-      { label: 'For nonprofits', href: '#features' },
+      { label: 'Commercial', href: '#features' },
+      { label: 'Commercial Truck', href: '#features' },
+      { label: 'General Liability', href: '#features' },
+      { label: 'Workers’ Comp', href: '#features' },
     ],
   },
   {
@@ -349,16 +368,16 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'Blog', href: '#faq' },
       { label: 'Guides & tools', href: '#faq' },
       { label: 'Support center', href: '#faq' },
-      { label: 'Community', href: '#faq' },
+      { label: 'Contact us', href: '#faq' },
     ],
   },
   {
     heading: 'Company',
     links: [
       { label: 'About us', href: '#' },
+      { label: 'Licensed offices', href: '#' },
       { label: 'Careers', href: '#' },
-      { label: 'Newsroom', href: '#' },
-      { label: 'Contact', href: '#' },
+      { label: 'Get a Quote', href: '#pricing' },
     ],
   },
 ];

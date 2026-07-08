@@ -7,8 +7,7 @@ interface LogoProps {
 }
 
 /**
- * Original wordmark placeholder — a rounded brand badge plus "QuickBooks"
- * text. Intentionally does not reproduce Intuit's trademarked logo.
+ * Original wordmark — a rounded brand badge plus the "Vantins" text.
  */
 export function Logo({ className, invert = false }: LogoProps) {
   return (
@@ -39,7 +38,7 @@ export function Logo({ className, invert = false }: LogoProps) {
           invert ? 'text-white' : 'text-ink',
         )}
       >
-        Quick<span className="text-brand-500">Books</span>
+Van<span className="text-brand-500">tins</span>
       </span>
     </span>
   );

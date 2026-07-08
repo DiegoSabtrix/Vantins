@@ -27,7 +27,7 @@ export function Navbar() {
           className="flex h-16 items-center justify-between gap-4 lg:h-[72px]"
           aria-label="Primary"
         >
-          <a href="#top" className="shrink-0" aria-label="QuickBooks home">
+          <a href="#top" className="shrink-0" aria-label="Vantins home">
             <Logo invert />
           </a>
 

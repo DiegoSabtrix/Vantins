@@ -1,21 +1,9 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Container, LinkButton } from '@/components/ui';
-import { ProductVisual } from '@/components/visuals/ProductVisual';
 import { IconArrowRight, IconCheck } from '@/components/icons';
 import { PRODUCT_HIGHLIGHTS } from '@/utils/constants';
 import { EASE_OUT_EXPO, fadeUp, viewportOnce } from '@/utils/motion';
-
-/** Extra sidebar labels (decorative) so the tab rail reads like the real page. */
-const EXTRA_TABS = [
-  'Accounting',
-  'Payroll',
-  'Time',
-  'Projects',
-  'Lending',
-  'Inventory',
-  'Sales tax',
-];
 
 export function ProductShowcase() {
   const [active, setActive] = useState(PRODUCT_HIGHLIGHTS[0].id);
@@ -33,14 +21,15 @@ export function ProductShowcase() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-display-md text-balance">
-            Run your whole business on one platform
+            One Agency. Every Coverage You Need.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/65 text-pretty">
-            Boost efficiency on your most critical jobs with intelligent tools and
-            essential business tools working together.
+            Whether you’re protecting your vehicle, home, business, trucking
+            company, or family, Vantins makes insurance simple by bringing
+            everything together under one trusted agency.
           </p>
           <LinkButton href="#pricing" size="lg" className="group mt-7">
-            See plans &amp; pricing
+            Get Your Free Quote
             <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </LinkButton>
         </motion.div>
@@ -75,13 +64,6 @@ export function ProductShowcase() {
                 </li>
               );
             })}
-            {EXTRA_TABS.map((label) => (
-              <li key={label} className="hidden shrink-0 lg:block lg:shrink">
-                <span className="block cursor-default rounded-xl px-4 py-3 text-left text-sm font-semibold text-white/30">
-                  {label}
-                </span>
-              </li>
-            ))}
           </ul>
 
           {/* Content */}
@@ -93,19 +75,27 @@ export function ProductShowcase() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
-                className="grid items-center gap-8 lg:grid-cols-2"
+                className="grid items-start gap-8 lg:grid-cols-2"
               >
                 <div>
-                  <p className="text-sm font-semibold text-brand-300">
-                    {item.eyebrow}
-                  </p>
-                  <h3 className="mt-2 text-2xl font-bold text-balance">
+                  <h3 className="text-2xl font-bold text-balance">
                     {item.title}
                   </h3>
                   <p className="mt-3 text-white/65 text-pretty">
                     {item.description}
                   </p>
-                  <ul className="mt-5 space-y-2.5">
+                  <LinkButton href="#pricing" size="lg" className="group mt-7">
+                    Request Free Quote
+                    <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
+                  </LinkButton>
+                </div>
+
+                {/* Included coverages */}
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                  <p className="text-sm font-semibold text-brand-300">
+                    Included Coverages
+                  </p>
+                  <ul className="mt-4 space-y-3">
                     {item.bullets.map((bullet) => (
                       <li key={bullet} className="flex items-center gap-3">
                         <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-500/20 text-brand-300">
@@ -117,9 +107,6 @@ export function ProductShowcase() {
                       </li>
                     ))}
                   </ul>
-                </div>
-                <div className="relative">
-                  <ProductVisual visual={item.visual} />
                 </div>
               </motion.div>
             </AnimatePresence>

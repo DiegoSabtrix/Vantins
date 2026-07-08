@@ -14,7 +14,7 @@ export function Faq() {
       <Container className="max-w-3xl">
         <SectionHeading
           eyebrow="Questions & answers"
-          title="Frequently asked questions"
+          title="Frequently Asked Questions"
         />
 
         <div className="mt-12 divide-y divide-ink/10 border-y border-ink/10">

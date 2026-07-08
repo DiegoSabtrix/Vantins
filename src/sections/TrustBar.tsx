@@ -12,10 +12,14 @@ export function TrustBar() {
     >
       <Container className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-display-md text-balance text-ink">
-          Over 800 integrations
+          Trusted Insurance Carriers
         </h2>
-        <LinkButton href="#" variant="outline" size="sm">
-          See all integrations
+        <p className="max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+          We work with leading insurance companies so you can compare coverage,
+          pricing, and protection — all through one trusted agency.
+        </p>
+        <LinkButton href="#pricing" variant="outline" size="sm">
+          See all carriers
         </LinkButton>
       </Container>
       <div className="mask-x-edges mt-10 overflow-hidden">

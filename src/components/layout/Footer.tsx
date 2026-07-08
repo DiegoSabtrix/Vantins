@@ -13,15 +13,15 @@ export function Footer() {
           <div className="lg:col-span-4">
             <Logo invert />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
-              Smart tools to run your business — accounting, invoicing, payments,
-              and payroll, together in one place.
+              Compare trusted insurance carriers, get expert guidance, and find the
+              right coverage for your family or business — all in one place.
             </p>
             <div className="mt-6 flex items-center gap-2">
               {SOCIALS.map((s) => (
                 <a
                   key={s}
                   href="#"
-                  aria-label={`QuickBooks on ${s}`}
+                  aria-label={`Vantins on ${s}`}
                   className="grid h-9 w-9 place-items-center rounded-full border border-white/20 text-xs font-bold text-white/70 transition-colors hover:border-brand-400 hover:text-brand-300"
                 >
                   {s}
@@ -53,8 +53,8 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-white/45">
-            © {year} QuickBooks UI recreation. Built for educational purposes — not
-            affiliated with or endorsed by Intuit Inc.
+            © {year} Vantins. Insurance made simple — compare trusted carriers and
+            choose coverage with confidence.
           </p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {FOOTER_LEGAL_LINKS.map((link) => (

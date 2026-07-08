@@ -9,11 +9,10 @@ export function PromoBar() {
     <div className="bg-navy text-white">
       <div className="container-px flex flex-wrap items-center justify-center gap-x-5 gap-y-2 py-2.5 text-center text-sm sm:text-[0.95rem]">
         <p className="font-semibold">
-          Get <span className="text-brand-400">50% OFF</span> QuickBooks for 3 months
-          <span className="align-super text-xs">*</span>
+          Get your <span className="text-brand-400">free insurance quote</span> today
         </p>
         <LinkButton href="#pricing" variant="primary" size="sm">
-          Buy now
+          Get a quote
         </LinkButton>
       </div>
     </div>

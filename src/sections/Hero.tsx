@@ -32,15 +32,25 @@ export function Hero() {
           className="flex items-center gap-3 rounded-full border border-white/15 bg-white/5 py-2 pl-4 pr-2 text-sm text-white/80 backdrop-blur"
         >
           <IconSparkle className="h-4 w-4 text-brand-300" />
-          <span>How do I track my expenses?</span>
+          <span>How much can I save on coverage?</span>
           <span className="grid h-8 w-8 place-items-center rounded-full bg-white/10 text-white">
             <IconArrowRight className="h-4 w-4" />
           </span>
         </motion.div>
 
-        {/* Cycling gradient headline */}
+        {/* Eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
+          className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-300"
+        >
+          Smart Insurance Made Simple
+        </motion.p>
+
+        {/* Cycling gradient headline (line of coverage) */}
         <h1 className="font-extrabold leading-[0.95] tracking-tight">
-          <span className="sr-only">QuickBooks — {word}</span>
+          <span className="sr-only">Vantins — {word} Insurance</span>
           <span
             aria-hidden
             className="block text-[clamp(3rem,9vw,8rem)]"
@@ -61,15 +71,20 @@ export function Hero() {
           </span>
         </h1>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1, ease: EASE_OUT_EXPO }}
-          className="max-w-xl text-lg text-white/70 text-pretty"
+          className="max-w-2xl space-y-3"
         >
-          Smart tools to run your business — accounting, payments, payroll, and
-          insights, powered by intelligent automation.
-        </motion.p>
+          <p className="text-2xl font-bold text-white sm:text-3xl">
+            Smarter Coverage. Better Protection.
+          </p>
+          <p className="mx-auto max-w-xl text-lg text-white/70 text-pretty">
+            Compare trusted insurance carriers, receive expert guidance, and find
+            the right coverage for your family or business — all in one place.
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -77,7 +92,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.2, ease: EASE_OUT_EXPO }}
         >
           <LinkButton href="#pricing" size="lg" className="group">
-            See plans &amp; pricing
+            Get Your Free Quote
             <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </LinkButton>
         </motion.div>

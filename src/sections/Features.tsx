@@ -9,9 +9,9 @@ export function Features() {
     <section id="features" className="bg-surface py-20 lg:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Intuit platform"
-          title="More accuracy, better financial outcomes"
-          description="Intelligent tools handle the busywork — categorizing transactions, chasing payments, and surfacing insights — so your books stay accurate and your decisions get sharper."
+          eyebrow="Why choose Vantins"
+          title="Insurance Made Simple."
+          description="Choosing insurance shouldn’t be overwhelming. Our licensed advisors compare multiple insurance carriers, explain your options, and help you choose coverage that protects what matters most."
         />
 
         <motion.ul

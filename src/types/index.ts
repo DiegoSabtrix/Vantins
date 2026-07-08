@@ -31,20 +31,20 @@ export interface ProductHighlight {
   title: string;
   description: string;
   bullets: string[];
-  /** Which visual mock to render alongside the copy. */
-  visual: 'invoice' | 'reports' | 'expenses';
-  /** Places the visual on the left or right on desktop. */
-  align: 'left' | 'right';
+  /** Which visual mock to render alongside the copy (optional). */
+  visual?: 'invoice' | 'reports' | 'expenses';
+  /** Places the visual on the left or right on desktop (optional). */
+  align?: 'left' | 'right';
 }
 
 export interface PricingTier {
   id: string;
   name: string;
   tagline: string;
-  /** Standard monthly price in USD. */
-  price: number;
-  /** Discounted monthly price shown during a promo. */
-  promoPrice: number;
+  /** Standard monthly price in USD (optional — unused for coverage products). */
+  price?: number;
+  /** Discounted monthly price shown during a promo (optional). */
+  promoPrice?: number;
   features: string[];
   featured?: boolean;
 }
