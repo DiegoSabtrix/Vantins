@@ -13,32 +13,32 @@ interface LogoProps {
 function VantinsShield({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" fill="none" className={className} aria-hidden>
-      {/* outer shield */}
+      {/* thin outer shield outline */}
       <path
-        d="M50 7C38 12 22 14 12 14.5 12 40 13 66 50 94 87 66 88 40 88 14.5 78 14 62 12 50 7Z"
+        d="M50 6C37 11 21 13 11 13.5 11 40 12 67 50 95 88 67 89 40 89 13.5 79 13 63 11 50 6Z"
         stroke="currentColor"
-        strokeWidth="5"
+        strokeWidth="2.4"
         strokeLinejoin="round"
       />
-      {/* inner shield */}
+      {/* thick inner shield body */}
       <path
-        d="M50 13.5C39.5 18 25.5 20 17.5 20.5 17.5 41 18.5 64 50 87 81.5 64 82.5 41 82.5 20.5 74.5 20 60.5 18 50 13.5Z"
+        d="M50 13C38.5 17.5 24 19.5 16 20 16 42 17 66 50 88 83 66 84 42 84 20 76 19.5 61.5 17.5 50 13Z"
         stroke="currentColor"
-        strokeWidth="2.6"
+        strokeWidth="5.2"
         strokeLinejoin="round"
       />
       {/* the "A" triangle */}
       <path
-        d="M50 29 69 64 31 64Z"
+        d="M50 27 69 62 31 62Z"
         stroke="currentColor"
-        strokeWidth="5"
+        strokeWidth="5.2"
         strokeLinejoin="round"
       />
       {/* rounded bowl below the triangle */}
       <path
-        d="M31 64C40 78 60 78 69 64"
+        d="M32 66C40 79 60 79 68 66"
         stroke="currentColor"
-        strokeWidth="5"
+        strokeWidth="5.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
