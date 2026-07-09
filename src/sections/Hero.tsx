@@ -24,11 +24,10 @@ export function Hero() {
   const word = words[index % words.length];
 
   return (
-    <section id="top" className="relative bg-hero-dark text-white">
-      {/* Tighter vertical rhythm, more top breathing room below the nav, and a
-          bottom padding kept just above the card's negative margin so the CTA
-          and the floating cards read as one block. */}
-      <Container className="flex min-h-[52vh] flex-col items-center justify-center gap-6 pt-24 pb-52 text-center lg:pt-28 lg:pb-60">
+    <section id="top" className="bg-hero-dark text-white">
+      {/* Self-contained hero: badge, title, subtitle and CTA only. Ends cleanly
+          on the dark background — the trust cards live in their own section. */}
+      <Container className="flex min-h-[62vh] flex-col items-center justify-center gap-6 pt-24 pb-28 text-center lg:pt-28 lg:pb-36">
         {/* AI assistant prompt pill */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -101,13 +100,6 @@ export function Hero() {
           </LinkButton>
         </motion.div>
       </Container>
-
-      {/* Subtle fade so the dark hero melts into the light section beneath the
-          floating cards instead of ending on a hard edge. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-surface"
-      />
     </section>
   );
 }

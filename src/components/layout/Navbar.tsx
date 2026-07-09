@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Container, Logo, Button, LinkButton } from '@/components/ui';
 import { IconChevronDown, IconMenu } from '@/components/icons';
-import { SALES_PHONE } from '@/utils/constants';
+import { SALES_PHONE, SALES_PHONE_TEL } from '@/utils/constants';
 import { useScrolled } from '@/hooks';
 import { useT } from '@/i18n';
 import type { NavEntry } from '@/i18n';
@@ -48,7 +48,7 @@ export function Navbar() {
 
           <div className="hidden items-center gap-5 xl:flex">
             <a
-              href={`tel:${SALES_PHONE}`}
+              href={`tel:${SALES_PHONE_TEL}`}
               className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
             >
               {t.common.sales}: {SALES_PHONE}

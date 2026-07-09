@@ -8,8 +8,10 @@ import {
 } from '@/components/icons';
 import type { IconComponent } from '@/types';
 
-/** Sales phone shown in the navbar. */
-export const SALES_PHONE = '1-844-463-1636';
+/** Sales phone shown in the navbar (display form). */
+export const SALES_PHONE = '+1 (754) 290-0308';
+/** Same number in a dialable form for `tel:` links. */
+export const SALES_PHONE_TEL = '+17542900308';
 
 /**
  * Icons paired by index with the localized feature list (see `useT().features`).

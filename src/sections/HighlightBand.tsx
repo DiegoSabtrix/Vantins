@@ -11,17 +11,19 @@ export function HighlightBand() {
   const t = useT();
 
   return (
-    <section className="bg-surface pb-16 lg:pb-24" aria-label="Highlights">
+    <section
+      className="bg-surface pt-20 pb-24"
+      aria-label="Highlights"
+    >
       <Container>
-        {/* Pull the cards up so they overlap the bottom edge of the hero,
-            staying in normal flow. Overlap scales up with the viewport:
-            none on mobile (natural stack), slight on tablet, ~50% on desktop. */}
+        {/* Trust cards live in their own white section — side by side on
+            desktop, stacked on mobile. No overlap with the hero. */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="relative z-10 mt-6 grid gap-6 sm:-mt-24 lg:-mt-52 lg:grid-cols-2 lg:gap-8"
+          className="grid gap-7 lg:grid-cols-2 lg:gap-8"
         >
           {/* Testimonial card: full-bleed photo with the copy over a dark
               left-to-right gradient (photo stays bright on the right). */}
