@@ -25,9 +25,9 @@ export function Hero() {
 
   return (
     <section id="top" className="bg-hero-dark text-white">
-      {/* Extra bottom padding leaves dark room for the floating cards that the
-          next section pulls up into via negative margin. */}
-      <Container className="flex min-h-[56vh] flex-col items-center justify-center gap-8 pt-20 pb-56 text-center lg:pt-24 lg:pb-64">
+      {/* Bottom padding is larger than the card's negative margin so a strip of
+          dark hero stays visible between the CTA and the floating cards. */}
+      <Container className="flex min-h-[60vh] flex-col items-center justify-center gap-8 pt-16 pb-64 text-center lg:pt-20 lg:pb-72">
         {/* AI assistant prompt pill */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}

@@ -20,7 +20,7 @@ export function HighlightBand() {
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="relative z-10 -mt-28 grid gap-5 sm:-mt-32 lg:-mt-48 lg:grid-cols-2"
+          className="relative z-10 -mt-32 grid gap-5 sm:-mt-36 lg:-mt-48 lg:grid-cols-2"
         >
           {/* Testimonial card: full-bleed photo with the copy over a dark
               left-to-right gradient (photo stays bright on the right). */}
