@@ -25,7 +25,9 @@ export function Hero() {
 
   return (
     <section id="top" className="bg-hero-dark text-white">
-      <Container className="flex min-h-[75vh] flex-col items-center justify-center gap-8 py-20 text-center lg:py-28">
+      {/* Extra bottom padding leaves dark room for the floating cards that the
+          next section pulls up into via negative margin. */}
+      <Container className="flex min-h-[56vh] flex-col items-center justify-center gap-8 pt-20 pb-56 text-center lg:pt-24 lg:pb-64">
         {/* AI assistant prompt pill */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}

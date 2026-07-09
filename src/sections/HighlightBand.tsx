@@ -11,20 +11,22 @@ export function HighlightBand() {
   const t = useT();
 
   return (
-    <section className="bg-black pb-16 pt-4 lg:pb-24" aria-label="Highlights">
+    <section className="bg-surface pb-16 lg:pb-24" aria-label="Highlights">
       <Container>
+        {/* Pull the cards up so they overlap the bottom edge of the hero
+            (~50% of their height on desktop), staying in normal flow. */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid gap-5 lg:grid-cols-2"
+          className="relative z-10 -mt-28 grid gap-5 sm:-mt-32 lg:-mt-48 lg:grid-cols-2"
         >
           {/* Testimonial card: full-bleed photo with the copy over a dark
               left-to-right gradient (photo stays bright on the right). */}
           <motion.figure
             variants={staggerItem}
-            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-float"
           >
             <img
               src={`${import.meta.env.BASE_URL}driver.jpg`}
@@ -54,7 +56,7 @@ export function HighlightBand() {
           {/* Stat card: same full-bleed photo + dark left gradient treatment. */}
           <motion.div
             variants={staggerItem}
-            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-float"
           >
             <img
               src={`${import.meta.env.BASE_URL}trucker.jpg`}
