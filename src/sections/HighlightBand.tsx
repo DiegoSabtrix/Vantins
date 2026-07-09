@@ -13,20 +13,21 @@ export function HighlightBand() {
   return (
     <section className="bg-surface pb-16 lg:pb-24" aria-label="Highlights">
       <Container>
-        {/* Pull the cards up so they overlap the bottom edge of the hero
-            (~50% of their height on desktop), staying in normal flow. */}
+        {/* Pull the cards up so they overlap the bottom edge of the hero,
+            staying in normal flow. Overlap scales up with the viewport:
+            none on mobile (natural stack), slight on tablet, ~50% on desktop. */}
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="relative z-10 -mt-32 grid gap-5 sm:-mt-36 lg:-mt-48 lg:grid-cols-2"
+          className="relative z-10 mt-6 grid gap-6 sm:-mt-24 lg:-mt-52 lg:grid-cols-2 lg:gap-8"
         >
           {/* Testimonial card: full-bleed photo with the copy over a dark
               left-to-right gradient (photo stays bright on the right). */}
           <motion.figure
             variants={staggerItem}
-            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-float"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.35)]"
           >
             <img
               src={`${import.meta.env.BASE_URL}driver.jpg`}
@@ -56,7 +57,7 @@ export function HighlightBand() {
           {/* Stat card: same full-bleed photo + dark left gradient treatment. */}
           <motion.div
             variants={staggerItem}
-            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-float"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.35)]"
           >
             <img
               src={`${import.meta.env.BASE_URL}trucker.jpg`}
