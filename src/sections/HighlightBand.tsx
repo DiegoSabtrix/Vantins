@@ -20,14 +20,23 @@ export function HighlightBand() {
           viewport={viewportOnce}
           className="grid gap-5 lg:grid-cols-2"
         >
-          {/* Testimonial card: copy on a solid dark panel, bright photo alongside */}
+          {/* Testimonial card: full-bleed photo with the copy over a dark
+              left-to-right gradient (photo stays bright on the right). */}
           <motion.figure
             variants={staggerItem}
-            className="flex min-h-[340px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-panel sm:flex-row"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
           >
-            {/* Copy */}
-            <div className="flex flex-col justify-between p-8 sm:w-[58%] lg:p-10">
-              <blockquote className="text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
+            <img
+              src={`${import.meta.env.BASE_URL}driver.jpg`}
+              alt="Professional truck driver"
+              className="absolute inset-0 h-full w-full -scale-x-100 object-cover object-center"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.72)_34%,rgba(0,0,0,0.32)_58%,rgba(0,0,0,0)_80%)]"
+            />
+            <div className="relative flex h-full flex-col justify-between p-8 lg:p-10">
+              <blockquote className="max-w-[62%] text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
                 “{t.highlight.quote}”
               </blockquote>
               <figcaption className="mt-8 flex items-center gap-3">
@@ -36,28 +45,28 @@ export function HighlightBand() {
                 </span>
                 <div>
                   <p className="text-sm font-bold text-white">{t.highlight.name}</p>
-                  <p className="text-xs text-white/50">{t.highlight.role}</p>
+                  <p className="text-xs text-white/60">{t.highlight.role}</p>
                 </div>
               </figcaption>
             </div>
-            {/* Bright photo — no dark overlay */}
-            <div className="relative min-h-[180px] flex-1">
-              <img
-                src={`${import.meta.env.BASE_URL}driver.jpg`}
-                alt="Professional truck driver"
-                className="absolute inset-0 h-full w-full object-cover object-center"
-              />
-            </div>
           </motion.figure>
 
-          {/* Stat card: copy on a solid dark panel, bright photo alongside */}
+          {/* Stat card: same full-bleed photo + dark left gradient treatment. */}
           <motion.div
             variants={staggerItem}
-            className="flex min-h-[340px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-panel-teal sm:flex-row"
+            className="relative min-h-[360px] overflow-hidden rounded-3xl border border-white/10 bg-slate-950"
           >
-            {/* Copy */}
-            <div className="flex flex-col justify-between p-8 sm:w-[58%] lg:p-10">
-              <p className="text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
+            <img
+              src={`${import.meta.env.BASE_URL}trucker.jpg`}
+              alt="Insurance professional"
+              className="absolute inset-0 h-full w-full object-cover object-[72%_center]"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.72)_34%,rgba(0,0,0,0.32)_58%,rgba(0,0,0,0)_80%)]"
+            />
+            <div className="relative flex h-full flex-col justify-between p-8 lg:p-10">
+              <p className="max-w-[62%] text-xl font-semibold leading-snug text-white text-balance lg:text-2xl">
                 <span className="text-gradient-qb">{t.highlight.statHighlight}</span>{' '}
                 {t.highlight.statRest}
               </p>
@@ -66,14 +75,6 @@ export function HighlightBand() {
                   {t.highlight.cta}
                 </LinkButton>
               </div>
-            </div>
-            {/* Bright photo — no dark overlay */}
-            <div className="relative min-h-[180px] flex-1">
-              <img
-                src={`${import.meta.env.BASE_URL}trucker.jpg`}
-                alt="Insurance professional"
-                className="absolute inset-0 h-full w-full object-cover object-center"
-              />
             </div>
           </motion.div>
         </motion.div>
