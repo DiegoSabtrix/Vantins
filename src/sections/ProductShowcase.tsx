@@ -44,7 +44,7 @@ export function ProductShowcase() {
             {items.map((h, i) => {
               const isActive = i === active;
               return (
-                <li key={h.tab} className="shrink-0 lg:shrink">
+                <li key={i} className="shrink-0 lg:shrink">
                   <button
                     type="button"
                     onClick={() => setActive(i)}
@@ -67,7 +67,7 @@ export function ProductShowcase() {
           <div className="rounded-2xl bg-black/40 p-6 lg:p-8">
             <AnimatePresence mode="wait">
               <motion.div
-                key={item.title}
+                key={active}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
@@ -93,8 +93,8 @@ export function ProductShowcase() {
                     {t.products.coveragesLabel}
                   </p>
                   <ul className="mt-4 space-y-3">
-                    {item.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-center gap-3">
+                    {item.bullets.map((bullet, bi) => (
+                      <li key={bi} className="flex items-center gap-3">
                         <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-brand-500/20 text-brand-300">
                           <IconCheck className="h-3.5 w-3.5" />
                         </span>

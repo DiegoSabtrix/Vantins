@@ -22,7 +22,7 @@ export function Faq() {
         <div className="mt-12 divide-y divide-ink/10 border-y border-ink/10">
           {t.faq.items.map((item, i) => (
             <AccordionRow
-              key={item.question}
+              key={i}
               item={item}
               index={i}
               open={openId === i}

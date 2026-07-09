@@ -22,9 +22,9 @@ export function Testimonials() {
           viewport={viewportOnce}
           className="mt-14 grid gap-6 md:grid-cols-3"
         >
-          {t.testimonials.items.map((item) => (
+          {t.testimonials.items.map((item, i) => (
             <motion.li
-              key={item.name}
+              key={i}
               variants={staggerItem}
               className="flex h-full flex-col rounded-2xl border border-ink/10 bg-surface-sand p-7 shadow-sm"
             >

@@ -32,9 +32,9 @@ export function Pricing() {
           viewport={viewportOnce}
           className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-3"
         >
-          {t.pricing.items.map((tier) => (
+          {t.pricing.items.map((tier, i) => (
             <PricingCard
-              key={tier.name}
+              key={i}
               tier={tier}
               cta={t.pricing.cta}
               recommended={t.pricing.recommended}
@@ -80,8 +80,8 @@ function PricingCard({
       <p className="mt-1 text-sm text-ink-soft">{tier.tagline}</p>
 
       <ul className="mt-6 space-y-3">
-        {tier.features.map((feature) => (
-          <li key={feature} className="flex items-start gap-2.5 text-sm text-ink">
+        {tier.features.map((feature, fi) => (
+          <li key={fi} className="flex items-start gap-2.5 text-sm text-ink">
             <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
             <span>{feature}</span>
           </li>

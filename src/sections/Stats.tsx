@@ -16,8 +16,8 @@ export function Stats() {
           viewport={viewportOnce}
           className="grid grid-cols-2 gap-x-6 gap-y-10 text-center lg:grid-cols-4"
         >
-          {t.stats.map((stat) => (
-            <motion.div key={stat.label} variants={staggerItem}>
+          {t.stats.map((stat, i) => (
+            <motion.div key={i} variants={staggerItem}>
               <dt className="sr-only">{stat.label}</dt>
               <dd className="text-gradient-qb text-4xl font-extrabold tracking-tight lg:text-5xl">
                 {stat.value}

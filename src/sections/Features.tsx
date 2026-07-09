@@ -26,7 +26,7 @@ export function Features() {
         >
           {t.features.items.map((feature, i) => (
             <FeatureCard
-              key={feature.title}
+              key={i}
               title={feature.title}
               description={feature.description}
               icon={FEATURE_ICONS[i % FEATURE_ICONS.length]}
