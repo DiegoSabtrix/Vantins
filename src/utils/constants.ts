@@ -26,6 +26,21 @@ export const FEATURE_ICONS: IconComponent[] = [
   IconReceipt, // Health
 ];
 
+/**
+ * Background photo for each feature card, paired by index with FEATURE_ICONS
+ * and `useT().features.items`. Files live in `public/` — drop a matching image
+ * in to light up a card; if a file is missing the card gracefully falls back to
+ * the dark panel background.
+ */
+export const FEATURE_IMAGES: string[] = [
+  'feature-auto.jpg', // Auto
+  'feature-home.jpg', // Home
+  'feature-commercial.jpg', // Commercial
+  'feature-truck.jpg', // Commercial Truck
+  'feature-life.jpg', // Life
+  'feature-health.jpg', // Health
+];
+
 /** Partner insurance carriers shown in the marquee (generic placeholders). */
 export const TRUST_LOGOS: string[] = [
   'Summit Mutual',
