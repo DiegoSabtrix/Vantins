@@ -103,7 +103,7 @@ const en: SiteContent = {
     { label: 'About Us', href: '/about-us' },
     { label: 'Insurance', href: '/#products' },
     { label: 'Services', href: '/services' },
-    { label: 'Help & Support', href: '/#faq' },
+    { label: 'Help & Support', href: '/help-support' },
   ],
   hero: {
     pill: 'How much can I save on coverage?',
@@ -212,7 +212,7 @@ const en: SiteContent = {
     columns: [
       { heading: 'Insurance', links: [{ label: 'Auto Insurance', href: '#products' }, { label: 'Home Insurance', href: '#products' }, { label: 'Commercial Insurance', href: '#products' }, { label: 'Trucking Insurance', href: '#products' }, { label: 'Life & Health', href: '#products' }] },
       { heading: 'For Business', links: [{ label: 'Commercial', href: '#features' }, { label: 'Commercial Truck', href: '#features' }, { label: 'General Liability', href: '#features' }, { label: 'Workers’ Comp', href: '#features' }] },
-      { heading: 'Resources', links: [{ label: 'Blog', href: '#faq' }, { label: 'Guides & tools', href: '#faq' }, { label: 'Support center', href: '#faq' }, { label: 'Contact us', href: '#faq' }] },
+      { heading: 'Resources', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guides & tools', href: '/help-support#support-options' }, { label: 'Support center', href: '/help-support' }, { label: 'Contact us', href: '/help-support#contact' }] },
       { heading: 'Company', links: [{ label: 'About us', href: '/about-us' }, { label: 'Licensed offices', href: '#' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '/#pricing' }] },
     ],
     copyright:
@@ -239,7 +239,7 @@ const es: SiteContent = {
     { label: 'Nosotros', href: '/about-us' },
     { label: 'Seguros', href: '/#products' },
     { label: 'Servicios', href: '/services' },
-    { label: 'Ayuda y Soporte', href: '/#faq' },
+    { label: 'Ayuda y Soporte', href: '/help-support' },
   ],
   hero: {
     pill: '¿Cuánto puedo ahorrar en mi cobertura?',
@@ -348,7 +348,7 @@ const es: SiteContent = {
     columns: [
       { heading: 'Seguros', links: [{ label: 'Seguro de Auto', href: '#products' }, { label: 'Seguro de Hogar', href: '#products' }, { label: 'Seguro Comercial', href: '#products' }, { label: 'Seguro de Camiones', href: '#products' }, { label: 'Vida y Salud', href: '#products' }] },
       { heading: 'Para Empresas', links: [{ label: 'Comercial', href: '#features' }, { label: 'Camiones Comercial', href: '#features' }, { label: 'Responsabilidad General', href: '#features' }, { label: 'Compensación Laboral', href: '#features' }] },
-      { heading: 'Recursos', links: [{ label: 'Blog', href: '#faq' }, { label: 'Guías y herramientas', href: '#faq' }, { label: 'Centro de ayuda', href: '#faq' }, { label: 'Contáctanos', href: '#faq' }] },
+      { heading: 'Recursos', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guías y herramientas', href: '/help-support#support-options' }, { label: 'Centro de ayuda', href: '/help-support' }, { label: 'Contáctanos', href: '/help-support#contact' }] },
       { heading: 'Compañía', links: [{ label: 'Nosotros', href: '/about-us' }, { label: 'Oficinas con licencia', href: '#' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '/#pricing' }] },
     ],
     copyright:
