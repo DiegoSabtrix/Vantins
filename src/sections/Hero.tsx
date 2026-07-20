@@ -28,7 +28,7 @@ export function Hero() {
     if (reduceMotion) return;
     const id = window.setInterval(
       () => setIndex((i) => (i + 1) % words.length),
-      2200,
+      3400,
     );
     return () => window.clearInterval(id);
   }, [reduceMotion, words.length]);
@@ -97,12 +97,12 @@ export function Hero() {
         </motion.p>
 
         {/* Cycling gradient headline (line of coverage) */}
-        <h1 className="max-w-5xl font-extrabold leading-[0.95] tracking-tight">
+        <h1 className="max-w-5xl font-extrabold leading-[1.04] tracking-tight">
           <span className="sr-only">Vantins — {word}</span>
           <span
             aria-hidden
-            className="block text-[clamp(3.2rem,8vw,7.5rem)]"
-            style={{ minHeight: '1.1em' }}
+            className="block pb-[0.08em] text-[clamp(3.2rem,8vw,7.5rem)]"
+            style={{ minHeight: '1.22em' }}
           >
             <AnimatePresence mode="wait">
               <motion.span
