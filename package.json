@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vinext build",
+    "build:pages": "vite build --config vite.pages.config.ts && node scripts/prepare-pages-output.mjs",
     "start": "vinext start",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "typecheck": "tsc --noEmit"
