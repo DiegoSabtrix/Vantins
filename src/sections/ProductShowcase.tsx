@@ -25,7 +25,7 @@ export function ProductShowcase() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-white/65 text-pretty">
             {t.products.subtitle}
           </p>
-          <LinkButton href="#pricing" size="lg" className="group mt-7">
+          <LinkButton href="/get-quote" size="lg" className="group mt-7">
             {t.products.cta}
             <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
           </LinkButton>

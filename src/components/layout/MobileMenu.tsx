@@ -87,7 +87,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               <div className="flex justify-center">
                 <LanguageToggle />
               </div>
-              <LinkButton href="#pricing" variant="primary" fullWidth onClick={onClose}>
+              <LinkButton href="/#pricing" variant="primary" fullWidth onClick={onClose}>
                 {t.promo.cta}
               </LinkButton>
               <LinkButton

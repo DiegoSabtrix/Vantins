@@ -76,7 +76,7 @@ export function HighlightBand() {
                 {t.highlight.statRest}
               </p>
               <div className="mt-8">
-                <LinkButton href="#pricing" size="lg">
+                <LinkButton href="/get-quote" size="lg">
                   {t.highlight.cta}
                 </LinkButton>
               </div>

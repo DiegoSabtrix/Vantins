@@ -21,7 +21,13 @@ export interface NavEntry {
 
 export interface SiteContent {
   promo: { pre: string; highlight: string; post: string; cta: string };
-  common: { signIn: string; sales: string; toggleTo: string; toggleLabel: string };
+  common: {
+    signIn: string;
+    sales: string;
+    languageName: string;
+    languageCode: string;
+    switchLanguageLabel: string;
+  };
   nav: NavEntry[];
   hero: {
     pill: string;
@@ -85,24 +91,19 @@ const en: SiteContent = {
     post: 'today',
     cta: 'Free Quote',
   },
-  common: { signIn: 'Sign in', sales: 'Sales', toggleTo: 'Español', toggleLabel: 'EN' },
+  common: {
+    signIn: 'Sign in',
+    sales: 'Sales',
+    languageName: 'English',
+    languageCode: 'EN',
+    switchLanguageLabel: 'Switch language to Spanish',
+  },
   nav: [
-    { label: 'Home', href: '#top' },
-    { label: 'About Us', href: '#features' },
-    {
-      label: 'Insurances',
-      href: '#products',
-      menu: [
-        { label: 'Auto Insurance', href: '#products' },
-        { label: 'Home Insurance', href: '#products' },
-        { label: 'Commercial Insurance', href: '#products' },
-        { label: 'Trucking Insurance', href: '#products' },
-        { label: 'Life Insurance', href: '#products' },
-        { label: 'Health Insurance', href: '#products' },
-      ],
-    },
-    { label: 'Other Services', href: '#products' },
-    { label: 'Help & Support', href: '#faq' },
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Insurance', href: '/#products' },
+    { label: 'Services', href: '/services' },
+    { label: 'Help & Support', href: '/#faq' },
   ],
   hero: {
     pill: 'How much can I save on coverage?',
@@ -212,7 +213,7 @@ const en: SiteContent = {
       { heading: 'Insurance', links: [{ label: 'Auto Insurance', href: '#products' }, { label: 'Home Insurance', href: '#products' }, { label: 'Commercial Insurance', href: '#products' }, { label: 'Trucking Insurance', href: '#products' }, { label: 'Life & Health', href: '#products' }] },
       { heading: 'For Business', links: [{ label: 'Commercial', href: '#features' }, { label: 'Commercial Truck', href: '#features' }, { label: 'General Liability', href: '#features' }, { label: 'Workers’ Comp', href: '#features' }] },
       { heading: 'Resources', links: [{ label: 'Blog', href: '#faq' }, { label: 'Guides & tools', href: '#faq' }, { label: 'Support center', href: '#faq' }, { label: 'Contact us', href: '#faq' }] },
-      { heading: 'Company', links: [{ label: 'About us', href: '#features' }, { label: 'Licensed offices', href: '#' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '#pricing' }] },
+      { heading: 'Company', links: [{ label: 'About us', href: '/about-us' }, { label: 'Licensed offices', href: '#' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '/#pricing' }] },
     ],
     copyright:
       '© {year} Vantins. Insurance made simple — compare trusted carriers and choose coverage with confidence.',
@@ -226,24 +227,19 @@ const es: SiteContent = {
     post: 'hoy',
     cta: 'Cotiza gratis',
   },
-  common: { signIn: 'Ingresar', sales: 'Ventas', toggleTo: 'English', toggleLabel: 'ES' },
+  common: {
+    signIn: 'Ingresar',
+    sales: 'Ventas',
+    languageName: 'Español',
+    languageCode: 'ES',
+    switchLanguageLabel: 'Cambiar idioma a inglés',
+  },
   nav: [
-    { label: 'Inicio', href: '#top' },
-    { label: 'Nosotros', href: '#features' },
-    {
-      label: 'Seguros',
-      href: '#products',
-      menu: [
-        { label: 'Seguro de Auto', href: '#products' },
-        { label: 'Seguro de Hogar', href: '#products' },
-        { label: 'Seguro Comercial', href: '#products' },
-        { label: 'Seguro de Camiones', href: '#products' },
-        { label: 'Seguro de Vida', href: '#products' },
-        { label: 'Seguro de Salud', href: '#products' },
-      ],
-    },
-    { label: 'Otros Servicios', href: '#products' },
-    { label: 'Ayuda y Soporte', href: '#faq' },
+    { label: 'Inicio', href: '/' },
+    { label: 'Nosotros', href: '/about-us' },
+    { label: 'Seguros', href: '/#products' },
+    { label: 'Servicios', href: '/services' },
+    { label: 'Ayuda y Soporte', href: '/#faq' },
   ],
   hero: {
     pill: '¿Cuánto puedo ahorrar en mi cobertura?',
@@ -353,7 +349,7 @@ const es: SiteContent = {
       { heading: 'Seguros', links: [{ label: 'Seguro de Auto', href: '#products' }, { label: 'Seguro de Hogar', href: '#products' }, { label: 'Seguro Comercial', href: '#products' }, { label: 'Seguro de Camiones', href: '#products' }, { label: 'Vida y Salud', href: '#products' }] },
       { heading: 'Para Empresas', links: [{ label: 'Comercial', href: '#features' }, { label: 'Camiones Comercial', href: '#features' }, { label: 'Responsabilidad General', href: '#features' }, { label: 'Compensación Laboral', href: '#features' }] },
       { heading: 'Recursos', links: [{ label: 'Blog', href: '#faq' }, { label: 'Guías y herramientas', href: '#faq' }, { label: 'Centro de ayuda', href: '#faq' }, { label: 'Contáctanos', href: '#faq' }] },
-      { heading: 'Compañía', links: [{ label: 'Nosotros', href: '#features' }, { label: 'Oficinas con licencia', href: '#' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '#pricing' }] },
+      { heading: 'Compañía', links: [{ label: 'Nosotros', href: '/about-us' }, { label: 'Oficinas con licencia', href: '#' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '/#pricing' }] },
     ],
     copyright:
       '© {year} Vantins. Seguros simplificados — compara aseguradoras de confianza y elige con seguridad.',

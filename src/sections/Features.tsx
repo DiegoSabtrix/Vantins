@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Container, SectionHeading } from '@/components/ui';
+import { Container, LinkButton, SectionHeading } from '@/components/ui';
+import { IconArrowRight } from '@/components/icons';
 import { FEATURE_ICONS, FEATURE_IMAGES } from '@/utils/constants';
 import { staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
 import { useT } from '@/i18n';
@@ -16,6 +17,13 @@ export function Features() {
           title={t.features.title}
           description={t.features.description}
         />
+
+        <div className="mt-7 flex justify-center">
+          <LinkButton href="/about-us" variant="outline" className="group">
+            Learn about Vantins
+            <IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+          </LinkButton>
+        </div>
 
         <motion.ul
           variants={staggerContainer}

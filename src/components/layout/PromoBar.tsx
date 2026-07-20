@@ -16,7 +16,7 @@ export function PromoBar() {
           {t.promo.pre}{' '}
           <span className="text-brand-400">{t.promo.highlight}</span> {t.promo.post}
         </p>
-        <LinkButton href="#pricing" variant="primary" size="sm">
+        <LinkButton href="/#pricing" variant="primary" size="sm">
           {t.promo.cta}
         </LinkButton>
 
