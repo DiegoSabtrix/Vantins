@@ -158,7 +158,7 @@ function AboutUsContent() {
           <Container className="py-24 text-center lg:py-32">
             <motion.div variants={fadeUp} initial="hidden" animate="visible" className="mx-auto max-w-4xl">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-300">{copy.hero.eyebrow}</p>
-              <h1 className="mt-5 text-[clamp(3rem,7vw,6.5rem)] font-extrabold leading-[0.95] tracking-tight text-balance">
+              <h1 className="mt-5 text-[clamp(2.75rem,5vw,60px)] font-extrabold leading-[1.02] tracking-tight text-balance">
                 {copy.hero.title} <span className="text-gradient-qb">{copy.hero.accent}</span>
               </h1>
               <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-white/72 sm:text-xl">
