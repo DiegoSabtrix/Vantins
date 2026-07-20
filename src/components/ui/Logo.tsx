@@ -2,29 +2,22 @@ import { cn } from '@/utils/cn';
 
 interface LogoProps {
   className?: string;
-  /** Renders the wordmark in white for use on dark backgrounds. */
+  /** Kept for compatibility with existing dark-background placements. */
   invert?: boolean;
 }
 
-/** Path to the logo emblem file. Swap `public/logo.png` to change it site-wide. */
-const LOGO_SRC = `${import.meta.env.BASE_URL}logo.png`;
+const LOGO_SRC = '/vantins-insurance-logo.png';
 
-/**
- * Vantins logo — the shield emblem loaded from `public/logo.png` plus the
- * "VANTINS" wordmark. Replace the PNG file to use a different logo.
- */
-export function Logo({ className, invert = false }: LogoProps) {
+export function Logo({ className }: LogoProps) {
   return (
-    <span className={cn('inline-flex items-center gap-2.5', className)}>
-      <img src={LOGO_SRC} alt="Vantins" className="h-9 w-9" width={36} height={36} />
-      <span
-        className={cn(
-          'text-lg font-extrabold uppercase tracking-[0.18em]',
-          invert ? 'text-white' : 'text-ink',
-        )}
-      >
-        Vantins
-      </span>
+    <span className={cn('inline-flex items-center', className)}>
+      <img
+        src={LOGO_SRC}
+        alt="Vantins — Smart Protection Starts Here"
+        className="h-10 w-auto object-contain sm:h-11 lg:h-12"
+        width={2047}
+        height={512}
+      />
     </span>
   );
 }
