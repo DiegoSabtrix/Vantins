@@ -127,7 +127,7 @@ function GetQuoteContent() {
           <Container className="grid items-center gap-12 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
             <motion.div variants={fadeUp} initial="hidden" animate="visible">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-300">{copy.hero.eyebrow}</p>
-              <h1 className="mt-5 text-[clamp(3rem,6.4vw,6rem)] font-extrabold leading-[0.94] tracking-tight text-balance">
+              <h1 className="mt-5 text-[clamp(2.75rem,5vw,60px)] font-extrabold leading-[1.02] tracking-tight text-balance">
                 {copy.hero.title} <span className="text-gradient-qb">{copy.hero.accent}</span>
               </h1>
               <p className="mt-6 text-sm font-bold uppercase tracking-[0.08em] text-white/72">{copy.hero.types}</p>
