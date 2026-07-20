@@ -154,7 +154,7 @@ function HelpSupportContent() {
           <Container className="grid items-center gap-12 py-20 lg:grid-cols-[1.08fr_0.92fr] lg:py-28">
             <motion.div variants={fadeUp} initial="hidden" animate="visible">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-300">{copy.hero.eyebrow}</p>
-              <h1 className="mt-5 max-w-4xl text-[clamp(3.2rem,6.5vw,6.4rem)] font-extrabold leading-[0.95] tracking-tight text-balance">
+              <h1 className="mt-5 max-w-4xl text-[clamp(2.75rem,5vw,60px)] font-extrabold leading-[1.02] tracking-tight text-balance">
                 {copy.hero.title} <span className="text-gradient-qb">{copy.hero.accent}</span>
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/72 sm:text-xl">{copy.hero.description}</p>
