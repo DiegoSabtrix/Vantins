@@ -108,7 +108,7 @@ const en: SiteContent = {
   hero: {
     pill: 'How much can I save on coverage?',
     eyebrow: 'Smart Insurance Made Simple',
-    words: ['Auto', 'Home', 'Commercial', 'Trucking', 'Life', 'Health'],
+    words: ['Trucks', 'Fleets', 'Cargo', 'Operators', 'Routes'],
     headline: 'Smarter Coverage. Better Protection.',
     subtitle:
       'Compare trusted insurance carriers, receive expert guidance, and find the right coverage for your family or business — all in one place.',
@@ -244,7 +244,7 @@ const es: SiteContent = {
   hero: {
     pill: '¿Cuánto puedo ahorrar en mi cobertura?',
     eyebrow: 'Seguros inteligentes, sin complicaciones',
-    words: ['Auto', 'Hogar', 'Comercial', 'Camiones', 'Vida', 'Salud'],
+    words: ['Camiones', 'Flotas', 'Carga', 'Operadores', 'Rutas'],
     headline: 'Mejor Cobertura. Mejor Protección.',
     subtitle:
       'Compara aseguradoras de confianza, recibe asesoría experta y encuentra la cobertura ideal para tu familia o negocio — todo en un solo lugar.',
