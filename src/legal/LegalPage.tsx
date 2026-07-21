@@ -10,57 +10,77 @@ type LegalPageProps = {
 const legalCopy = {
   privacy: {
     eyebrow: 'Privacy Policy',
-    title: 'Your privacy matters to Vantins.',
+    title: 'Privacy Policy',
     intro:
-      'This page explains how Vantins handles personal information shared through our website, quote requests, support channels, and policy-related communications.',
+      'This Privacy Policy explains how Vantins collects, uses, protects, and shares information provided through our website, quote forms, calls, messages, support channels, and policy-related communications.',
     sections: [
       {
-        title: 'Information we may collect',
+        title: 'Information we collect',
         body:
-          'We may collect contact details, insurance needs, quote information, communication preferences, and details required to help compare coverage or support an active policy.',
+          'We may collect your name, phone number, email address, mailing address, insurance needs, quote details, business information, vehicle or fleet details, communication preferences, and other information you choose to provide.',
       },
       {
-        title: 'How we use information',
+        title: 'How we use your information',
         body:
-          'We use information to respond to inquiries, prepare insurance quotes, support policy administration, communicate with clients, and improve our service experience.',
+          'We use information to respond to inquiries, prepare and compare insurance quotes, support applications and policy administration, communicate with you, improve our services, and comply with legal or regulatory obligations.',
       },
       {
-        title: 'Sharing and protection',
+        title: 'When information is shared',
         body:
-          'Vantins uses reasonable safeguards to protect personal data and only shares information when needed for service delivery, carrier communication, operational support, or legal requirements.',
+          'We may share information with insurance carriers, licensed agents, service providers, operational partners, or legal authorities when needed to provide services, process requests, support policies, or meet legal requirements.',
       },
       {
-        title: 'Your choices',
+        title: 'Communication choices',
         body:
-          'You may request updates to your communication preferences or ask questions about your information by contacting Vantins through the support channels listed on this site.',
+          'By submitting your information, you authorize Vantins to contact you by phone, email, SMS, social media, or other channels related to your inquiry or policy needs. You may request to update your preferences or opt out where applicable.',
+      },
+      {
+        title: 'Data protection',
+        body:
+          'Vantins uses reasonable administrative, technical, and organizational safeguards to protect personal information. No online transmission or storage system can be guaranteed to be completely secure.',
+      },
+      {
+        title: 'Contact us',
+        body:
+          'If you have questions about this Privacy Policy or your personal information, please contact Vantins through the support or contact channels listed on this website.',
       },
     ],
   },
   terms: {
     eyebrow: 'Terms and Conditions',
-    title: 'Website use and communication terms.',
+    title: 'Terms and Conditions',
     intro:
-      'These terms apply when you use the Vantins website, request information, submit a quote inquiry, or communicate with our team through digital channels.',
+      'These Terms and Conditions apply when you access the Vantins website, request a quote, submit information, or communicate with our team through digital or offline channels.',
     sections: [
       {
-        title: 'Informational use',
+        title: 'Website information',
         body:
-          'Website content is provided for general informational purposes and does not replace a formal insurance policy, carrier document, quote, binder, or licensed advisory conversation.',
+          'The information on this website is provided for general informational purposes only. It does not replace a formal insurance quote, policy, binder, carrier document, or licensed advisory conversation.',
       },
       {
         title: 'Quotes and coverage',
         body:
-          'Insurance availability, pricing, eligibility, limits, exclusions, and terms depend on carrier underwriting, application details, and applicable legal requirements.',
+          'Insurance availability, pricing, eligibility, limits, exclusions, and policy terms depend on carrier underwriting, application information, state requirements, and applicable law. Submitting a request does not guarantee coverage.',
       },
       {
         title: 'Communications consent',
         body:
-          'By sharing your information, you authorize Vantins to contact you through phone, email, SMS, social media, or other appropriate channels related to your inquiry or policy needs.',
+          'By sharing your information, you authorize Vantins to contact you by telephone, email, SMS text message, social media, and other appropriate communication channels related to your inquiry, quote, application, or policy needs.',
       },
       {
-        title: 'Updates',
+        title: 'Third-party services',
         body:
-          'Vantins may update these terms as services, requirements, or website features evolve. Continued use of the website means you accept the current terms.',
+          'This website may reference insurance carriers, partners, tools, links, or third-party services. Vantins is not responsible for third-party websites, policies, products, pricing, or decisions.',
+      },
+      {
+        title: 'User responsibilities',
+        body:
+          'You agree to provide accurate and current information when requesting quotes or services. Inaccurate, incomplete, or outdated information may affect eligibility, pricing, coverage, or service delivery.',
+      },
+      {
+        title: 'Changes to these terms',
+        body:
+          'Vantins may update these Terms and Conditions as services, requirements, or website features evolve. Continued use of the website means you accept the current version.',
       },
     ],
   },
@@ -89,9 +109,9 @@ export function LegalPage({ type }: LegalPageProps) {
         </section>
 
         <section className="bg-white py-16 lg:py-24">
-          <Container className="grid gap-6 md:grid-cols-2">
+          <Container className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {copy.sections.map((section) => (
-              <article key={section.title} className="rounded-3xl border border-ink/10 bg-[#f7f8fa] p-7">
+              <article key={section.title} className="rounded-2xl border border-ink/10 bg-[#f7f8fa] p-7">
                 <h2 className="text-xl font-bold text-ink">{section.title}</h2>
                 <p className="mt-3 leading-relaxed text-ink/65">{section.body}</p>
               </article>

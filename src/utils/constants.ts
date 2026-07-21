@@ -18,12 +18,12 @@ export const SALES_PHONE_TEL = '+17542900308';
  * Kept here because icon components can't live in the translation data.
  */
 export const FEATURE_ICONS: IconComponent[] = [
-  IconChart, // Auto
-  IconShield, // Home
-  IconBank, // Commercial
-  IconInvoice, // Commercial Truck
-  IconUsers, // Life
-  IconReceipt, // Health
+  IconChart, // Owner-Operator Insurance
+  IconShield, // Fleet Insurance
+  IconBank, // Cargo Insurance
+  IconInvoice, // Physical Damage Coverage
+  IconUsers, // General Liability
+  IconReceipt, // Workers' Comp
 ];
 
 /**
@@ -33,12 +33,12 @@ export const FEATURE_ICONS: IconComponent[] = [
  * the dark panel background.
  */
 export const FEATURE_IMAGES: string[] = [
-  'feature-auto.jpg', // Auto
-  'feature-home.jpg', // Home
-  'feature-commercial.jpg', // Commercial
-  'feature-truck.jpg', // Commercial Truck
-  'feature-life.jpg', // Life
-  'feature-health.jpg', // Health
+  'feature-auto.jpg', // Owner-Operator Insurance
+  'feature-home.jpg', // Fleet Insurance
+  'feature-commercial.jpg', // Cargo Insurance
+  'feature-truck.jpg', // Physical Damage Coverage
+  'feature-life.jpg', // General Liability
+  'feature-health.jpg', // Workers' Comp
 ];
 
 /** Partner insurance carriers shown in the marquee (generic placeholders). */

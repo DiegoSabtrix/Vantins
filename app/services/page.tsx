@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { ServicesPage } from '@/services/ServicesPage';
 
 export const metadata: Metadata = {
-  title: 'Commercial Truck Insurance Services | Vantins',
+  title: 'Commercial Truck Insurance Services | Cargo, COI & Fleet Coverage | Vantins',
   description:
-    'Commercial truck insurance, cargo coverage, COIs, claims support, and fleet protection from experienced Vantins advisors.',
+    'Explore Vantins commercial truck insurance services including cargo insurance, physical damage coverage, COIs, liability, claims support, and fleet protection.',
 };
 
 export default function Page() {

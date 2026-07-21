@@ -13,7 +13,7 @@ export function Logo({ className }: LogoProps) {
     <span className={cn('inline-flex items-center', className)}>
       <img
         src={LOGO_SRC}
-        alt="Vantins — Smart Protection Starts Here"
+        alt="Vantins commercial truck insurance agency"
         className="h-10 w-auto object-contain sm:h-11 lg:h-12"
         width={2047}
         height={512}

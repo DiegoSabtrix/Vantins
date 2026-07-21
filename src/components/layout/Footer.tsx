@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Container, Logo } from '@/components/ui';
 import { useT } from '@/i18n';
 
@@ -102,12 +103,12 @@ export function Footer() {
             {FOOTER_DISCLAIMER}
           </p>
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold">
-            <a href="/privacy-policy" className="text-white/60 transition-colors hover:text-brand-300">
+            <Link href="/privacy-policy" className="text-white/60 transition-colors hover:text-brand-300">
               Privacy policy
-            </a>
-            <a href="/terms-and-conditions" className="text-white/60 transition-colors hover:text-brand-300">
+            </Link>
+            <Link href="/terms-and-conditions" className="text-white/60 transition-colors hover:text-brand-300">
               Terms and conditions
-            </a>
+            </Link>
           </div>
           <p className="mt-6 text-xs text-white/45">
             {t.footer.copyright.replace('{year}', String(year))}

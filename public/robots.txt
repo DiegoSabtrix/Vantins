@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vantins-website.diego681936.chatgpt.site/sitemap.xml

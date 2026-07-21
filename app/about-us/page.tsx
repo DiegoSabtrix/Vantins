@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { AboutUsPage } from '@/about/AboutUsPage';
 
 export const metadata: Metadata = {
-  title: 'About Vantins | Smart Insurance, Personal Guidance',
+  title: 'About Vantins | Trucking Insurance Advisors',
   description:
-    'Meet Vantins Insurance Group—licensed advisors helping individuals, families, and businesses find smarter, better-structured coverage.',
+    'Meet Vantins, licensed insurance advisors helping truckers, owner-operators, fleets, businesses, and families compare smarter coverage options.',
 };
 
 export default function Page() {
