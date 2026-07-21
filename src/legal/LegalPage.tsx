@@ -2,6 +2,7 @@
 
 import { Footer, Navbar, PromoBar } from '@/components/layout';
 import { Container } from '@/components/ui';
+import { LanguageProvider } from '@/i18n';
 
 type LegalPageProps = {
   type: 'privacy' | 'terms';
@@ -87,6 +88,14 @@ const legalCopy = {
 };
 
 export function LegalPage({ type }: LegalPageProps) {
+  return (
+    <LanguageProvider>
+      <LegalPageContent type={type} />
+    </LanguageProvider>
+  );
+}
+
+function LegalPageContent({ type }: LegalPageProps) {
   const copy = legalCopy[type];
 
   return (
