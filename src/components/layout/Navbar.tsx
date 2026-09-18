@@ -125,6 +125,10 @@ function NavBarItem({ item, isOpen, onOpen, onClose }: NavBarItemProps) {
         className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-2 text-[0.95rem] font-medium text-white transition-colors hover:bg-white/10"
         aria-expanded={isOpen}
         onFocus={onOpen}
+        onClick={onOpen}
+        onKeyDown={(event) => {
+          if (event.key === 'Escape') onClose();
+        }}
       >
         {item.label}
         <IconChevronDown

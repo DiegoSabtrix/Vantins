@@ -11,6 +11,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://vantins-website.diego681936.chatgpt.site/truck-services</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://vantins-website.diego681936.chatgpt.site/get-quote</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

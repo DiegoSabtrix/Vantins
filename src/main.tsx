@@ -6,6 +6,7 @@ import { LanguageProvider } from './i18n';
 import { GetQuotePage } from './quote/GetQuotePage';
 import { ServicesPage } from './services/ServicesPage';
 import { HelpSupportPage } from './support/HelpSupportPage';
+import { TruckServicesPage } from './truck-services/TruckServicesPage';
 import './index.css';
 
 const rootElement = document.getElementById('root');
@@ -30,6 +31,8 @@ if (route === 'about-us') {
   page = <AboutUsPage />;
 } else if (route === 'services') {
   page = <ServicesPage />;
+} else if (route === 'truck-services') {
+  page = <TruckServicesPage />;
 } else if (route === 'get-quote') {
   page = <GetQuotePage />;
 } else if (route === 'help-support') {

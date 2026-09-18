@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Logo, LinkButton, Button } from '@/components/ui';
-import { IconClose } from '@/components/icons';
+import { IconChevronDown, IconClose } from '@/components/icons';
 import { useLockBodyScroll } from '@/hooks';
 import { useT } from '@/i18n';
 import { LanguageToggle } from './LanguageToggle';
@@ -13,6 +14,7 @@ interface MobileMenuProps {
 /** Full-height slide-in navigation for small screens. */
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const t = useT();
+  const [expanded, setExpanded] = useState<string | null>(null);
   useLockBodyScroll(open);
 
   const links = t.nav.filter((item) => !item.cta);
@@ -56,27 +58,48 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               <ul className="space-y-1">
                 {links.map((item) => (
                   <li key={item.label}>
-                    <a
-                      href={item.href}
-                      onClick={onClose}
-                      className="block rounded-xl px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
-                    >
-                      {item.label}
-                    </a>
+                    {item.menu ? (
+                      <button
+                        type="button"
+                        onClick={() => setExpanded((current) => current === item.label ? null : item.label)}
+                        className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-base font-semibold text-white transition-colors hover:bg-white/10"
+                        aria-expanded={expanded === item.label}
+                      >
+                        {item.label}
+                        <IconChevronDown className={`h-4 w-4 transition-transform ${expanded === item.label ? 'rotate-180' : ''}`} />
+                      </button>
+                    ) : (
+                      <a
+                        href={item.href}
+                        onClick={onClose}
+                        className="block rounded-xl px-4 py-3 text-base font-semibold text-white transition-colors hover:bg-white/10"
+                      >
+                        {item.label}
+                      </a>
+                    )}
                     {item.menu && (
-                      <ul className="mb-1 ml-3 border-l border-white/10 pl-4">
-                        {item.menu.map((link) => (
-                          <li key={link.label}>
-                            <a
-                              href={link.href}
-                              onClick={onClose}
-                              className="block rounded-lg px-3 py-2 text-sm text-white/60 transition-colors hover:text-white"
-                            >
-                              {link.label}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                      <AnimatePresence initial={false}>
+                        {expanded === item.label && (
+                          <motion.ul
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="mb-1 ml-3 overflow-hidden border-l border-white/10 pl-4"
+                          >
+                            {item.menu.map((link) => (
+                              <li key={link.label}>
+                                <a
+                                  href={link.href}
+                                  onClick={onClose}
+                                  className="block rounded-lg px-3 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/5 hover:text-white"
+                                >
+                                  {link.label}
+                                </a>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
                     )}
                   </li>
                 ))}

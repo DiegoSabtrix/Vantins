@@ -101,8 +101,14 @@ const en: SiteContent = {
   nav: [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about-us' },
-    { label: 'Insurance', href: '/#products' },
-    { label: 'Services', href: '/services' },
+    {
+      label: 'Services',
+      href: '/services',
+      menu: [
+        { label: 'Insurance', href: '/services' },
+        { label: 'Truck Services', href: '/truck-services' },
+      ],
+    },
     { label: 'Help & Support', href: '/help-support' },
   ],
   hero: {
@@ -210,8 +216,8 @@ const en: SiteContent = {
     tagline:
       'Compare trusted insurance carriers, get expert guidance, and find the right coverage for your family or business — all in one place.',
     columns: [
-      { heading: 'Insurance', links: [{ label: 'Owner-Operator Insurance', href: '#products' }, { label: 'Fleet Insurance', href: '#products' }, { label: 'Cargo Insurance', href: '#products' }, { label: 'Physical Damage Coverage', href: '#products' }, /* TODO: create specific page. */ { label: 'Non-Trucking Liability', href: '#products' }] },
-      { heading: 'For Business', links: [{ label: 'Commercial Trucking', href: '#features' }, { label: 'General Liability', href: '#features' }, { label: 'Workers’ Comp', href: '#features' }, /* TODO: create specific page. */ { label: 'Fleet Management', href: '#features' }] },
+      { heading: 'Insurance', links: [{ label: 'Owner-Operator Insurance', href: '/#products' }, { label: 'Fleet Insurance', href: '/#products' }, { label: 'Cargo Insurance', href: '/#products' }, { label: 'Physical Damage Coverage', href: '/#products' }, { label: 'Non-Trucking Liability', href: '/#products' }] },
+      { heading: 'For Business', links: [{ label: 'Commercial Trucking', href: '/services' }, { label: 'Truck Services', href: '/truck-services' }, { label: 'General Liability', href: '/#features' }, { label: 'Workers’ Comp', href: '/#features' }] },
       { heading: 'Resources', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guides & tools', href: '/help-support#support-options' }, { label: 'Support center', href: '/help-support' }, { label: 'Contact us', href: '/help-support#contact' }] },
       { heading: 'Company', links: [{ label: 'About us', href: '/about-us' }, { label: 'Licensed offices', href: '#' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '/#pricing' }] },
     ],
@@ -237,8 +243,14 @@ const es: SiteContent = {
   nav: [
     { label: 'Inicio', href: '/' },
     { label: 'Nosotros', href: '/about-us' },
-    { label: 'Seguros', href: '/#products' },
-    { label: 'Servicios', href: '/services' },
+    {
+      label: 'Servicios',
+      href: '/services',
+      menu: [
+        { label: 'Seguros', href: '/services' },
+        { label: 'Servicios para Trucks', href: '/truck-services' },
+      ],
+    },
     { label: 'Ayuda y Soporte', href: '/help-support' },
   ],
   hero: {
@@ -346,8 +358,8 @@ const es: SiteContent = {
     tagline:
       'Compara aseguradoras de confianza, recibe asesoría experta y encuentra la cobertura ideal para tu familia o negocio — todo en un solo lugar.',
     columns: [
-      { heading: 'Seguros', links: [{ label: 'Seguro para Owner-Operators', href: '#products' }, { label: 'Seguro de Flotas', href: '#products' }, { label: 'Seguro de Carga', href: '#products' }, { label: 'Cobertura de Daño Físico', href: '#products' }, /* TODO: crear página específica. */ { label: 'Responsabilidad Civil No Comercial', href: '#products' }] },
-      { heading: 'Para Empresas', links: [{ label: 'Transporte Comercial', href: '#features' }, { label: 'Responsabilidad Civil General', href: '#features' }, { label: 'Compensación Laboral', href: '#features' }, /* TODO: crear página específica. */ { label: 'Gestión de Flotas', href: '#features' }] },
+      { heading: 'Seguros', links: [{ label: 'Seguro para Owner-Operators', href: '/#products' }, { label: 'Seguro de Flotas', href: '/#products' }, { label: 'Seguro de Carga', href: '/#products' }, { label: 'Cobertura de Daño Físico', href: '/#products' }, { label: 'Responsabilidad Civil No Comercial', href: '/#products' }] },
+      { heading: 'Para Empresas', links: [{ label: 'Transporte Comercial', href: '/services' }, { label: 'Servicios para Trucks', href: '/truck-services' }, { label: 'Responsabilidad Civil General', href: '/#features' }, { label: 'Compensación Laboral', href: '/#features' }] },
       { heading: 'Recursos', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guías y herramientas', href: '/help-support#support-options' }, { label: 'Centro de ayuda', href: '/help-support' }, { label: 'Contáctanos', href: '/help-support#contact' }] },
       { heading: 'Compañía', links: [{ label: 'Nosotros', href: '/about-us' }, { label: 'Oficinas con licencia', href: '#' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '/#pricing' }] },
     ],
