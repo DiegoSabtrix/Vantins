@@ -162,7 +162,7 @@ const en: SiteContent = {
   },
   stats: [
     { value: '5,000+', label: 'Clients Protected' },
-    { value: 'FL • TX • NJ', label: 'Licensed Offices' },
+    { value: 'FL • TX', label: 'Licensed States' },
     { value: 'Multiple', label: 'Top-Rated Insurance Carriers' },
     { value: 'Personalized', label: 'Insurance Guidance' },
   ],
@@ -219,7 +219,7 @@ const en: SiteContent = {
       { heading: 'Insurance', links: [{ label: 'Owner-Operator Insurance', href: '/#products' }, { label: 'Fleet Insurance', href: '/#products' }, { label: 'Cargo Insurance', href: '/#products' }, { label: 'Physical Damage Coverage', href: '/#products' }, { label: 'Non-Trucking Liability', href: '/#products' }] },
       { heading: 'For Business', links: [{ label: 'Commercial Trucking', href: '/services' }, { label: 'Truck Services', href: '/truck-services' }, { label: 'General Liability', href: '/#features' }, { label: 'Workers’ Comp', href: '/#features' }] },
       { heading: 'Resources', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guides & tools', href: '/help-support#support-options' }, { label: 'Support center', href: '/help-support' }, { label: 'Contact us', href: '/help-support#contact' }] },
-      { heading: 'Company', links: [{ label: 'About us', href: '/about-us' }, { label: 'Licensed offices', href: '#' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '/#pricing' }] },
+      { heading: 'Company', links: [{ label: 'About us', href: '/about-us' }, { label: 'Licensed states', href: '/about-us' }, { label: 'Careers', href: '#' }, { label: 'Free Quote', href: '/#pricing' }] },
     ],
     copyright:
       '© {year} Vantins. Insurance made simple — compare trusted carriers and choose coverage with confidence.',
@@ -304,7 +304,7 @@ const es: SiteContent = {
   },
   stats: [
     { value: '5,000+', label: 'Clientes Protegidos' },
-    { value: 'FL • TX • NJ', label: 'Oficinas con Licencia' },
+    { value: 'FL • TX', label: 'Estados con Licencia' },
     { value: 'Múltiples', label: 'Aseguradoras de Primer Nivel' },
     { value: 'Personalizada', label: 'Asesoría en Seguros' },
   ],
@@ -361,7 +361,7 @@ const es: SiteContent = {
       { heading: 'Seguros', links: [{ label: 'Seguro para Owner-Operators', href: '/#products' }, { label: 'Seguro de Flotas', href: '/#products' }, { label: 'Seguro de Carga', href: '/#products' }, { label: 'Cobertura de Daño Físico', href: '/#products' }, { label: 'Responsabilidad Civil No Comercial', href: '/#products' }] },
       { heading: 'Para Empresas', links: [{ label: 'Transporte Comercial', href: '/services' }, { label: 'Servicios para Trucks', href: '/truck-services' }, { label: 'Responsabilidad Civil General', href: '/#features' }, { label: 'Compensación Laboral', href: '/#features' }] },
       { heading: 'Recursos', links: [{ label: 'Blog', href: '/help-support#faq' }, { label: 'Guías y herramientas', href: '/help-support#support-options' }, { label: 'Centro de ayuda', href: '/help-support' }, { label: 'Contáctanos', href: '/help-support#contact' }] },
-      { heading: 'Compañía', links: [{ label: 'Nosotros', href: '/about-us' }, { label: 'Oficinas con licencia', href: '#' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '/#pricing' }] },
+      { heading: 'Compañía', links: [{ label: 'Nosotros', href: '/about-us' }, { label: 'Estados con licencia', href: '/about-us' }, { label: 'Empleo', href: '#' }, { label: 'Cotiza Gratis', href: '/#pricing' }] },
     ],
     copyright:
       '© {year} Vantins. Seguros simplificados — compara aseguradoras de confianza y elige con seguridad.',
