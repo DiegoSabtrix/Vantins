@@ -61,11 +61,11 @@ const ABOUT_CONTENT: Record<Lang, AboutContent> = {
     },
     service: {
       imageAlt: 'A Vantins advisor providing personalized insurance guidance',
-      badgeTitle: 'Nationwide',
-      badgeText: 'coverage, personal attention',
+      badgeTitle: 'Florida & Texas',
+      badgeText: 'licensed service, personal attention',
       eyebrow: 'High-touch service',
       title: 'You’re never just a policy number.',
-      description: 'Licensed across the United States, we serve clients in multiple states while keeping every relationship responsive, personal, and human.',
+      description: 'Our advisors serve clients in Florida and Texas with responsive, personal guidance at every step.',
       items: ['Real advisors who understand your industry', 'Fast responses—often the same day', 'Ongoing support, not just renewal reminders', 'Claims and COI guidance when timing matters'],
     },
     standard: {
@@ -118,11 +118,11 @@ const ABOUT_CONTENT: Record<Lang, AboutContent> = {
     },
     service: {
       imageAlt: 'Asesor de Vantins brindando orientación personalizada sobre seguros',
-      badgeTitle: 'Cobertura nacional',
-      badgeText: 'con atención personalizada',
+      badgeTitle: 'Florida y Texas',
+      badgeText: 'atención con licencia y personalizada',
       eyebrow: 'Servicio personalizado',
       title: 'Nunca eres solo un número de póliza.',
-      description: 'Con licencias para operar en Estados Unidos, atendemos a clientes en varios estados sin perder una relación cercana, ágil y humana.',
+      description: 'Nuestros asesores atienden a clientes en Florida y Texas con una orientación cercana, ágil y personalizada en cada paso.',
       items: ['Asesores reales que entienden tu industria', 'Respuestas rápidas, con frecuencia el mismo día', 'Acompañamiento continuo, no solo recordatorios de renovación', 'Orientación en reclamaciones y certificados de seguro cuando el tiempo importa'],
     },
     standard: {
