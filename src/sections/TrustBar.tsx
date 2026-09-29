@@ -22,7 +22,14 @@ export function TrustBar() {
           {t.carriers.cta}
         </LinkButton>
       </Container>
-      <div className="mask-x-edges mt-10 overflow-hidden">
+      <div className="mt-10"><CarrierMarquee /></div>
+    </section>
+  );
+}
+
+export function CarrierMarquee() {
+  return (
+      <div className="mask-x-edges overflow-hidden" aria-label="Insurance carriers">
         <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
           {[0, 1].map((copy) => (
             <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-center gap-7 pr-7">
@@ -37,6 +44,5 @@ export function TrustBar() {
           ))}
         </div>
       </div>
-    </section>
   );
 }
