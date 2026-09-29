@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Footer, Navbar, PromoBar } from '@/components/layout';
 import { Container, LinkButton } from '@/components/ui';
 import { IconArrowRight, IconCheck, IconShield } from '@/components/icons';
+import { TrustBar } from '@/sections/TrustBar';
 import { LanguageProvider, useLang } from '@/i18n';
 import type { Lang } from '@/i18n';
 import { SALES_PHONE_TEL } from '@/utils/constants';
@@ -215,6 +216,8 @@ function ServicesContent() {
             <div className="space-y-5 text-lg leading-relaxed text-ink/68">{copy.why.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
           </Container>
         </section>
+
+        <TrustBar />
 
         <section className="bg-[#f5f7fa] py-20 lg:py-28">
           <Container>
