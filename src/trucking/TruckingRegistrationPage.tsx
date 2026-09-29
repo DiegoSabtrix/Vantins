@@ -18,6 +18,13 @@ const initial: FormValues = { kind: '', coverages: [], trucks: '', name: '', pho
 
 const copy = {
   es: {
+    mobileEyebrow: 'SEGURO COMERCIAL PARA CAMIONES',
+    mobileTitle: 'Cotiza tu seguro de camión con alguien que entiende tu operación.',
+    mobileIntro: 'Compara opciones de cobertura y precio con un asesor de Vantins. Déjanos tu número y te llamamos en español.',
+    mobileCta: 'Quiero revisar mis opciones',
+    mobileNote: 'Para owner-operators y flotas · Sin compromiso',
+    mobileFormTitle: 'Te llamamos para revisar tu seguro',
+    mobileFormIntro: 'Completa tus datos en menos de un minuto.',
     eyebrow: 'OBTÉN TU SEGURO · ATENCIÓN PERSONALIZADA',
     title: 'Tu operación cambia.',
     accent: 'Tu seguro debe ajustarse a ella.',
@@ -55,6 +62,13 @@ const copy = {
     ],
   },
   en: {
+    mobileEyebrow: 'COMMERCIAL TRUCK INSURANCE',
+    mobileTitle: 'Get a truck insurance quote with someone who understands your operation.',
+    mobileIntro: 'Compare coverage and pricing options with a Vantins advisor. Leave your number and we will call you.',
+    mobileCta: 'Review my options',
+    mobileNote: 'For owner-operators and fleets · No obligation',
+    mobileFormTitle: 'We will call to review your insurance',
+    mobileFormIntro: 'Leave your details in under a minute.',
     eyebrow: 'GET INSURED · PERSONAL GUIDANCE',
     title: 'Your operation changes.',
     accent: 'Your insurance should keep up.',
@@ -159,21 +173,32 @@ function RegistrationContent() {
   };
 
   return <>
-    <Navbar />
+    <Navbar compactMobile />
     <main>
       <section className="relative isolate overflow-hidden bg-[#071a30] text-white">
-        <img src="/assets/services-truck-clean.webp" alt="" aria-hidden="true" className="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_65%] opacity-35" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#06162c]/95 via-[#06162c]/88 to-[#06162c]/75" />
-        <Container className="grid gap-10 py-12 md:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.88fr)] lg:items-start lg:gap-14 lg:py-20">
-          <div className="max-w-2xl lg:pt-10">
+        <img src="/assets/services-truck-clean.webp" alt="" aria-hidden="true" className="absolute inset-0 -z-20 hidden h-full w-full object-cover object-[50%_65%] opacity-35 lg:block" />
+        <div className="absolute inset-0 -z-10 hidden bg-gradient-to-r from-[#06162c]/95 via-[#06162c]/88 to-[#06162c]/75 lg:block" />
+        <Container className="grid gap-0 px-0 py-0 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.88fr)] lg:items-start lg:gap-14 lg:px-8 lg:py-20">
+          <div className="relative isolate overflow-hidden px-5 pb-8 pt-8 lg:max-w-2xl lg:overflow-visible lg:px-0 lg:pb-0 lg:pt-10">
+            <img src="/assets/services-truck-clean.webp" alt="" aria-hidden="true" className="absolute inset-0 -z-20 h-full w-full object-cover object-left lg:hidden" />
+            <div className="absolute inset-0 -z-10 lg:hidden" style={{ background: 'linear-gradient(180deg, rgba(4, 18, 38, .97) 0%, rgba(4, 18, 38, .90) 44%, rgba(4, 18, 38, .62) 100%)' }} />
+            <div className="lg:hidden">
+              <p className="text-[11px] font-extrabold uppercase tracking-[0.13em] text-[#ffc04c]">{t.mobileEyebrow}</p>
+              <h1 className="mt-4 max-w-[25rem] text-[clamp(2.125rem,9.2vw,2.375rem)] font-extrabold leading-[1.08] tracking-tight">{t.mobileTitle}</h1>
+              <p className="mt-4 max-w-[25rem] text-base leading-[1.45] text-white/95">{t.mobileIntro}</p>
+              <a href="#registro" className="mt-6 flex min-h-14 w-full items-center justify-center rounded-xl bg-[#f6a51b] px-4 py-3 text-center text-base font-extrabold text-[#111b2a] shadow-lg transition hover:bg-[#ffbc43]">{t.mobileCta}</a>
+              <p className="mt-3 text-center text-xs font-medium leading-snug text-white/90">{t.mobileNote}</p>
+            </div>
+            <div className="hidden lg:block">
             <p className="text-xs font-extrabold uppercase tracking-[0.19em] text-[#ffba34]">{t.eyebrow}</p>
             <h1 className="mt-5 text-[clamp(2.65rem,5vw,4.5rem)] font-extrabold leading-[1.04] tracking-tight">{t.title}<br/><span className="text-[#ffb324]">{t.accent}</span></h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/82">{t.intro}</p>
             <ul className="mt-8 space-y-4">{t.bullets.map((bullet) => <li key={bullet} className="flex items-start gap-3 text-[15px] font-medium leading-relaxed text-white/90"><span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#ffac1c]/20 text-[#ffc24e]"><IconCheck className="h-4 w-4" /></span>{bullet}</li>)}</ul>
             <a href="#registro" className="mt-9 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#f6a51b] px-6 py-3 font-bold text-[#111b2a] shadow-lg transition hover:bg-[#ffbc43]">{t.cta}<IconArrowRight className="h-5 w-5" /></a>
             <div className="mt-12 hidden items-center gap-3 border-t border-white/20 pt-6 text-sm text-white/70 lg:flex"><IconShield className="h-5 w-5 text-[#ffc24e]" /> Vantins · {lang === 'es' ? 'Orientación humana para tu negocio' : 'Personal guidance for your business'}</div>
+            </div>
           </div>
-          <div id="registro" className="scroll-mt-24 rounded-[1.75rem] border border-white/15 bg-white p-6 text-[#18283d] shadow-[0_28px_80px_rgba(2,13,30,0.32)] sm:p-8">
+          <div id="registro" className="scroll-mt-14 rounded-t-[1.5rem] border border-white/15 bg-white p-5 text-[#18283d] shadow-[0_28px_80px_rgba(2,13,30,0.32)] sm:p-8 lg:scroll-mt-24 lg:rounded-[1.75rem]">
             {status === 'sent' ? (
               <div role="status" className="flex min-h-[24rem] flex-col justify-center">
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-[#ecf8ee] text-[#16834b]"><IconCheck className="h-9 w-9" /></span>
@@ -183,9 +208,9 @@ function RegistrationContent() {
               </div>
             ) : (
               <>
-                <p className="text-xs font-extrabold tracking-[0.16em] text-[#bc7200]">{t.formEyebrow}</p>
-                <h2 className="mt-2 text-2xl font-extrabold sm:text-[1.7rem]">{t.formTitle}</h2>
-                <p className="mt-2 text-sm leading-relaxed text-[#68768a]">{t.formIntro}</p>
+                <p className="hidden text-xs font-extrabold tracking-[0.16em] text-[#bc7200] lg:block">{t.formEyebrow}</p>
+                <h2 className="text-2xl font-extrabold lg:mt-2 lg:text-[1.7rem]"><span className="lg:hidden">{t.mobileFormTitle}</span><span className="hidden lg:inline">{t.formTitle}</span></h2>
+                <p className="mt-2 text-sm leading-relaxed text-[#68768a]"><span className="lg:hidden">{t.mobileFormIntro}</span><span className="hidden lg:inline">{t.formIntro}</span></p>
                 <form onSubmit={onSubmit} noValidate className="mt-6">
                   <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label></div>
                   <div className="space-y-5">
@@ -220,14 +245,14 @@ function RegistrationContent() {
           </div>
         </Container>
       </section>
-      <section className="border-b border-[#e5eaf0] bg-white py-16">
+      <section className="border-b border-[#e5eaf0] bg-white py-10 lg:py-16">
         <Container className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.carriersEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.carriersTitle}</h2><p className="mx-auto mt-3 max-w-2xl text-[#647184]">{t.carriersDescription}</p></Container>
-        <div className="mt-9"><CarrierMarquee /></div>
+        <div className="mt-6 lg:mt-9"><CarrierMarquee /></div>
       </section>
-      <section className="bg-[#f5f7fa] py-16 lg:py-20">
+      <section className="bg-[#f5f7fa] py-10 lg:py-20">
         <Container>
           <div className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.stepsEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.stepsTitle}</h2></div>
-          <div className="mt-9 grid gap-5 md:grid-cols-3">{t.steps.map(([number, title, description]) => <article key={number} className="rounded-2xl border border-[#e3e9ef] bg-white p-6"><span className="text-2xl font-extrabold text-[#e29819]">{number}</span><h3 className="mt-4 text-lg font-bold text-[#243348]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[#68768a]">{description}</p></article>)}</div>
+          <div className="mt-6 grid gap-3 md:mt-9 md:grid-cols-3 md:gap-5">{t.steps.map(([number, title, description]) => <article key={number} className="rounded-2xl border border-[#e3e9ef] bg-white p-5 lg:p-6"><span className="text-2xl font-extrabold text-[#e29819]">{number}</span><h3 className="mt-3 text-lg font-bold text-[#243348] lg:mt-4">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[#68768a]">{description}</p></article>)}</div>
           <div className="relative mt-9 h-60 overflow-hidden rounded-[1.75rem] bg-[#092344] sm:h-72">
             <img src="/assets/truck-driver-services.jpg" alt={lang === 'es' ? 'Conductor junto a su camión de carga' : 'Driver beside a commercial truck'} loading="lazy" className="h-full w-full object-cover object-[50%_38%]" />
             <div className="absolute inset-0 bg-gradient-to-r from-[#061b35]/80 via-[#061b35]/30 to-transparent" />

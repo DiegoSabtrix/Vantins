@@ -9,7 +9,7 @@ import type { NavEntry } from '@/i18n';
 import { cn } from '@/utils/cn';
 import { MobileMenu } from './MobileMenu';
 
-export function Navbar() {
+export function Navbar({ compactMobile = false }: { compactMobile?: boolean }) {
   const t = useT();
   const scrolled = useScrolled(8);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -26,7 +26,7 @@ export function Navbar() {
     >
       <Container>
         <nav
-          className="flex h-16 items-center justify-between gap-4 lg:h-[72px]"
+          className={cn('flex items-center justify-between gap-4 lg:h-[72px]', compactMobile ? 'h-14' : 'h-16')}
           aria-label="Primary"
         >
           <a href="/" className="shrink-0" aria-label="Vantins home">
