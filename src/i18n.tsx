@@ -109,7 +109,10 @@ const en: SiteContent = {
         { label: 'Truck Services', href: '/truck-services' },
       ],
     },
-    { label: 'Help & Support', href: '/help-support' },
+    { label: 'Help & Support', href: '/help-support', menu: [
+      { label: 'Support Center', href: '/help-support' },
+      { label: 'Down Payment / Payment', href: '/payment' },
+    ] },
   ],
   hero: {
     pill: 'How much can I save on coverage?',
@@ -251,7 +254,10 @@ const es: SiteContent = {
         { label: 'Servicios para Trucks', href: '/truck-services' },
       ],
     },
-    { label: 'Ayuda y Soporte', href: '/help-support' },
+    { label: 'Ayuda y Soporte', href: '/help-support', menu: [
+      { label: 'Centro de ayuda', href: '/help-support' },
+      { label: 'Down Payment / Pago', href: '/payment' },
+    ] },
   ],
   hero: {
     pill: '¿Cuánto puedo ahorrar en mi cobertura?',

@@ -54,13 +54,6 @@ export function Navbar() {
               {t.common.sales}: {SALES_PHONE}
               <IconChevronDown className="h-4 w-4" />
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
-            >
-              {t.common.signIn}
-              <IconChevronDown className="h-4 w-4" />
-            </a>
           </div>
 
           {/* Mobile trigger */}
