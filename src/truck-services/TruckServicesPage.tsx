@@ -1,6 +1,6 @@
 "use client";
 
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Footer, Navbar, PromoBar } from '@/components/layout';
 import { Container, LinkButton } from '@/components/ui';
@@ -93,7 +93,7 @@ const CONTENT: Record<Lang, {
       title: 'Not sure where to start? Let’s talk.',
       description: 'Request a free 15-minute orientation. We will review your situation and explain which services you may need.',
       submit: 'Book My 15 Minutes',
-      emailNote: 'Submitting opens your email app with the completed request so you can send it directly to Vantins.',
+      emailNote: 'Submitting this request does not activate insurance coverage or guarantee a price.',
       fields: { name: 'Full name', phone: 'Phone', email: 'Email', state: 'State', company: 'Do you already have a company?', usdot: 'Do you have a USDOT Number?', mc: 'Do you have an MC Number?', vehicles: 'Number of vehicles', vehicleType: 'Vehicle type', service: 'Service needed', date: 'Best date and time to contact you' },
       options: ['Commercial Truck Insurance', 'LLC Formation', 'USDOT Number', 'MC Number', 'BOC-3', 'UCR', 'Motus Update', 'Vehicle Registration or Plates', 'Trailer or Hitch Services', 'I am not sure'],
       yes: 'Yes', no: 'No', unsure: 'Not sure',
@@ -147,7 +147,7 @@ const CONTENT: Record<Lang, {
       title: '¿No sabes por dónde comenzar? Hablemos.',
       description: 'Solicita una orientación gratuita de 15 minutos. Revisaremos tu situación y te explicaremos qué servicios podrías necesitar.',
       submit: 'Agendar mis 15 minutos',
-      emailNote: 'Al enviar, se abrirá tu correo con la solicitud completada para que puedas enviarla directamente a Vantins.',
+      emailNote: 'Enviar esta solicitud no activa una póliza ni garantiza un precio.',
       fields: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', state: 'Estado', company: '¿Ya tienes una compañía?', usdot: '¿Tienes USDOT Number?', mc: '¿Tienes MC Number?', vehicles: 'Número de vehículos', vehicleType: 'Tipo de vehículo', service: 'Servicio que necesitas', date: 'Mejor fecha y hora para contactarte' },
       options: ['Commercial Truck Insurance', 'LLC Formation', 'USDOT Number', 'MC Number', 'BOC-3', 'UCR', 'Motus Update', 'Vehicle Registration or Plates', 'Trailer or Hitch Services', 'No estoy seguro'],
       yes: 'Sí', no: 'No', unsure: 'No estoy seguro',
@@ -164,13 +164,25 @@ export function TruckServicesPage() {
 function TruckServicesContent() {
   const { lang } = useLang();
   const copy = CONTENT[lang];
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
+  const [submitError, setSubmitError] = useState('');
 
-  function submitConsultation(event: FormEvent<HTMLFormElement>) {
+  async function submitConsultation(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status !== 'idle') return;
     const form = new FormData(event.currentTarget);
-    const lines = Array.from(form.entries()).map(([key, value]) => `${key}: ${value}`);
-    const subject = lang === 'es' ? 'Solicitud de consulta — Truck Services' : 'Truck Services consultation request';
-    window.location.href = `mailto:support@vantins.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+    const params = new URLSearchParams(window.location.search);
+    setStatus('sending'); setSubmitError('');
+    try {
+      const response = await fetch('/api/leads', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
+        formId: 'truck_services_consultation', name: form.get('name'), phone: form.get('phone'), email: form.get('email'), state: form.get('state'),
+        companyExists: form.get('companyExists'), hasUsdot: form.get('hasUsdot'), hasMc: form.get('hasMc'), vehicleCount: form.get('vehicleCount'),
+        vehicleType: form.get('vehicleType'), service: form.get('service'), preferredDateTime: form.get('preferredDateTime'), contactConsent: form.get('contactConsent') === 'on',
+        utm: { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign'), content: params.get('utm_content'), term: params.get('utm_term'), segment: params.get('utm_segment') },
+      }) });
+      if (!response.ok) throw new Error();
+      setStatus('sent');
+    } catch { setStatus('idle'); setSubmitError(lang === 'es' ? 'No pudimos enviar tu solicitud. Inténtalo de nuevo o llámanos.' : 'We could not send your request. Please try again or call us.'); }
   }
 
   const inputClass = 'mt-2 min-h-12 w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-base text-ink outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20';
@@ -248,21 +260,23 @@ function TruckServicesContent() {
         <section id="consultation" className="scroll-mt-20 bg-[#f5f7fa] py-20 lg:py-28">
           <Container className="grid gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
             <div><p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-600">{copy.form.eyebrow}</p><h2 className="mt-4 text-display-md text-balance text-ink">{copy.form.title}</h2><p className="mt-5 text-lg leading-relaxed text-ink/65">{copy.form.description}</p><div className="mt-8 rounded-3xl bg-[#071f3d] p-6 text-white"><p className="text-3xl font-extrabold text-brand-300">15 min</p><p className="mt-2 text-sm leading-relaxed text-white/65">{copy.hero.noteBody}</p></div></div>
-            <form onSubmit={submitConsultation} className="rounded-[2rem] border border-ink/10 bg-white p-6 shadow-card sm:p-8">
+            {status === 'sent' ? <div role="status" className="rounded-[2rem] border border-ink/10 bg-white p-8 shadow-card"><h3 className="text-2xl font-extrabold text-ink">{lang === 'es' ? 'Recibimos tu solicitud.' : 'We received your request.'}</h3><p className="mt-3 text-ink/70">{lang === 'es' ? 'Un asesor de Vantins revisará tus datos y se comunicará contigo.' : 'A Vantins advisor will review your details and contact you.'}</p></div> : <form onSubmit={submitConsultation} className="rounded-[2rem] border border-ink/10 bg-white p-6 shadow-card sm:p-8">
               <div className="grid gap-5 sm:grid-cols-2">
-                <Field label={copy.form.fields.name}><input required name={copy.form.fields.name} autoComplete="name" className={inputClass} /></Field>
-                <Field label={copy.form.fields.phone}><input required name={copy.form.fields.phone} type="tel" autoComplete="tel" className={inputClass} /></Field>
-                <Field label={copy.form.fields.email}><input required name={copy.form.fields.email} type="email" autoComplete="email" className={inputClass} /></Field>
-                <Field label={copy.form.fields.state}><input required name={copy.form.fields.state} autoComplete="address-level1" className={inputClass} /></Field>
-                {(['company', 'usdot', 'mc'] as const).map((key) => <Field key={key} label={copy.form.fields[key]}><select required name={copy.form.fields[key]} defaultValue="" className={inputClass}><option value="" disabled>—</option><option>{copy.form.yes}</option><option>{copy.form.no}</option><option>{copy.form.unsure}</option></select></Field>)}
-                <Field label={copy.form.fields.vehicles}><input required name={copy.form.fields.vehicles} type="number" min="0" inputMode="numeric" className={inputClass} /></Field>
-                <Field label={copy.form.fields.vehicleType}><input required name={copy.form.fields.vehicleType} className={inputClass} /></Field>
-                <Field label={copy.form.fields.service}><select required name={copy.form.fields.service} defaultValue="" className={inputClass}><option value="" disabled>—</option>{copy.form.options.map((option) => <option key={option}>{option}</option>)}</select></Field>
-                <Field label={copy.form.fields.date}><input required name={copy.form.fields.date} type="datetime-local" className={inputClass} /></Field>
+                <Field label={copy.form.fields.name}><input required name="name" autoComplete="name" className={inputClass} /></Field>
+                <Field label={copy.form.fields.phone}><input required name="phone" type="tel" autoComplete="tel" className={inputClass} /></Field>
+                <Field label={copy.form.fields.email}><input required name="email" type="email" autoComplete="email" className={inputClass} /></Field>
+                <Field label={copy.form.fields.state}><input required name="state" autoComplete="address-level1" className={inputClass} /></Field>
+                {(['company', 'usdot', 'mc'] as const).map((key) => <Field key={key} label={copy.form.fields[key]}><select required name={{ company: 'companyExists', usdot: 'hasUsdot', mc: 'hasMc' }[key]} defaultValue="" className={inputClass}><option value="" disabled>—</option><option>{copy.form.yes}</option><option>{copy.form.no}</option><option>{copy.form.unsure}</option></select></Field>)}
+                <Field label={copy.form.fields.vehicles}><input required name="vehicleCount" type="number" min="0" inputMode="numeric" className={inputClass} /></Field>
+                <Field label={copy.form.fields.vehicleType}><input required name="vehicleType" className={inputClass} /></Field>
+                <Field label={copy.form.fields.service}><select required name="service" defaultValue="" className={inputClass}><option value="" disabled>—</option>{copy.form.options.map((option) => <option key={option}>{option}</option>)}</select></Field>
+                <Field label={copy.form.fields.date}><input required name="preferredDateTime" type="datetime-local" className={inputClass} /></Field>
               </div>
-              <button type="submit" className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3.5 text-base font-bold text-white shadow-lg transition hover:bg-brand-600 sm:w-auto">{copy.form.submit}<IconArrowRight className="h-5 w-5" /></button>
-              <p className="mt-4 text-xs leading-relaxed text-ink/50">{copy.form.emailNote}</p>
-            </form>
+              <label className="mt-6 flex items-start gap-3 text-sm leading-relaxed text-ink/70"><input type="checkbox" name="contactConsent" required className="mt-1 h-4 w-4 shrink-0 accent-brand-500" /><span>{lang === 'es' ? 'Autorizo a Vantins a contactarme para responder a esta solicitud. No me suscribo a campañas promocionales por SMS.' : 'I authorize Vantins to contact me about this request. I am not subscribing to promotional SMS campaigns.'}</span></label>
+              {submitError && <p role="alert" className="mt-4 text-sm font-semibold text-red-700">{submitError}</p>}
+              <button type="submit" disabled={status === 'sending'} className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3.5 text-base font-bold text-white shadow-lg transition hover:bg-brand-600 disabled:opacity-60 sm:w-auto">{status === 'sending' ? (lang === 'es' ? 'Enviando…' : 'Sending…') : copy.form.submit}<IconArrowRight className="h-5 w-5" /></button>
+              <p className="mt-4 text-xs leading-relaxed text-ink/50">{copy.form.emailNote} <a href="/privacy-policy" className="underline">{lang === 'es' ? 'Política de privacidad' : 'Privacy Policy'}</a></p>
+            </form>}
           </Container>
         </section>
 

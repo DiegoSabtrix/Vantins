@@ -8,14 +8,11 @@ import { IconArrowRight, IconChart, IconCheck, IconGlobe, IconShield, IconUsers 
 import { LanguageProvider, useLang } from '@/i18n';
 import type { Lang } from '@/i18n';
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
+import { QuoteLeadForm } from './QuoteLeadForm';
 
 type QuoteKind = 'truck' | 'health' | 'life';
 
-const FORMS: Record<QuoteKind, { src: string; height: number }> = {
-  truck: { src: 'https://api.leadconnectorhq.com/widget/form/hbBmmB4OhgFELZAWBIQZ', height: 1551 },
-  health: { src: 'https://api.leadconnectorhq.com/widget/form/1jy41jVzhRSi27hCtksl', height: 1129 },
-  life: { src: 'https://api.leadconnectorhq.com/widget/form/5yyWaaLDRI08otDNt0LX', height: 1108 },
-};
+const FORM_KINDS: QuoteKind[] = ['truck', 'health', 'life'];
 
 interface QuoteCopy {
   hero: { eyebrow: string; title: string; accent: string; types: string; description: string; cta: string; note: string };
@@ -114,7 +111,6 @@ function GetQuoteContent() {
   const { lang } = useLang();
   const copy = COPY[lang];
   const [selected, setSelected] = useState<QuoteKind>('truck');
-  const form = FORMS[selected];
 
   return (
     <>
@@ -145,7 +141,7 @@ function GetQuoteContent() {
                 <p className="mt-2 text-xl font-bold text-white">{lang === 'en' ? 'trusted carriers' : 'aseguradoras de confianza'}</p>
                 <p className="mt-3 leading-relaxed text-white/60">{lang === 'en' ? 'One experienced team comparing options for your business and your family.' : 'Un equipo experto que compara opciones para tu negocio y tu familia.'}</p>
                 <div className="mt-7 flex flex-wrap gap-2">
-                  {Object.keys(FORMS).map((kind) => <span key={kind} className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-semibold text-white/75">{copy.selector.options[kind as QuoteKind]}</span>)}
+                  {FORM_KINDS.map((kind) => <span key={kind} className="rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-xs font-semibold text-white/75">{copy.selector.options[kind]}</span>)}
                 </div>
               </div>
             </motion.div>
@@ -162,7 +158,7 @@ function GetQuoteContent() {
 
             <div className="mx-auto mt-10 max-w-5xl">
               <div className="grid gap-3 rounded-3xl bg-[#071f3d] p-3 sm:grid-cols-3" role="tablist" aria-label={copy.selector.title}>
-                {(Object.keys(FORMS) as QuoteKind[]).map((kind) => {
+                {FORM_KINDS.map((kind) => {
                   const Icon = optionIcons[kind];
                   const active = selected === kind;
                   return (
@@ -177,7 +173,7 @@ function GetQuoteContent() {
                 <div className="border-b border-ink/8 px-6 py-5 sm:px-8">
                   <div className="flex items-center gap-3"><span className="grid h-9 w-9 place-items-center rounded-full bg-brand-100 text-brand-700"><IconCheck className="h-5 w-5" /></span><p className="font-bold text-ink">{copy.selector.options[selected]}</p></div>
                 </div>
-                <iframe key={selected} src={form.src} title={copy.selector.frameTitles[selected]} className="block w-full border-0" style={{ height: `${form.height}px` }} loading="lazy" />
+                <QuoteLeadForm key={selected} kind={selected} lang={lang} />
               </div>
             </div>
           </Container>

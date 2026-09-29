@@ -61,6 +61,10 @@ export async function POST(request: Request) {
     const payload = {
       event: 'trucking_call_request',
       source: 'vantins.com/trucking/registro',
+      page_source: '/trucking/registro',
+      origin_page: 'https://www.vantins.com/trucking/registro',
+      form_source: 'trucking_call_request',
+      form_type: 'Trucking Call Request',
       lead_status: 'Nuevo registro — llamar',
       opportunity_name: `${name} — ${stage}`,
       name,

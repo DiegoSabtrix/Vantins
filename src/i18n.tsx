@@ -386,13 +386,14 @@ interface LanguageContextValue {
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children, defaultLang = 'en' }: { children: ReactNode; defaultLang?: Lang }) {
-  const [lang, setLangState] = useState<Lang>(() => {
-    if (typeof window === 'undefined') return defaultLang;
+  const [lang, setLangState] = useState<Lang>(defaultLang);
+
+  useEffect(() => {
     const fromUrl = new URLSearchParams(window.location.search).get('lang');
-    if (fromUrl === 'es' || fromUrl === 'en') return fromUrl;
+    if (fromUrl === 'es' || fromUrl === 'en') { setLangState(fromUrl); return; }
     const stored = window.localStorage.getItem('vantins-lang');
-    return stored === 'es' || stored === 'en' ? stored : defaultLang;
-  });
+    if (stored === 'es' || stored === 'en') setLangState(stored);
+  }, [defaultLang]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
