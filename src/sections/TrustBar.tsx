@@ -2,10 +2,9 @@ import { Container, LinkButton } from '@/components/ui';
 import { TRUST_LOGOS } from '@/utils/constants';
 import { useT } from '@/i18n';
 
-/** Trusted carriers — infinite marquee of placeholder partner wordmarks. */
+/** Trusted carriers — continuous marquee of the original supplied logos. */
 export function TrustBar() {
   const t = useT();
-  const items = [...TRUST_LOGOS, ...TRUST_LOGOS];
 
   return (
     <section
@@ -24,17 +23,19 @@ export function TrustBar() {
         </LinkButton>
       </Container>
       <div className="mask-x-edges mt-10 overflow-hidden">
-        <ul className="flex w-max animate-marquee items-center gap-14">
-          {items.map((name, i) => (
-            <li
-              key={`${name}-${i}`}
-              aria-hidden={i >= TRUST_LOGOS.length}
-              className="select-none text-xl font-extrabold tracking-tight text-ink/35"
-            >
-              {name}
-            </li>
+        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {[0, 1].map((copy) => (
+            <ul key={copy} aria-hidden={copy === 1} className="flex shrink-0 items-center gap-7 pr-7">
+              {TRUST_LOGOS.map((logo) => (
+                <li key={logo.name} className="flex h-[72px] w-[190px] shrink-0 items-center justify-center sm:w-[220px]">
+                  <svg viewBox={logo.viewBox} className="h-[60px] w-[190px] sm:w-[200px]" role="img" aria-label={copy === 0 ? logo.name : undefined}>
+                    <image href={logo.src} width={logo.width} height={logo.height} />
+                  </svg>
+                </li>
+              ))}
+            </ul>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
