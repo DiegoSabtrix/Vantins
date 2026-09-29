@@ -113,6 +113,15 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               <LinkButton href="/#pricing" variant="primary" fullWidth onClick={onClose}>
                 {t.promo.cta}
               </LinkButton>
+              <LinkButton
+                href="#"
+                variant="outline"
+                fullWidth
+                onClick={onClose}
+                className="!border-white/30 !bg-transparent !text-white hover:!bg-white/10"
+              >
+                {t.common.signIn}
+              </LinkButton>
             </div>
           </motion.div>
         </>

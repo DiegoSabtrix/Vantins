@@ -41,7 +41,6 @@ const COPY: Record<Lang, SupportCopy> = {
         { title: 'Policy Support', description: 'Ask about coverage, billing, renewals, policy changes, or documents for an active policy.', action: 'Email support', href: `mailto:${SUPPORT_EMAIL}?subject=Policy%20Support` },
         { title: 'Certificate of Insurance', description: 'Request COI guidance and help keeping broker, shipper, or terminal requirements moving.', action: 'Request COI help', href: `mailto:${SUPPORT_EMAIL}?subject=Certificate%20of%20Insurance%20Support` },
         { title: 'Claims Guidance', description: 'Get practical help understanding the claim process and what information to prepare.', action: 'View claim steps', href: '#claims' },
-        { title: 'Down Payment / Payment', description: 'Pay a Vantins quote, invoice, or policy reference securely by card or eligible US bank account.', action: 'Go to payment', href: '/payment' },
       ],
     },
     claims: {
@@ -96,7 +95,6 @@ const COPY: Record<Lang, SupportCopy> = {
         { title: 'Soporte de Póliza', description: 'Consulta sobre cobertura, pagos, renovaciones, cambios o documentos de una póliza activa.', action: 'Escribe a soporte', href: `mailto:${SUPPORT_EMAIL}?subject=Soporte%20de%20P%C3%B3liza` },
         { title: 'Certificado de Seguro', description: 'Solicita orientación sobre COI y requisitos de brokers, embarcadores o terminales.', action: 'Solicita ayuda con COI', href: `mailto:${SUPPORT_EMAIL}?subject=Soporte%20de%20Certificado%20de%20Seguro` },
         { title: 'Orientación de Reclamaciones', description: 'Recibe ayuda para entender el proceso y la información que debes preparar.', action: 'Ver pasos', href: '#claims' },
-        { title: 'Down Payment / Pago', description: 'Paga una cotización, factura o referencia de póliza de forma segura.', action: 'Ir a pagos', href: '/payment' },
       ],
     },
     claims: {
@@ -134,7 +132,7 @@ const COPY: Record<Lang, SupportCopy> = {
   },
 };
 
-const optionIcons = [IconReceipt, IconUsers, IconInvoice, IconShield, IconReceipt];
+const optionIcons = [IconReceipt, IconUsers, IconInvoice, IconShield];
 
 export function HelpSupportPage() {
   return <LanguageProvider><HelpSupportContent /></LanguageProvider>;
@@ -185,7 +183,7 @@ function HelpSupportContent() {
         <section id="support-options" className="bg-white py-20 lg:py-28">
           <Container>
             <div className="mx-auto max-w-3xl text-center"><p className="text-xs font-bold uppercase tracking-[0.18em] text-brand-600">{copy.options.eyebrow}</p><h2 className="mt-4 text-display-md text-balance text-ink">{copy.options.title}</h2><p className="mt-5 text-lg leading-relaxed text-ink/65">{copy.options.description}</p></div>
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={viewportOnce} className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {copy.options.cards.map((card, index) => { const Icon = optionIcons[index]; return <motion.article key={card.title} variants={staggerItem} className="group flex min-h-[20rem] flex-col rounded-3xl border border-ink/10 bg-[#f7f8fa] p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-card"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#071f3d] text-brand-300"><Icon className="h-6 w-6" /></span><h3 className="mt-6 text-xl font-bold text-ink">{card.title}</h3><p className="mt-3 flex-1 leading-relaxed text-ink/62">{card.description}</p><a href={card.href} className="mt-6 inline-flex items-center gap-2 font-bold text-brand-600 hover:text-brand-700">{card.action}<IconArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></a></motion.article>; })}
             </motion.div>
           </Container>
