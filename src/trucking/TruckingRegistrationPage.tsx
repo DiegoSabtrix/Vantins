@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent, type ReactNode } from 'react';
-import { Footer, Navbar, PromoBar } from '@/components/layout';
+import { Footer, Navbar } from '@/components/layout';
 import { Container } from '@/components/ui';
 import { IconArrowRight, IconCheck, IconShield } from '@/components/icons';
 import { CarrierMarquee } from '@/sections/TrustBar';
@@ -101,7 +101,7 @@ function Field({ label, error, children, full = false }: { label: string; error?
 }
 
 export function TruckingRegistrationPage() {
-  return <LanguageProvider><RegistrationContent /></LanguageProvider>;
+  return <LanguageProvider defaultLang="es"><RegistrationContent /></LanguageProvider>;
 }
 
 function RegistrationContent() {
@@ -156,7 +156,6 @@ function RegistrationContent() {
   };
 
   return <>
-    <PromoBar />
     <Navbar />
     <main>
       <section className="relative isolate overflow-hidden bg-[#071a30] text-white">
@@ -216,9 +215,17 @@ function RegistrationContent() {
         <div className="mt-9"><CarrierMarquee /></div>
       </section>
       <section className="bg-[#f5f7fa] py-16 lg:py-20">
-        <Container><div className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.stepsEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.stepsTitle}</h2></div><div className="mt-9 grid gap-5 md:grid-cols-3">{t.steps.map(([number, title, description]) => <article key={number} className="rounded-2xl border border-[#e3e9ef] bg-white p-6"><span className="text-2xl font-extrabold text-[#e29819]">{number}</span><h3 className="mt-4 text-lg font-bold text-[#243348]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[#68768a]">{description}</p></article>)}</div></Container>
+        <Container>
+          <div className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.stepsEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.stepsTitle}</h2></div>
+          <div className="mt-9 grid gap-5 md:grid-cols-3">{t.steps.map(([number, title, description]) => <article key={number} className="rounded-2xl border border-[#e3e9ef] bg-white p-6"><span className="text-2xl font-extrabold text-[#e29819]">{number}</span><h3 className="mt-4 text-lg font-bold text-[#243348]">{title}</h3><p className="mt-2 text-sm leading-relaxed text-[#68768a]">{description}</p></article>)}</div>
+          <div className="relative mt-9 h-60 overflow-hidden rounded-[1.75rem] bg-[#092344] sm:h-72">
+            <img src="/assets/truck-driver-services.jpg" alt={lang === 'es' ? 'Conductor junto a su camión de carga' : 'Driver beside a commercial truck'} loading="lazy" className="h-full w-full object-cover object-[50%_38%]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#061b35]/80 via-[#061b35]/30 to-transparent" />
+            <p className="absolute bottom-6 left-6 max-w-xs text-2xl font-extrabold leading-tight text-white sm:bottom-8 sm:left-9 sm:text-3xl">{lang === 'es' ? 'Tu operación merece atención personal.' : 'Your operation deserves personal attention.'}</p>
+          </div>
+        </Container>
       </section>
     </main>
-    <Footer />
+    <Footer showConsentDisclaimer={false} />
   </>;
 }

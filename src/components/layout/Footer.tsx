@@ -50,7 +50,7 @@ const SOCIALS = [
 const FOOTER_DISCLAIMER =
   'By sharing my personal information, I, the undersigned, hereby grant explicit consent to Vantins – USA Specialty Insurance to initiate contact with me via telephone, electronic mail, SMS text messages, social media platforms, and any other applicable communication channels, as required for the efficient administration and management of my insurance policy. I recognize and affirm that these communications are vital to ensure that the services provided by Vantins LLC are executed with the necessary diligence and promptness to meet my needs effectively. Vantins is committed to safeguarding my personal data with advanced security measures, maintaining privacy and preventing unauthorized access. I retain the option to modify my communication preferences or withdraw my consent at any time by notifying Vantins through designated channels. Furthermore, Vantins assures that my personal information will only be shared with third parties when essential for service provision or as mandated by legal requirements, and always with my explicit consent.';
 
-export function Footer() {
+export function Footer({ showConsentDisclaimer = true }: { showConsentDisclaimer?: boolean }) {
   const t = useT();
   const year = new Date().getFullYear();
 
@@ -99,9 +99,11 @@ export function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-6">
-          <p className="max-w-6xl text-xs leading-relaxed text-white/45">
-            {FOOTER_DISCLAIMER}
-          </p>
+          {showConsentDisclaimer && (
+            <p className="max-w-6xl text-xs leading-relaxed text-white/45">
+              {FOOTER_DISCLAIMER}
+            </p>
+          )}
           <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold">
             <Link href="/privacy-policy" className="text-white/60 transition-colors hover:text-brand-300">
               Privacy policy
