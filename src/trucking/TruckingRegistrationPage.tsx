@@ -9,39 +9,39 @@ import { LanguageProvider, useLang } from '@/i18n';
 import { SALES_PHONE, SALES_PHONE_TEL } from '@/utils/constants';
 
 type Kind = '' | 'starting' | 'renewing' | 'adding';
-type FieldName = 'name' | 'phone' | 'email' | 'state' | 'kind' | 'trucks' | 'cargo' | 'timing' | 'renewalDate' | 'startDate' | 'preferredContact' | 'contactConsent';
-type FormValues = Record<FieldName, string | boolean>;
+type FieldName = 'kind' | 'name' | 'phone' | 'state' | 'contactConsent';
+type FormValues = { kind: Kind; coverages: string[]; trucks: string; name: string; phone: string; state: string; contactConsent: boolean };
 
-const STATES = 'AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC'.split(' ');
-const initial: FormValues = { name: '', phone: '', email: '', state: '', kind: '', trucks: '', cargo: '', timing: '', renewalDate: '', startDate: '', preferredContact: 'phone', contactConsent: false };
+const STATES = ['FL', 'TX'] as const;
+const COVERAGES = ['liability', 'motor_truck_cargo', 'physical_damage', 'trailer_interchange', 'reefer_breakdown', 'not_sure'] as const;
+const initial: FormValues = { kind: '', coverages: [], trucks: '', name: '', phone: '', state: '', contactConsent: false };
 
 const copy = {
   es: {
     eyebrow: 'OBTÉN TU SEGURO · ATENCIÓN PERSONALIZADA',
     title: 'Tu operación cambia.',
     accent: 'Tu seguro debe ajustarse a ella.',
-    intro: '¿Estás comenzando, renovando o agregando camiones? Cuéntanos qué transportas y cómo operas. Un asesor de Vantins revisará contigo las coberturas y los próximos pasos para solicitar una cotización.',
+    intro: '¿Estás comenzando, renovando o agregando camiones? Déjanos tus datos. Un asesor de Vantins te llamará para conocer tu operación y explicarte los próximos pasos.',
     bullets: ['Atención en español e inglés.', 'Revisión para owner-operators y flotas.', 'Orientación sobre liability, cargo, physical damage y otras coberturas según tu operación.'],
-    cta: 'Solicitar revisión de mi seguro',
+    cta: 'Quiero que me llamen',
     formEyebrow: 'COMENCEMOS',
-    formTitle: 'Cuéntanos sobre tu operación',
-    formIntro: 'Solo lo esencial para que un asesor pueda comunicarse contigo.',
-    labels: { name: 'Nombre completo', phone: 'Teléfono', email: 'Correo electrónico', state: 'Estado donde operas', kind: '¿Qué necesitas?', trucks: 'Cantidad de camiones', cargo: 'Tipo principal de carga', timing: '¿Cuándo necesitas cobertura?', renewalDate: 'Fecha de vencimiento de tu póliza', startDate: 'Fecha estimada de inicio', preferredContact: 'Prefiero que me contacten por' },
-    placeholders: { name: 'Tu nombre y apellido', phone: '(555) 555-5555', email: 'tu@empresa.com', state: 'Selecciona un estado', kind: 'Selecciona una opción', trucks: 'Ej. 2', cargo: 'Ej. carga general, alimentos, autos', timing: 'Selecciona una opción' },
+    formTitle: 'Hablemos de tu seguro comercial',
+    formIntro: 'Déjanos tus datos y un asesor de Vantins te llamará para conocer tu operación y explicarte los próximos pasos. Toma menos de un minuto.',
+    labels: { kind: '¿En qué etapa estás?', coverages: '¿Qué coberturas quieres revisar? (Opcional)', trucks: '¿Cuántos camiones tienes? (Opcional)', name: 'Nombre', phone: 'Teléfono', state: 'Estado donde operas' },
+    placeholders: { name: 'Tu nombre', phone: '(555) 555-5555', state: 'Selecciona un estado' },
     kinds: { starting: 'Estoy comenzando', renewing: 'Voy a renovar', adding: 'Quiero agregar camiones' },
-    timings: { asap: 'Lo antes posible', two_weeks: 'En 1–2 semanas', this_month: 'Este mes', later: 'Más adelante' },
-    channels: { phone: 'Llamada telefónica', email: 'Correo electrónico' },
-    consent: 'Autorizo a Vantins a contactarme sobre esta solicitud por el medio elegido. Esto no es una suscripción a mensajes promocionales.',
-    disclaimer: 'Enviar este registro no activa una póliza ni garantiza un precio. Las opciones, primas y pagos iniciales dependen de la información de tu operación y de la evaluación de la aseguradora.',
+    coverages: { liability: 'Liability', motor_truck_cargo: 'Motor Truck Cargo', physical_damage: 'Physical Damage', trailer_interchange: 'Trailer Interchange', reefer_breakdown: 'Reefer Breakdown', not_sure: 'No estoy seguro' },
+    trucks: { one: '1', two_to_four: '2–4', five_plus: '5 o más', no_truck: 'Aún no tengo camión' },
+    coverageHint: 'Puedes elegir varias. Si no sabes cuáles necesitas, nosotros te orientamos.',
+    consent: 'Autorizo a Vantins a llamarme para responder a esta solicitud. No acepto recibir campañas promocionales por SMS.',
+    disclaimer: 'No necesitas conocer las coberturas ni tener documentos listos para solicitar la llamada. El registro no activa una póliza ni garantiza un precio.',
     required: 'Completa este campo.',
-    invalidEmail: 'Ingresa un correo válido.',
     invalidPhone: 'Ingresa un teléfono válido (mínimo 10 dígitos).',
-    invalidTrucks: 'Ingresa una cantidad entre 1 y 9,999.',
-    consentError: 'Confirma que podemos contactarte sobre tu solicitud.',
+    consentError: 'Confirma que podemos llamarte sobre tu solicitud.',
     submitting: 'Enviando solicitud…',
     error: 'No pudimos enviar tu solicitud. Inténtalo de nuevo o llámanos.',
     successTitle: 'Recibimos tu solicitud.',
-    success: 'Un asesor de Vantins revisará tus datos y se comunicará contigo. Si ya tienes una cotización o un COI, puedes tenerlo a mano para la conversación.',
+    success: 'Un asesor de Vantins revisará tus datos y te llamará. No necesitas tener documentos listos para esta primera conversación.',
     call: '¿Prefieres hablar ahora?',
     carriersEyebrow: 'ASEGURADORAS',
     carriersTitle: 'Más opciones para encontrar la cobertura adecuada.',
@@ -49,7 +49,7 @@ const copy = {
     stepsEyebrow: 'UN PROCESO SENCILLO',
     stepsTitle: 'Una conversación clara antes de cotizar.',
     steps: [
-      ['01', 'Cuéntanos lo básico', 'Comparte tu tipo de operación, carga y cuándo necesitas cobertura.'],
+      ['01', 'Pide tu llamada', 'Elige tu etapa y déjanos nombre, teléfono y estado.'],
       ['02', 'Revisamos tus necesidades', 'Un asesor identifica las coberturas y datos necesarios para avanzar.'],
       ['03', 'Hablamos contigo', 'Te explicamos los próximos pasos y, si aplica, cómo solicitar opciones.'],
     ],
@@ -58,28 +58,27 @@ const copy = {
     eyebrow: 'GET INSURED · PERSONAL GUIDANCE',
     title: 'Your operation changes.',
     accent: 'Your insurance should keep up.',
-    intro: 'Starting out, renewing, or adding trucks? Tell us what you haul and how you operate. A Vantins advisor will review your coverage needs and the next steps toward requesting a quote.',
+    intro: 'Starting out, renewing, or adding trucks? Leave your details. A Vantins advisor will call to learn about your operation and explain the next steps.',
     bullets: ['Support in English and Spanish.', 'Guidance for owner-operators and fleets.', 'Help reviewing liability, cargo, physical damage, and other coverage for your operation.'],
-    cta: 'Request an insurance review',
+    cta: 'Request a call',
     formEyebrow: 'LET’S GET STARTED',
-    formTitle: 'Tell us about your operation',
-    formIntro: 'Just the essentials so an advisor can reach you.',
-    labels: { name: 'Full name', phone: 'Phone number', email: 'Email address', state: 'State of operation', kind: 'What do you need?', trucks: 'Number of trucks', cargo: 'Primary cargo', timing: 'When do you need coverage?', renewalDate: 'Policy expiration date', startDate: 'Estimated start date', preferredContact: 'Preferred contact method' },
-    placeholders: { name: 'First and last name', phone: '(555) 555-5555', email: 'you@company.com', state: 'Select a state', kind: 'Select one', trucks: 'E.g. 2', cargo: 'E.g. general freight, food, autos', timing: 'Select one' },
+    formTitle: 'Let’s talk about your commercial insurance',
+    formIntro: 'Leave your details and a Vantins advisor will call to learn about your operation and explain the next steps. It takes less than a minute.',
+    labels: { kind: 'Where are you in the process?', coverages: 'Which coverages would you like to review? (Optional)', trucks: 'How many trucks do you have? (Optional)', name: 'Name', phone: 'Phone number', state: 'State of operation' },
+    placeholders: { name: 'Your name', phone: '(555) 555-5555', state: 'Select a state' },
     kinds: { starting: 'I am starting out', renewing: 'I am renewing', adding: 'I am adding trucks' },
-    timings: { asap: 'As soon as possible', two_weeks: 'In 1–2 weeks', this_month: 'This month', later: 'Later' },
-    channels: { phone: 'Phone call', email: 'Email' },
-    consent: 'I authorize Vantins to contact me about this request through my selected method. This does not subscribe me to promotional messages.',
-    disclaimer: 'Submitting this registration does not activate a policy or guarantee a price. Coverage options, premiums, and down payments depend on your operation and the insurer’s review.',
+    coverages: { liability: 'Liability', motor_truck_cargo: 'Motor Truck Cargo', physical_damage: 'Physical Damage', trailer_interchange: 'Trailer Interchange', reefer_breakdown: 'Reefer Breakdown', not_sure: 'Not sure' },
+    trucks: { one: '1', two_to_four: '2–4', five_plus: '5 or more', no_truck: 'I do not have a truck yet' },
+    coverageHint: 'Choose as many as you like. If you are unsure, we will guide you.',
+    consent: 'I authorize Vantins to call me about this request. I am not subscribing to promotional SMS campaigns.',
+    disclaimer: 'You do not need to know your coverages or have documents ready to request a call. Registration does not activate a policy or guarantee a price.',
     required: 'Please complete this field.',
-    invalidEmail: 'Enter a valid email address.',
     invalidPhone: 'Enter a valid phone number (at least 10 digits).',
-    invalidTrucks: 'Enter a number from 1 to 9,999.',
-    consentError: 'Please confirm we may contact you about your request.',
+    consentError: 'Please confirm we may call you about your request.',
     submitting: 'Sending request…',
     error: 'We could not send your request. Please try again or call us.',
     successTitle: 'We received your request.',
-    success: 'A Vantins advisor will review your details and contact you. If you already have a quote or COI, you can have it ready for the conversation.',
+    success: 'A Vantins advisor will review your details and call you. You do not need documents ready for this first conversation.',
     call: 'Prefer to talk now?',
     carriersEyebrow: 'CARRIERS',
     carriersTitle: 'More options for coverage that fits.',
@@ -87,7 +86,7 @@ const copy = {
     stepsEyebrow: 'A SIMPLE PROCESS',
     stepsTitle: 'A clear conversation before the quote.',
     steps: [
-      ['01', 'Tell us the basics', 'Share your operation, main cargo, and when you need coverage.'],
+      ['01', 'Request a call', 'Choose your stage and leave your name, phone, and state.'],
       ['02', 'We review your needs', 'An advisor identifies the coverage and details needed to move forward.'],
       ['03', 'We connect with you', 'We explain the next steps and, when appropriate, how to request options.'],
     ],
@@ -95,9 +94,10 @@ const copy = {
 } as const;
 
 const inputClass = 'mt-2 block h-12 w-full rounded-xl border border-[#d8dde5] bg-white px-4 text-[15px] text-[#10213a] outline-none transition placeholder:text-[#98a1ad] focus:border-[#e39a18] focus:ring-2 focus:ring-[#f9b431]/20';
+const choiceClass = (active: boolean) => `min-h-12 rounded-xl border px-3 py-3 text-center text-sm font-bold leading-snug transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d17b00] ${active ? 'border-[#db8a0c] bg-[#fff3da] text-[#754300] shadow-sm' : 'border-[#d8dde5] bg-white text-[#344359] hover:border-[#dfa134] hover:bg-[#fffaf0]'}`;
 
-function Field({ label, error, children, full = false }: { label: string; error?: string; children: ReactNode; full?: boolean }) {
-  return <div className={full ? 'sm:col-span-2' : ''}><label className="block text-sm font-bold text-[#23344a]">{label}{children}</label>{error && <p role="alert" className="mt-1 text-xs font-semibold text-red-700">{error}</p>}</div>;
+function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+  return <div><label className="block text-sm font-bold text-[#23344a]">{label}{children}</label>{error && <p role="alert" className="mt-1 text-xs font-semibold text-red-700">{error}</p>}</div>;
 }
 
 export function TruckingRegistrationPage() {
@@ -112,25 +112,29 @@ function RegistrationContent() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle');
   const [submitError, setSubmitError] = useState('');
   const [website, setWebsite] = useState('');
-  const update = (field: FieldName, value: string | boolean) => {
-    setValues((current) => ({ ...current, [field]: value, ...(field === 'kind' ? { renewalDate: '', startDate: '' } : {}) }));
+  const update = (field: 'kind' | 'name' | 'phone' | 'state', value: string) => {
+    setValues((current) => ({ ...current, [field]: value }));
     setErrors((current) => ({ ...current, [field]: undefined }));
   };
-  const kind = values.kind as Kind;
+  const toggleCoverage = (coverage: string) => {
+    setValues((current) => ({
+      ...current,
+      coverages: coverage === 'not_sure'
+        ? (current.coverages.includes('not_sure') ? [] : ['not_sure'])
+        : current.coverages.includes(coverage)
+          ? current.coverages.filter((item) => item !== coverage)
+          : [...current.coverages.filter((item) => item !== 'not_sure'), coverage],
+    }));
+  };
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (status !== 'idle') return;
     const next: Partial<Record<FieldName, string>> = {};
-    for (const key of ['name', 'phone', 'email', 'state', 'kind', 'trucks', 'cargo', 'timing'] as FieldName[]) {
+    for (const key of ['kind', 'name', 'phone', 'state'] as FieldName[]) {
       if (!String(values[key]).trim()) next[key] = t.required;
     }
-    if (String(values.name).trim() && String(values.name).trim().length < 2) next.name = t.required;
-    if (String(values.cargo).trim() && String(values.cargo).trim().length < 2) next.cargo = t.required;
-    if (String(values.email).trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(values.email))) next.email = t.invalidEmail;
-    if (String(values.phone).trim() && String(values.phone).replace(/\D/g, '').length < 10) next.phone = t.invalidPhone;
-    if (String(values.trucks).trim() && (!Number.isInteger(Number(values.trucks)) || Number(values.trucks) < 1 || Number(values.trucks) > 9999)) next.trucks = t.invalidTrucks;
-    if (kind === 'renewing' && !values.renewalDate) next.renewalDate = t.required;
-    if (kind === 'starting' && !values.startDate) next.startDate = t.required;
+    if (values.name.trim() && values.name.trim().length < 2) next.name = t.required;
+    if (values.phone.trim() && (!/^\+?[\d\s().-]{10,30}$/.test(values.phone) || values.phone.replace(/\D/g, '').length < 10)) next.phone = t.invalidPhone;
     if (!values.contactConsent) next.contactConsent = t.consentError;
     if (Object.keys(next).length) { setErrors(next); return; }
     setStatus('sending');
@@ -142,9 +146,8 @@ function RegistrationContent() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...values,
-          trucks: Number(values.trucks),
           website,
-          utm: { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign'), content: params.get('utm_content') },
+          utm: { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign'), content: params.get('utm_content'), term: params.get('utm_term'), segment: params.get('utm_segment') },
         }),
       });
       if (!response.ok) throw new Error();
@@ -172,7 +175,7 @@ function RegistrationContent() {
           </div>
           <div id="registro" className="scroll-mt-24 rounded-[1.75rem] border border-white/15 bg-white p-6 text-[#18283d] shadow-[0_28px_80px_rgba(2,13,30,0.32)] sm:p-8">
             {status === 'sent' ? (
-              <div role="status" className="flex min-h-[28rem] flex-col justify-center">
+              <div role="status" className="flex min-h-[24rem] flex-col justify-center">
                 <span className="grid h-16 w-16 place-items-center rounded-full bg-[#ecf8ee] text-[#16834b]"><IconCheck className="h-9 w-9" /></span>
                 <h2 className="mt-7 text-3xl font-extrabold">{t.successTitle}</h2>
                 <p className="mt-4 text-lg leading-relaxed text-[#58667a]">{t.success}</p>
@@ -185,19 +188,27 @@ function RegistrationContent() {
                 <p className="mt-2 text-sm leading-relaxed text-[#68768a]">{t.formIntro}</p>
                 <form onSubmit={onSubmit} noValidate className="mt-6">
                   <div className="absolute -left-[9999px]" aria-hidden="true"><label>Website<input tabIndex={-1} autoComplete="off" value={website} onChange={(e) => setWebsite(e.target.value)} /></label></div>
-                  <div className="grid gap-x-4 gap-y-4 sm:grid-cols-2">
-                    <Field label={t.labels.name} error={errors.name} full><input className={inputClass} autoComplete="name" placeholder={t.placeholders.name} value={String(values.name)} onChange={(e) => update('name', e.target.value)} /></Field>
-                    <Field label={t.labels.phone} error={errors.phone}><input className={inputClass} type="tel" autoComplete="tel" placeholder={t.placeholders.phone} value={String(values.phone)} onChange={(e) => update('phone', e.target.value)} /></Field>
-                    <Field label={t.labels.email} error={errors.email}><input className={inputClass} type="email" autoComplete="email" placeholder={t.placeholders.email} value={String(values.email)} onChange={(e) => update('email', e.target.value)} /></Field>
-                    <Field label={t.labels.state} error={errors.state}><select className={inputClass} value={String(values.state)} onChange={(e) => update('state', e.target.value)}><option value="">{t.placeholders.state}</option>{STATES.map((state) => <option key={state} value={state}>{state}</option>)}</select></Field>
-                    <Field label={t.labels.kind} error={errors.kind}><select className={inputClass} value={kind} onChange={(e) => update('kind', e.target.value)}><option value="">{t.placeholders.kind}</option>{(Object.keys(t.kinds) as Array<keyof typeof t.kinds>).map((value) => <option key={value} value={value}>{t.kinds[value]}</option>)}</select></Field>
-                    {kind === 'renewing' && <Field label={t.labels.renewalDate} error={errors.renewalDate}><input className={inputClass} type="date" value={String(values.renewalDate)} onChange={(e) => update('renewalDate', e.target.value)} /></Field>}
-                    {kind === 'starting' && <Field label={t.labels.startDate} error={errors.startDate}><input className={inputClass} type="date" value={String(values.startDate)} onChange={(e) => update('startDate', e.target.value)} /></Field>}
-                    <Field label={t.labels.trucks} error={errors.trucks}><input className={inputClass} type="number" min="1" max="9999" inputMode="numeric" placeholder={t.placeholders.trucks} value={String(values.trucks)} onChange={(e) => update('trucks', e.target.value)} /></Field>
-                    <Field label={t.labels.cargo} error={errors.cargo}><input className={inputClass} placeholder={t.placeholders.cargo} value={String(values.cargo)} onChange={(e) => update('cargo', e.target.value)} /></Field>
-                    <Field label={t.labels.timing} error={errors.timing}><select className={inputClass} value={String(values.timing)} onChange={(e) => update('timing', e.target.value)}><option value="">{t.placeholders.timing}</option>{(Object.keys(t.timings) as Array<keyof typeof t.timings>).map((value) => <option key={value} value={value}>{t.timings[value]}</option>)}</select></Field>
-                    <div className="sm:col-span-2"><p className="text-sm font-bold text-[#23344a]">{t.labels.preferredContact}</p><div className="mt-2 flex flex-wrap gap-5">{(Object.keys(t.channels) as Array<keyof typeof t.channels>).map((channel) => <label key={channel} className="flex items-center gap-2 text-sm text-[#425269]"><input type="radio" name="preferredContact" checked={values.preferredContact === channel} onChange={() => update('preferredContact', channel)} className="accent-[#e38b07]" />{t.channels[channel]}</label>)}</div></div>
-                    <div className="sm:col-span-2"><label className="flex items-start gap-3 text-xs leading-relaxed text-[#5f6e80]"><input type="checkbox" checked={Boolean(values.contactConsent)} onChange={(e) => update('contactConsent', e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0 accent-[#d77e05]" /><span>{t.consent}</span></label>{errors.contactConsent && <p role="alert" className="mt-1 text-xs font-semibold text-red-700">{errors.contactConsent}</p>}</div>
+                  <div className="space-y-5">
+                    <fieldset>
+                      <legend className="text-sm font-bold text-[#23344a]">{t.labels.kind}</legend>
+                      <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3">{(Object.keys(t.kinds) as Array<keyof typeof t.kinds>).map((kind) => <button key={kind} type="button" aria-pressed={values.kind === kind} onClick={() => update('kind', kind)} className={choiceClass(values.kind === kind)}>{t.kinds[kind]}</button>)}</div>
+                      {errors.kind && <p role="alert" className="mt-1 text-xs font-semibold text-red-700">{errors.kind}</p>}
+                    </fieldset>
+                    <fieldset>
+                      <legend className="text-sm font-bold text-[#23344a]">{t.labels.coverages}</legend>
+                      <p className="mt-1 text-xs leading-relaxed text-[#68768a]">{t.coverageHint}</p>
+                      <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">{COVERAGES.map((coverage) => <button key={coverage} type="button" aria-pressed={values.coverages.includes(coverage)} onClick={() => toggleCoverage(coverage)} className={choiceClass(values.coverages.includes(coverage))}>{t.coverages[coverage]}</button>)}</div>
+                    </fieldset>
+                    <fieldset>
+                      <legend className="text-sm font-bold text-[#23344a]">{t.labels.trucks}</legend>
+                      <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">{(Object.keys(t.trucks) as Array<keyof typeof t.trucks>).map((range) => <button key={range} type="button" aria-pressed={values.trucks === range} onClick={() => setValues((current) => ({ ...current, trucks: current.trucks === range ? '' : range }))} className={choiceClass(values.trucks === range)}>{t.trucks[range]}</button>)}</div>
+                    </fieldset>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <Field label={t.labels.name} error={errors.name}><input className={inputClass} autoComplete="name" placeholder={t.placeholders.name} value={values.name} onChange={(e) => update('name', e.target.value)} /></Field>
+                      <Field label={t.labels.phone} error={errors.phone}><input className={inputClass} type="tel" autoComplete="tel" inputMode="tel" placeholder={t.placeholders.phone} value={values.phone} onChange={(e) => update('phone', e.target.value)} /></Field>
+                      <Field label={t.labels.state} error={errors.state}><select className={inputClass} value={values.state} onChange={(e) => update('state', e.target.value)}><option value="">{t.placeholders.state}</option>{STATES.map((state) => <option key={state} value={state}>{state}</option>)}</select></Field>
+                    </div>
+                    <div><label className="flex items-start gap-3 text-xs leading-relaxed text-[#5f6e80]"><input type="checkbox" checked={values.contactConsent} onChange={(e) => { setValues((current) => ({ ...current, contactConsent: e.target.checked })); setErrors((current) => ({ ...current, contactConsent: undefined })); }} className="mt-0.5 h-4 w-4 shrink-0 accent-[#d77e05]" /><span>{t.consent}</span></label>{errors.contactConsent && <p role="alert" className="mt-1 text-xs font-semibold text-red-700">{errors.contactConsent}</p>}</div>
                   </div>
                   {submitError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-800">{submitError} <a href={`tel:${SALES_PHONE_TEL}`} className="font-bold underline">{SALES_PHONE}</a></p>}
                   <button type="submit" disabled={status === 'sending'} className="mt-6 flex min-h-[52px] w-full items-center justify-center gap-2 rounded-xl bg-[#f6a51b] px-5 py-3.5 text-base font-extrabold text-[#16253a] shadow-sm transition hover:bg-[#ffbb3d] disabled:cursor-wait disabled:opacity-60">{status === 'sending' ? t.submitting : t.cta}<IconArrowRight className="h-5 w-5" /></button>
@@ -209,7 +220,6 @@ function RegistrationContent() {
           </div>
         </Container>
       </section>
-
       <section className="border-b border-[#e5eaf0] bg-white py-16">
         <Container className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.carriersEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.carriersTitle}</h2><p className="mx-auto mt-3 max-w-2xl text-[#647184]">{t.carriersDescription}</p></Container>
         <div className="mt-9"><CarrierMarquee /></div>

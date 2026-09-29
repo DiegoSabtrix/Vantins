@@ -1,40 +1,51 @@
-# Trucking registration landing
+# Trucking call-request landing
 
-Public route: `/trucking/registro`. It is intentionally absent from the navigation menu.
-The form calls `/api/trucking/registro`; only the server posts to HighLevel.
+Public route: `/trucking/registro`. It is intentionally absent from the Services navigation.
+The form calls `/api/trucking/registro`; the server posts to HighLevel using the secret
+`GHL_TRUCKING_WEBHOOK_URL`. The webhook URL must stay server-only in both Railway and
+Sites. Only HTTPS `services.leadconnectorhq.com/hooks/...` is accepted.
 
-## Runtime setting
+## Form and validation
 
-Set `GHL_TRUCKING_WEBHOOK_URL` as a secret in both the production server and
-Sites runtime. Never put the URL in a `NEXT_PUBLIC_` variable or client code.
-The route accepts only an HTTPS `services.leadconnectorhq.com/hooks/...` URL.
+Required: stage, name, phone, state (FL or TX, matching the licensed states shown on
+Vantins), plus explicit permission to call about this request. Coverages and truck
+range are optional. Multiple coverages can be selected, except `not_sure`, which
+is exclusive. General Freight is cargo, not a coverage. No dates, email, VIN,
+documents, or promotional SMS permission are collected here.
 
-## HighLevel inbound workflow
+## Webhook payload
 
-The webhook receives JSON with:
+The inbound workflow receives:
 
-- Contact: `name`, `first_name`, `last_name`, `email`, `phone`, `state`
-- Operation: `operation_status` (`starting`, `renewing`, `adding`),
-  `truck_count`, `primary_cargo`, `coverage_timing`
-- Conditional dates: `renewal_expiration_date` or `estimated_start_date`
-- Follow-up: `preferred_contact_method` (`phone` or `email`),
-  `consent_to_contact_about_request: true`, `marketing_sms_consent: false`
-- Attribution: `source`, `submitted_at`, `utm_source`, `utm_medium`,
-  `utm_campaign`, `utm_content`
+- Contact: `name`, `first_name`, `last_name`, `phone`, `state`.
+- Stage: `operation_status` (`starting`, `renewing`, `adding`) and `stage`
+  (`New Venture`, `Renovación`, `Agregar camiones`).
+- `coverage_interests`: an array of selected labels; `coverage_interests_text`:
+  the same labels joined by commas for HighLevel custom-field mapping. The
+  `No estoy seguro` label remains unchanged.
+- `truck_count_range`: selected label or empty string.
+- `lead_status`: `Nuevo registro — llamar`.
+- `internal_notification_line`: name | phone | state | stage | truck range |
+  selected coverages, using `Sin indicar` for optional blanks.
+- `source`, `submitted_at`, `utm_source`, `utm_medium`, `utm_campaign`,
+  `utm_content`, `utm_term`, `utm_segment`.
+- `consent_to_call_about_request: true` and `marketing_sms_consent: false`.
 
-In the receiving HighLevel workflow, map the contact fields, create/update
-the lead, assign the commercial owner, create a call task, and send an
-internal notification. Branch follow-up on `preferred_contact_method`.
-The form's contact authorization covers this request only; do not enroll
-these leads in promotional SMS or WhatsApp without a separately recorded
-channel-specific permission. The webhook alone cannot configure those
-HighLevel workflow actions.
+## HighLevel workflow actions
+
+In the inbound webhook workflow, map the contact fields, create or update the
+contact, map `coverage_interests_text` to a multiselect custom field whose
+options exactly match the labels above, create an opportunity with status
+`Nuevo registro — llamar`, assign it to the commercial owner, create a call
+task, and send `internal_notification_line` in the internal alert. Give
+`stage = Renovación` priority. The webhook bridge sends data; these actions
+must be configured in the receiving HighLevel workflow. Do not enroll this
+contact in promotional SMS/WhatsApp without separate permission.
 
 ## Verification
 
-The route returns success only after the webhook responds successfully.
-It validates required fields and conditional dates, rejects oversize input,
-and uses a hidden bot field. The browser disables repeat submission while
-the request is in flight. Test the form with an authorized test contact in
-HighLevel and confirm the lead, assignment, task, and internal alert before
-using it for a campaign. No live CRM lead is created by the local mock test.
+First run the local route with a mocked outbound `fetch` to test validation,
+exclusive coverage selection, optional fields, and payload mapping. Then send
+one clearly marked synthetic test lead through the public form and inspect the
+HighLevel contact, opportunity, custom fields, assignment, task, and alert.
+The webhook's HTTP success alone does not prove these downstream actions.
