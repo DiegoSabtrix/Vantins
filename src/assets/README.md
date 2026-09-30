@@ -9,7 +9,6 @@ generated from code:
   (`components/icons/index.tsx`).
 - **Product screenshots** — placeholder dashboards/cards built with HTML + CSS
   (`components/visuals/`).
-- **Customer logos** — plain-text placeholder names in the trust marquee.
 
 To use real imagery, drop files here and import them, or reference them from
 `/public`. Keep `alt` text descriptive for accessibility.

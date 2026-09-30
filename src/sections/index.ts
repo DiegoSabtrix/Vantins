@@ -1,6 +1,5 @@
 export { Hero } from './Hero';
 export { HighlightBand } from './HighlightBand';
-export { TrustBar } from './TrustBar';
 export { Features } from './Features';
 export { ProductShowcase } from './ProductShowcase';
 export { Stats } from './Stats';

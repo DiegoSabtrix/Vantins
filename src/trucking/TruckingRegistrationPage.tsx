@@ -4,7 +4,6 @@ import { useState, type FormEvent, type ReactNode } from 'react';
 import { Footer, Navbar } from '@/components/layout';
 import { Container } from '@/components/ui';
 import { IconArrowRight, IconCheck, IconShield } from '@/components/icons';
-import { CarrierMarquee } from '@/sections/TrustBar';
 import { LanguageProvider, useLang } from '@/i18n';
 import { SALES_PHONE, SALES_PHONE_TEL } from '@/utils/constants';
 
@@ -50,9 +49,6 @@ const copy = {
     successTitle: 'Recibimos tu solicitud.',
     success: 'Un asesor de Vantins revisará tus datos y te llamará. No necesitas tener documentos listos para esta primera conversación.',
     call: '¿Prefieres hablar ahora?',
-    carriersEyebrow: 'ASEGURADORAS',
-    carriersTitle: 'Más opciones para encontrar la cobertura adecuada.',
-    carriersDescription: 'Trabajamos con aseguradoras especializadas para revisar opciones según tu operación. La disponibilidad depende de tu perfil y de cada aseguradora.',
     stepsEyebrow: 'UN PROCESO SENCILLO',
     stepsTitle: 'Una conversación clara antes de cotizar.',
     steps: [
@@ -94,9 +90,6 @@ const copy = {
     successTitle: 'We received your request.',
     success: 'A Vantins advisor will review your details and call you. You do not need documents ready for this first conversation.',
     call: 'Prefer to talk now?',
-    carriersEyebrow: 'CARRIERS',
-    carriersTitle: 'More options for coverage that fits.',
-    carriersDescription: 'We work with specialist insurers to review options for your operation. Availability depends on your profile and each insurer.',
     stepsEyebrow: 'A SIMPLE PROCESS',
     stepsTitle: 'A clear conversation before the quote.',
     steps: [
@@ -244,10 +237,6 @@ function RegistrationContent() {
             )}
           </div>
         </Container>
-      </section>
-      <section className="border-b border-[#e5eaf0] bg-white py-10 lg:py-16">
-        <Container className="text-center"><p className="text-xs font-extrabold tracking-[0.18em] text-[#b8750d]">{t.carriersEyebrow}</p><h2 className="mt-3 text-3xl font-extrabold text-[#263347]">{t.carriersTitle}</h2><p className="mx-auto mt-3 max-w-2xl text-[#647184]">{t.carriersDescription}</p></Container>
-        <div className="mt-6 lg:mt-9"><CarrierMarquee /></div>
       </section>
       <section className="bg-[#f5f7fa] py-10 lg:py-20">
         <Container>

@@ -86,15 +86,4 @@
     text-wrap: pretty;
   }
 
-  /* Fade edges of a horizontal marquee */
-  .mask-x-edges {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 8%,
-      #000 92%,
-      transparent
-    );
-    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
-  }
 }

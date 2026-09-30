@@ -2,7 +2,6 @@ import { PromoBar, Navbar, Footer } from '@/components/layout';
 import {
   Hero,
   HighlightBand,
-  TrustBar,
   Features,
   ProductShowcase,
   Stats,
@@ -32,7 +31,6 @@ export default function App() {
         <ProductShowcase />
         <Stats />
         <Testimonials />
-        <TrustBar />
         <Pricing />
         <Faq />
         <CtaBanner />

@@ -48,14 +48,13 @@ src/
 
 1. **Navbar** — sticky, elevates on scroll, mega-menu dropdowns, mobile drawer
 2. **Hero** — headline, CTAs, trust points, animated dashboard mock
-3. **Trust bar** — infinite customer-logo marquee
-4. **Features** — six-card capability grid
-5. **Product showcase** — alternating copy/visual rows with animated mocks
-6. **Stats** — dark metrics band
-7. **Testimonials** — three quote cards with star ratings
-8. **Pricing** — three tiers with an animated promo/standard toggle
-9. **FAQ** — accessible accordion
-10. **CTA banner** — closing conversion block
+3. **Features** — six-card capability grid
+4. **Product showcase** — alternating copy/visual rows with animated mocks
+5. **Stats** — dark metrics band
+6. **Testimonials** — three quote cards with star ratings
+7. **Pricing** — three tiers with an animated promo/standard toggle
+8. **FAQ** — accessible accordion
+9. **CTA banner** — closing conversion block
 11. **Footer** — link columns, socials, legal row
 
 ## Design & quality notes

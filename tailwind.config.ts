@@ -84,15 +84,6 @@ const config: Config = {
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
       },
-      keyframes: {
-        'marquee': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        },
-      },
-      animation: {
-        marquee: 'marquee 32s linear infinite',
-      },
     },
   },
   plugins: [],
