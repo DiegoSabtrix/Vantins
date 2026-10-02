@@ -7,7 +7,7 @@ import { IconArrowRight, IconCheck, IconInvoice, IconMinus, IconPlus, IconReceip
 import { Container, LinkButton } from '@/components/ui';
 import { LanguageProvider, useLang } from '@/i18n';
 import type { Lang } from '@/i18n';
-import { SALES_PHONE, SALES_PHONE_TEL } from '@/utils/constants';
+import { SALES_PHONE, SALES_PHONE_TEL, WHATSAPP_HREF } from '@/utils/constants';
 import { EASE_OUT_EXPO, fadeUp, staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
 
 const SUPPORT_EMAIL = 'support@vantins.com';
@@ -16,7 +16,7 @@ interface SupportCopy {
   hero: { eyebrow: string; title: string; accent: string; description: string; call: string; email: string; note: string };
   options: { eyebrow: string; title: string; description: string; cards: { title: string; description: string; action: string; href: string }[] };
   claims: { eyebrow: string; title: string; description: string; steps: string[]; call: string };
-  contact: { eyebrow: string; title: string; description: string; phoneLabel: string; emailLabel: string; hoursLabel: string; hours: string; addressLabel: string; address: string; response: string };
+  contact: { eyebrow: string; title: string; description: string; phoneLabel: string; emailLabel: string; whatsappLabel: string; hoursLabel: string; hours: string; addressLabel: string; address: string; response: string };
   faq: { eyebrow: string; title: string; items: { question: string; answer: string }[] };
   cta: { title: string; description: string; quote: string; call: string };
 }
@@ -57,6 +57,7 @@ const COPY: Record<Lang, SupportCopy> = {
       description: 'Contact our support team for policy questions, documentation, COIs, claims guidance, or help choosing the right next step.',
       phoneLabel: 'Phone',
       emailLabel: 'Email',
+      whatsappLabel: 'Chat on WhatsApp',
       hoursLabel: 'Business hours',
       hours: 'Monday–Friday · 8 AM–5 PM Eastern',
       addressLabel: 'Mailing address',
@@ -112,6 +113,7 @@ const COPY: Record<Lang, SupportCopy> = {
       description: 'Habla con nuestro equipo sobre pólizas, documentos, COI, reclamaciones o el siguiente paso adecuado.',
       phoneLabel: 'Teléfono',
       emailLabel: 'Correo',
+      whatsappLabel: 'Escríbenos por WhatsApp',
       hoursLabel: 'Horario',
       hours: 'Lunes a viernes · 8 AM–5 PM hora del Este',
       addressLabel: 'Dirección postal',
@@ -173,9 +175,10 @@ function HelpSupportContent() {
                   <span className="grid h-14 w-14 place-items-center rounded-full border border-white/20 bg-white/10 text-brand-300"><IconUsers className="h-7 w-7" /></span>
                   <div><p className="text-sm font-semibold text-white/55">{copy.contact.phoneLabel}</p><a href={`tel:${SALES_PHONE_TEL}`} className="mt-1 block text-2xl font-extrabold hover:text-brand-300">{SALES_PHONE}</a></div>
                 </div>
-                <div className="grid gap-4 pt-6 sm:grid-cols-2">
+                  <div className="grid gap-4 pt-6 sm:grid-cols-2">
                   <a href={`mailto:${SUPPORT_EMAIL}`} className="rounded-2xl border border-white/12 bg-white/[0.07] p-5 transition hover:-translate-y-0.5 hover:border-brand-300/60 hover:bg-white/10"><span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-300">{copy.contact.emailLabel}</span><span className="mt-2 block text-sm font-semibold sm:text-[0.95rem]">{SUPPORT_EMAIL}</span></a>
                   <div className="rounded-2xl border border-white/12 bg-white/[0.07] p-5"><span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-300">{copy.contact.hoursLabel}</span><span className="mt-2 block text-sm font-semibold leading-relaxed">{copy.contact.hours}</span></div>
+                  <a href={WHATSAPP_HREF} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] p-4 font-bold text-white shadow-lg shadow-[#25D366]/20 transition hover:-translate-y-0.5 hover:bg-[#1ebe5d] sm:col-span-2"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-6 w-6 fill-current"><path d="M12 2.25a9.75 9.75 0 0 0-8.43 14.65L2.2 21.8l5.06-1.33A9.75 9.75 0 1 0 12 2.25Zm0 17.76a8 8 0 0 1-4.08-1.12l-.29-.17-3 .79.8-2.92-.19-.3A8 8 0 1 1 12 20.01Zm4.38-5.98c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.4-1.33-1.64-.14-.24-.01-.37.1-.49.1-.1.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.4 1.37.51.58.18 1.1.16 1.52.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" /></svg><span>{copy.contact.whatsappLabel} · +1 470 472 4895</span></a>
                 </div>
               </div>
             </motion.div>

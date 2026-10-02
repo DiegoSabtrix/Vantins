@@ -14,7 +14,7 @@ export function Logo({ className }: LogoProps) {
       <img
         src={LOGO_SRC}
         alt="Vantins commercial truck insurance agency"
-        className="h-10 w-auto object-contain sm:h-11 lg:h-12"
+        className="h-11 w-auto object-contain sm:h-12 lg:h-[3.3rem]"
         width={2047}
         height={512}
       />

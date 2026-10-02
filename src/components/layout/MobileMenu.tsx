@@ -24,7 +24,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       {open && (
         <>
           <motion.div
-            className="fixed inset-0 z-50 bg-ink/40 xl:hidden"
+            className="fixed inset-0 z-[70] bg-ink/40 xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -32,7 +32,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-hidden
           />
           <motion.div
-            className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-black text-white shadow-float xl:hidden"
+            className="fixed inset-y-0 right-0 z-[71] flex w-full max-w-sm flex-col bg-black text-white shadow-float xl:hidden"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -110,7 +110,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               <div className="flex justify-center">
                 <LanguageToggle />
               </div>
-              <LinkButton href="/#pricing" variant="primary" fullWidth onClick={onClose}>
+              <LinkButton href="/get-quote" variant="primary" fullWidth onClick={onClose}>
                 {t.promo.cta}
               </LinkButton>
             </div>

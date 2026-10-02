@@ -81,7 +81,7 @@ export function ProductShowcase() {
                   <p className="mt-3 text-white/65 text-pretty">
                     {item.description}
                   </p>
-                  <LinkButton href="#pricing" size="lg" className="group mt-7">
+                  <LinkButton href="/get-quote" size="lg" className="group mt-7">
                     {t.products.panelCta}
                     <IconArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5" />
                   </LinkButton>

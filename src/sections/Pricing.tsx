@@ -89,7 +89,7 @@ function PricingCard({
       </ul>
 
       <LinkButton
-        href="#"
+        href="/get-quote"
         variant={tier.featured ? 'primary' : 'outline'}
         fullWidth
         className="mt-7"

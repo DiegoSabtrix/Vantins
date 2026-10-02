@@ -18,7 +18,7 @@ export function Navbar({ compactMobile = false }: { compactMobile?: boolean }) {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 bg-black transition-shadow duration-300',
+        'sticky top-0 z-[60] bg-black/95 backdrop-blur-md transition-shadow duration-300',
         scrolled
           ? 'border-b border-white/10 bg-black/90 shadow-sm backdrop-blur-md'
           : 'border-b border-white/10',
@@ -29,7 +29,7 @@ export function Navbar({ compactMobile = false }: { compactMobile?: boolean }) {
           className={cn('flex items-center justify-between gap-4 lg:h-[72px]', compactMobile ? 'h-14' : 'h-16')}
           aria-label="Primary"
         >
-          <a href="/" className="shrink-0" aria-label="Vantins home">
+          <a href="/" className="relative z-[61] shrink-0" aria-label="Vantins home">
             <Logo invert />
           </a>
 
@@ -60,7 +60,7 @@ export function Navbar({ compactMobile = false }: { compactMobile?: boolean }) {
           <Button
             variant="ghost"
             size="sm"
-            className="!px-2 text-white hover:!bg-white/10 xl:hidden"
+            className="relative z-[61] !px-2 text-white hover:!bg-white/10 xl:hidden"
             aria-label="Open menu"
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(true)}

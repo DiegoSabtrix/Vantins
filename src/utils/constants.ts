@@ -12,6 +12,8 @@ import type { IconComponent } from '@/types';
 export const SALES_PHONE = '+1 (754) 290-0308';
 /** Same number in a dialable form for `tel:` links. */
 export const SALES_PHONE_TEL = '+17542900308';
+/** Company WhatsApp deep link used by the Help & Support page. */
+export const WHATSAPP_HREF = 'https://wa.me/14704724895';
 
 /**
  * Icons paired by index with the localized feature list (see `useT().features`).
@@ -33,10 +35,10 @@ export const FEATURE_ICONS: IconComponent[] = [
  * the dark panel background.
  */
 export const FEATURE_IMAGES: string[] = [
-  'feature-auto.jpg', // Owner-Operator Insurance
-  'feature-home.jpg', // Fleet Insurance
-  'feature-commercial.jpg', // Cargo Insurance
-  'feature-truck.jpg', // Physical Damage Coverage
-  'feature-life.jpg', // General Liability
-  'feature-health.jpg', // Workers' Comp
+  'assets/services-truck-clean.webp', // Owner-Operator Insurance
+  'truck-driver-services.jpg', // Fleet Insurance
+  'trucker.jpg', // Cargo Insurance
+  'assets/services-dashboard.jpg', // Physical Damage Coverage
+  'driver.jpg', // General Liability
+  'assets/about-advisors.webp', // Workers' Comp
 ];
