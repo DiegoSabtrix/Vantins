@@ -32,7 +32,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-hidden
           />
           <motion.div
-            className="fixed inset-y-0 right-0 z-[71] flex w-full max-w-sm flex-col bg-black text-white shadow-float xl:hidden"
+            className="fixed inset-0 z-[71] flex h-dvh w-full max-w-sm flex-col overflow-hidden bg-black text-white shadow-float xl:hidden"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -41,7 +41,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             aria-modal="true"
             aria-label="Menu"
           >
-            <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-5 py-4">
               <Logo invert />
               <Button
                 variant="ghost"
@@ -54,7 +54,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               </Button>
             </div>
 
-            <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Mobile">
+            <nav className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-4" aria-label="Mobile">
               <ul className="space-y-1">
                 {links.map((item) => (
                   <li key={item.label}>
@@ -106,7 +106,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               </ul>
             </nav>
 
-            <div className="space-y-3 border-t border-white/10 p-5">
+            <div className="shrink-0 space-y-3 border-t border-white/10 p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]">
               <div className="flex justify-center">
                 <LanguageToggle />
               </div>

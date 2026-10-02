@@ -16,62 +16,66 @@ export function Navbar({ compactMobile = false }: { compactMobile?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-[60] bg-black/95 backdrop-blur-md transition-shadow duration-300',
-        scrolled
-          ? 'border-b border-white/10 bg-black/90 shadow-sm backdrop-blur-md'
-          : 'border-b border-white/10',
-      )}
-    >
-      <Container>
-        <nav
-          className={cn('flex items-center justify-between gap-4 lg:h-[72px]', compactMobile ? 'h-14' : 'h-16')}
-          aria-label="Primary"
-        >
-          <a href="/" className="relative z-[61] shrink-0" aria-label="Vantins home">
-            <Logo invert />
-          </a>
-
-          {/* Desktop nav */}
-          <ul className="hidden items-center gap-0.5 xl:flex">
-            {t.nav.map((item) => (
-              <NavBarItem
-                key={item.label}
-                item={item}
-                isOpen={openMenu === item.label}
-                onOpen={() => setOpenMenu(item.label)}
-                onClose={() => setOpenMenu((cur) => (cur === item.label ? null : cur))}
-              />
-            ))}
-          </ul>
-
-          <div className="hidden items-center gap-5 xl:flex">
-            <a
-              href={`tel:${SALES_PHONE_TEL}`}
-              className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
-            >
-              {t.common.sales}: {SALES_PHONE}
-              <IconChevronDown className="h-4 w-4" />
-            </a>
-          </div>
-
-          {/* Mobile trigger */}
-          <Button
-            variant="ghost"
-            size="sm"
-            className="relative z-[61] !px-2 text-white hover:!bg-white/10 xl:hidden"
-            aria-label="Open menu"
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen(true)}
+    <>
+      <header
+        className={cn(
+          'sticky top-0 z-[60] bg-black/95 backdrop-blur-md transition-shadow duration-300',
+          scrolled
+            ? 'border-b border-white/10 bg-black/90 shadow-sm backdrop-blur-md'
+            : 'border-b border-white/10',
+        )}
+      >
+        <Container>
+          <nav
+            className={cn('flex items-center justify-between gap-4 lg:h-[72px]', compactMobile ? 'h-14' : 'h-16')}
+            aria-label="Primary"
           >
-            <IconMenu className="h-6 w-6" />
-          </Button>
-        </nav>
-      </Container>
+            <a href="/" className="relative z-[61] shrink-0" aria-label="Vantins home">
+              <Logo invert />
+            </a>
 
+            {/* Desktop nav */}
+            <ul className="hidden items-center gap-0.5 xl:flex">
+              {t.nav.map((item) => (
+                <NavBarItem
+                  key={item.label}
+                  item={item}
+                  isOpen={openMenu === item.label}
+                  onOpen={() => setOpenMenu(item.label)}
+                  onClose={() => setOpenMenu((cur) => (cur === item.label ? null : cur))}
+                />
+              ))}
+            </ul>
+
+            <div className="hidden items-center gap-5 xl:flex">
+              <a
+                href={`tel:${SALES_PHONE_TEL}`}
+                className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-white transition-colors hover:text-brand-300"
+              >
+                {t.common.sales}: {SALES_PHONE}
+                <IconChevronDown className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* Mobile trigger */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="relative z-[61] !px-2 text-white hover:!bg-white/10 xl:hidden"
+              aria-label="Open menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(true)}
+            >
+              <IconMenu className="h-6 w-6" />
+            </Button>
+          </nav>
+        </Container>
+      </header>
+
+      {/* Keep the fixed mobile drawer outside the filtered/sticky header so it
+          stays anchored to the viewport at every scroll position. */}
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </header>
+    </>
   );
 }
 
