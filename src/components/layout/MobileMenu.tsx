@@ -10,7 +10,7 @@ interface MobileMenuProps {
   onClose: () => void;
 }
 
-/** Static, full-height navigation for small screens. */
+/** Static, right-aligned navigation for small screens. */
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const t = useT();
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -41,7 +41,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         aria-hidden
       />
       <aside
-        className="fixed inset-0 z-[71] flex h-dvh w-full max-w-sm flex-col overflow-hidden border-l border-white/10 bg-black text-white shadow-float xl:hidden"
+        className="fixed inset-y-0 right-0 left-auto z-[71] flex h-dvh w-[88vw] max-w-sm flex-col overflow-hidden rounded-l-2xl border-l border-white/10 bg-black text-white shadow-float xl:hidden"
         role="dialog"
         aria-modal="true"
         aria-label="Menu"
