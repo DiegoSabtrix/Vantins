@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Container, LinkButton, SectionHeading } from '@/components/ui';
 import { IconArrowRight } from '@/components/icons';
-import { FEATURE_ICONS, FEATURE_IMAGES } from '@/utils/constants';
+import { FEATURE_ICONS, FEATURE_IMAGES, FEATURE_IMAGE_ALTS } from '@/utils/constants';
 import { staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
 import { useT } from '@/i18n';
 import type { IconComponent } from '@/types';
@@ -39,6 +39,7 @@ export function Features() {
               description={feature.description}
               icon={FEATURE_ICONS[i % FEATURE_ICONS.length]}
               image={FEATURE_IMAGES[i % FEATURE_IMAGES.length]}
+              imageAlt={FEATURE_IMAGE_ALTS[i % FEATURE_IMAGE_ALTS.length]}
             />
           ))}
         </motion.ul>
@@ -52,24 +53,27 @@ function FeatureCard({
   description,
   icon: Icon,
   image,
+  imageAlt,
 }: {
   title: string;
   description: string;
   icon: IconComponent;
   image?: string;
+  imageAlt: string;
 }) {
   return (
     <motion.li
       variants={staggerItem}
       className="group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-panel p-7 shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover"
     >
-      {/* Industry photo (CSS background so a missing file just falls back to
-          the dark panel — no broken-image icon). */}
+      {/* Real coverage photo with descriptive SEO and accessibility text. */}
       {image && (
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}${image})` }}
+        <img
+          src={`${import.meta.env.BASE_URL}${image}`}
+          alt={imageAlt}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
       )}
       {/* Dark scrim: fully dark at the bottom (behind the copy) fading up so the

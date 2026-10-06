@@ -29,16 +29,25 @@ export const FEATURE_ICONS: IconComponent[] = [
 ];
 
 /**
- * Background photo for each feature card, paired by index with FEATURE_ICONS
- * and `useT().features.items`. Files live in `public/` — drop a matching image
- * in to light up a card; if a file is missing the card gracefully falls back to
- * the dark panel background.
+ * Vantins coverage photos paired by index with FEATURE_ICONS and
+ * `useT().features.items`. The filenames intentionally describe the coverage
+ * and the commercial trucking search intent they support.
  */
 export const FEATURE_IMAGES: string[] = [
-  'assets/services-truck-clean.webp', // Owner-Operator Insurance
-  'truck-driver-services.jpg', // Fleet Insurance
-  'trucker.jpg', // Cargo Insurance
-  'assets/services-dashboard.jpg', // Physical Damage Coverage
-  'driver.jpg', // General Liability
-  'assets/about-advisors.webp', // Workers' Comp
+  'assets/vantins-owner-operator-truck-insurance.webp', // Owner-Operator Insurance
+  'assets/vantins-fleet-truck-insurance.webp', // Fleet Insurance
+  'assets/vantins-motor-truck-cargo-insurance.webp', // Cargo Insurance
+  'assets/vantins-physical-damage-truck-insurance.webp', // Physical Damage Coverage
+  'assets/vantins-general-liability-commercial-auto-insurance.webp', // General Liability
+  'assets/vantins-workers-compensation-trucking-insurance.webp', // Workers' Comp
+];
+
+/** Descriptive alt text keeps each coverage image useful to search and screen readers. */
+export const FEATURE_IMAGE_ALTS: string[] = [
+  'Vantins owner-operator truck insurance — driver standing beside a commercial semi truck',
+  'Vantins fleet truck insurance — multiple commercial trucks lined up at a loading dock',
+  'Vantins motor truck cargo insurance — commercial truck hauling shipping containers',
+  'Vantins physical damage truck insurance — close-up of a commercial semi-truck headlight',
+  'Vantins general liability insurance — commercial delivery van outside a business',
+  'Vantins workers compensation insurance — commercial truck driver beside a fleet vehicle',
 ];
