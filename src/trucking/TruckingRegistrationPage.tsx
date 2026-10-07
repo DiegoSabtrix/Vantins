@@ -6,6 +6,7 @@ import { Container } from '@/components/ui';
 import { IconArrowRight, IconCheck, IconShield } from '@/components/icons';
 import { LanguageProvider, useLang } from '@/i18n';
 import { SALES_PHONE, SALES_PHONE_TEL } from '@/utils/constants';
+import { trackEvent } from '@/analytics';
 
 type Kind = '' | 'starting' | 'renewing' | 'adding';
 type FieldName = 'kind' | 'name' | 'phone' | 'state' | 'contactConsent';
@@ -158,6 +159,7 @@ function RegistrationContent() {
         }),
       });
       if (!response.ok) throw new Error();
+      trackEvent('generate_lead', { form_type: 'trucking_registration', language: lang, stage: values.kind });
       setStatus('sent');
     } catch {
       setSubmitError(t.error);
