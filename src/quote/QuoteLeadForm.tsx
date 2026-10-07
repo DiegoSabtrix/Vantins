@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from 'react';
 import type { Lang } from '@/i18n';
+import { trackEvent } from '@/analytics';
 
 type QuoteKind = 'truck' | 'health' | 'life';
 type Values = {
@@ -35,6 +36,7 @@ export function QuoteLeadForm({ kind, lang }: { kind: QuoteKind; lang: Lang }) {
         body: JSON.stringify({ ...values, website, formId: `get_quote_${kind}`, utm: { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign'), content: params.get('utm_content'), term: params.get('utm_term'), segment: params.get('utm_segment') } }),
       });
       if (!response.ok) throw new Error();
+      trackEvent('generate_lead', { form_type: `get_quote_${kind}`, language: lang });
       setStatus('sent');
     } catch { setStatus('idle'); setError(es ? 'No pudimos enviar tu solicitud. Inténtalo de nuevo o llámanos.' : 'We could not send your request. Please try again or call us.'); }
   }
