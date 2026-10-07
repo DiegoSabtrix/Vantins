@@ -19,6 +19,7 @@ import { LanguageProvider, useLang } from '@/i18n';
 import type { Lang } from '@/i18n';
 import { SALES_PHONE_TEL } from '@/utils/constants';
 import { fadeUp, staggerContainer, staggerItem, viewportOnce } from '@/utils/motion';
+import { trackEvent } from '@/analytics';
 
 type Service = {
   title: string;
@@ -181,6 +182,7 @@ function TruckServicesContent() {
         utm: { source: params.get('utm_source'), medium: params.get('utm_medium'), campaign: params.get('utm_campaign'), content: params.get('utm_content'), term: params.get('utm_term'), segment: params.get('utm_segment') },
       }) });
       if (!response.ok) throw new Error();
+      trackEvent('generate_lead', { form_type: 'truck_services_consultation', language: lang });
       setStatus('sent');
     } catch { setStatus('idle'); setSubmitError(lang === 'es' ? 'No pudimos enviar tu solicitud. Inténtalo de nuevo o llámanos.' : 'We could not send your request. Please try again or call us.'); }
   }
