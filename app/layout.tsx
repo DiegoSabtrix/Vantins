@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { AnalyticsClickTracker } from "@/components/analytics/AnalyticsClickTracker";
 import "../src/index.css";
 
 const siteUrl = "https://vantins-website.diego681936.chatgpt.site";
@@ -68,8 +69,23 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           src="https://www.uchat.com.au/widget/f307167w181055.js"
           strategy="beforeInteractive"
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8E0Z9TD179"
+          strategy="afterInteractive"
+        />
+        <Script id="vantins-ga4" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8E0Z9TD179');
+          `}
+        </Script>
       </head>
-      <body>{children}</body>
+      <body>
+        <AnalyticsClickTracker />
+        {children}
+      </body>
     </html>
   );
 }
