@@ -6,6 +6,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import type { Stripe } from '@stripe/stripe-js';
 import { Logo } from '@/components/ui/Logo';
 import { money, PAYMENT_TYPES, type Payer } from './shared';
+import { trackEvent } from '@/analytics';
 
 type Form = Payer & { consent: boolean };
 type Config = { available: boolean; publishableKey: string | null; minCents: number; maxCents: number };
@@ -53,6 +54,7 @@ function PaymentControls({ form, quote, requestId }: { form: Form; quote: Quote;
     if (!stripe || !elements || busyRef.current) return;
     busyRef.current = true; setBusy(true); setError('');
     try {
+      trackEvent('payment_submit', { payment_type: form.paymentType });
       const submitted = await elements.submit();
       if (submitted.error) throw new Error(submitted.error.message);
       const token = await stripe.createConfirmationToken({
@@ -78,7 +80,7 @@ function PaymentControls({ form, quote, requestId }: { form: Form; quote: Quote;
     }
   }
   return <div className="mt-6">
-    <button type="button" onClick={complete} disabled={!stripe || busy} className="w-full rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-4 text-base font-bold text-slate-950 shadow-md transition hover:brightness-105 focus-visible:ring-2 focus-visible:ring-amber-500 disabled:cursor-wait disabled:opacity-60">
+    <button type="button" data-analytics-cta="payment_submit" onClick={complete} disabled={!stripe || busy} className="w-full rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-4 text-base font-bold text-slate-950 shadow-md transition hover:brightness-105 focus-visible:ring-2 focus-visible:ring-amber-500 disabled:cursor-wait disabled:opacity-60">
       {busy ? 'Processing payment…' : `Complete Payment · ${money(quote.totalCents)}`}
     </button>
     <p className="mt-3 text-sm leading-relaxed text-slate-600">Submitting a payment does not, by itself, bind or activate insurance coverage.</p>
@@ -118,6 +120,7 @@ export function PaymentPage() {
         body: JSON.stringify(form) });
       const data = await response.json() as Quote & { error?: string };
       if (!response.ok || data.error) throw new Error(data.error || 'Unable to review payment.');
+      trackEvent('payment_review', { payment_type: form.paymentType });
       setQuote(data); setRequestId(crypto.randomUUID());
     } catch (error) { setMessage(error instanceof Error ? error.message : 'Unable to review payment.'); }
     finally { setLoading(false); }
@@ -161,7 +164,7 @@ export function PaymentPage() {
             <span>I authorize Vantins to charge the payment method I select for the total shown. I understand that payment does not bind or activate insurance coverage. I agree to the <a className="font-semibold underline" href="/terms-of-payment" target="_blank" rel="noopener noreferrer">Terms of Payment</a>.</span>
           </label>
           {errors.consent && <p role="alert" className="mt-1 text-sm text-red-700">{errors.consent}</p>}
-          {!quote && <button type="button" onClick={review} disabled={!config?.available || loading}
+          {!quote && <button type="button" data-analytics-cta="payment_review" onClick={review} disabled={!config?.available || loading}
             className="mt-6 w-full rounded-xl bg-slate-950 px-5 py-3.5 text-base font-bold text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50">
             {loading ? 'Checking details…' : 'Review Payment'}
           </button>}
